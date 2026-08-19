@@ -1,28 +1,57 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Restra — Restaurant Management System",
-  description:
-    "Run your restaurant without the chaos. Restra combines POS, billing, QR ordering, inventory, order tracking, and staff management into one platform.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s — ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
     type: "website",
-    title: "Restra — Restaurant Management System",
-    description:
-      "Run your restaurant without the chaos. POS, billing, QR ordering, inventory, order tracking, and more — built together for modern restaurants.",
-    siteName: "Restra",
-    images: ["/logo.svg"],
+    url: siteConfig.url,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Restra — Restaurant Management System",
-    description:
-      "Run your restaurant without the chaos. POS, billing, QR ordering, inventory, order tracking, and more — built together for modern restaurants.",
+    title: siteConfig.title,
+    description: siteConfig.description,
   },
+  // Fill in once you generate these in Google Search Console / other verification tools.
+  verification: {
+    google: undefined,
+  },
+};
+
+const softwareApplicationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: siteConfig.name,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description: siteConfig.description,
+  url: siteConfig.url,
 };
 
 export default function RootLayout({
@@ -44,6 +73,12 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(softwareApplicationJsonLd),
+          }}
         />
       </head>
       <body>
