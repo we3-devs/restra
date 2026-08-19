@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useI18n } from "@/contexts/I18nContext";
+import type { TranslationKey } from "@/lib/translations";
 import {
   Layers,
   Zap,
@@ -9,38 +11,20 @@ import {
   BarChart3,
 } from "lucide-react";
 
-const reasons = [
-  {
-    icon: Layers,
-    text: "One system instead of five disconnected tools",
-  },
-  {
-    icon: Zap,
-    text: "Faster order handling — from table to kitchen in seconds",
-  },
-  {
-    icon: Eye,
-    text: "Clear visibility into what's happening across the restaurant",
-  },
-  {
-    icon: ShieldCheck,
-    text: "Controlled staff access with role-based permissions",
-  },
-  {
-    icon: Receipt,
-    text: "Accurate billing without the manual work",
-  },
-  {
-    icon: QrCode,
-    text: "Digital ordering that customers actually use",
-  },
-  {
-    icon: BarChart3,
-    text: "Reports that give you real operational insight",
-  },
+const reasons: { icon: typeof Layers; textKey: TranslationKey }[] = [
+  { icon: Layers, textKey: "why.r1" },
+  { icon: Zap, textKey: "why.r2" },
+  { icon: Eye, textKey: "why.r3" },
+  { icon: ShieldCheck, textKey: "why.r4" },
+  { icon: Receipt, textKey: "why.r5" },
+  { icon: QrCode, textKey: "why.r6" },
+  { icon: BarChart3, textKey: "why.r7" },
 ];
 
 export default function WhyRestra() {
+  const { t } = useI18n();
+  const titleParts = t("why.title").split(t("why.titleHighlight"));
+
   return (
     <section className="relative py-24 lg:py-32">
       <div className="absolute inset-0 bg-restra-surface/50" />
@@ -55,15 +39,15 @@ export default function WhyRestra() {
             transition={{ duration: 0.5 }}
           >
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-restra-cyan">
-              Why Restra
+              {t("why.badge")}
             </p>
             <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-restra-text sm:text-4xl lg:text-5xl">
-              Because restaurant software should{" "}
-              <span className="text-restra-yellow">understand the restaurant</span>
+              {titleParts[0]}
+              <span className="text-restra-yellow">{t("why.titleHighlight")}</span>
+              {titleParts[1] || ""}
             </h2>
             <p className="mt-6 text-base leading-relaxed text-restra-text-secondary lg:text-lg">
-              Restra isn't a generic business tool with a restaurant label. It was built from
-              the ground up for how restaurants actually operate — fast, messy, and demanding.
+              {t("why.subtitle")}
             </p>
           </motion.div>
 
@@ -71,7 +55,7 @@ export default function WhyRestra() {
           <div className="flex flex-col justify-center gap-4">
             {reasons.map((reason, i) => (
               <motion.div
-                key={i}
+                key={reason.textKey}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -82,7 +66,7 @@ export default function WhyRestra() {
                   <reason.icon className="h-4 w-4 text-restra-yellow" />
                 </div>
                 <p className="text-sm leading-relaxed text-restra-text-secondary pt-1.5">
-                  {reason.text}
+                  {t(reason.textKey)}
                 </p>
               </motion.div>
             ))}

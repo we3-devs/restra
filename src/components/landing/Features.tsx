@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useI18n } from "@/contexts/I18nContext";
 import {
   Monitor,
   Receipt,
@@ -10,74 +11,23 @@ import {
   BarChart3,
   Plus,
 } from "lucide-react";
+import type { TranslationKey } from "@/lib/translations";
 
 const features = [
-  {
-    icon: Monitor,
-    title: "POS System",
-    description: "Handle restaurant sales and transactions from a centralized point of sale.",
-    accent: "yellow",
-    span: "lg:col-span-2 lg:row-span-1",
-  },
-  {
-    icon: Receipt,
-    title: "Bill Printing",
-    description: "Generate and print restaurant bills quickly and accurately.",
-    accent: "cyan",
-    span: "lg:col-span-1",
-  },
-  {
-    icon: QrCode,
-    title: "QR Ordering",
-    description: "Customers scan a QR code, view the menu, and place orders directly.",
-    accent: "yellow",
-    span: "lg:col-span-1",
-  },
-  {
-    icon: GitBranch,
-    title: "Order Tracking",
-    description: "Track every order from placement through preparation to completion.",
-    accent: "cyan",
-    span: "lg:col-span-1",
-  },
-  {
-    icon: Package,
-    title: "Inventory Management",
-    description: "Monitor stock levels and keep track of every ingredient moving through your kitchen.",
-    accent: "yellow",
-    span: "lg:col-span-1",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Role-Based Access",
-    description: "Give administrators, managers, and workers different levels of control.",
-    accent: "cyan",
-    span: "lg:col-span-2 lg:row-span-1",
-  },
-  {
-    icon: MessageSquare,
-    title: "Restaurant Chatbot",
-    description: "An integrated assistant for restaurant-related questions and operational guidance.",
-    accent: "yellow",
-    span: "lg:col-span-1",
-  },
-  {
-    icon: BarChart3,
-    title: "Reports & Analytics",
-    description: "Understand sales, orders, inventory movement, and overall restaurant activity.",
-    accent: "cyan",
-    span: "lg:col-span-1",
-  },
-  {
-    icon: Plus,
-    title: "More Tools",
-    description: "Kitchen display, table management, shift scheduling, and other essentials — all built in.",
-    accent: "muted",
-    span: "lg:col-span-2",
-  },
+  { icon: Monitor, titleKey: "features.pos.title" as TranslationKey, descKey: "features.pos.desc" as TranslationKey, accent: "yellow", span: "lg:col-span-2 lg:row-span-1" },
+  { icon: Receipt, titleKey: "features.bill.title" as TranslationKey, descKey: "features.bill.desc" as TranslationKey, accent: "cyan", span: "lg:col-span-1" },
+  { icon: QrCode, titleKey: "features.qr.title" as TranslationKey, descKey: "features.qr.desc" as TranslationKey, accent: "yellow", span: "lg:col-span-1" },
+  { icon: GitBranch, titleKey: "features.tracking.title" as TranslationKey, descKey: "features.tracking.desc" as TranslationKey, accent: "cyan", span: "lg:col-span-1" },
+  { icon: Package, titleKey: "features.inventory.title" as TranslationKey, descKey: "features.inventory.desc" as TranslationKey, accent: "yellow", span: "lg:col-span-1" },
+  { icon: ShieldCheck, titleKey: "features.role.title" as TranslationKey, descKey: "features.role.desc" as TranslationKey, accent: "cyan", span: "lg:col-span-2 lg:row-span-1" },
+  { icon: MessageSquare, titleKey: "features.chatbot.title" as TranslationKey, descKey: "features.chatbot.desc" as TranslationKey, accent: "yellow", span: "lg:col-span-1" },
+  { icon: BarChart3, titleKey: "features.reports.title" as TranslationKey, descKey: "features.reports.desc" as TranslationKey, accent: "cyan", span: "lg:col-span-1" },
+  { icon: Plus, titleKey: "features.more.title" as TranslationKey, descKey: "features.more.desc" as TranslationKey, accent: "muted", span: "lg:col-span-2" },
 ];
 
 export default function Features() {
+  const { t } = useI18n();
+
   return (
     <section id="features" className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -90,14 +40,17 @@ export default function Features() {
           className="mb-16 max-w-2xl"
         >
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-restra-cyan">
-            Capabilities
+            {t("features.badge")}
           </p>
           <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-restra-text sm:text-4xl lg:text-5xl">
-            Everything your restaurant{" "}
-            <span className="text-restra-yellow">actually needs</span>
+            {t("features.title").replace(
+              t("features.titleHighlight"),
+              "",
+            ).trimEnd() + " "}
+            <span className="text-restra-yellow">{t("features.titleHighlight")}</span>
           </h2>
           <p className="mt-4 text-base text-restra-text-secondary lg:text-lg">
-            Built as one connected system — not a patchwork of disconnected tools.
+            {t("features.subtitle")}
           </p>
         </motion.div>
 
@@ -105,7 +58,7 @@ export default function Features() {
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, i) => (
             <motion.div
-              key={feature.title}
+              key={feature.titleKey}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -124,10 +77,10 @@ export default function Features() {
                 <feature.icon className="h-5 w-5" />
               </div>
               <h3 className="mb-2 font-display text-lg font-semibold text-restra-text">
-                {feature.title}
+                {t(feature.titleKey)}
               </h3>
               <p className="text-sm leading-relaxed text-restra-text-secondary">
-                {feature.description}
+                {t(feature.descKey)}
               </p>
             </motion.div>
           ))}

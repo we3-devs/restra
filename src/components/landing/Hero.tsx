@@ -1,15 +1,19 @@
 import { useNavigate } from "react-router";
 import { ArrowRight, Play } from "lucide-react";
 import { motion } from "framer-motion";
+import { useI18n } from "@/contexts/I18nContext";
 import DashboardPreview from "./DashboardPreview";
 
 export default function Hero() {
   const navigate = useNavigate();
+  const { t } = useI18n();
 
   const scrollTo = (href: string) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  const titleParts = t("hero.title").split(t("hero.titleHighlight"));
 
   return (
     <section className="relative min-h-screen overflow-hidden pt-24 pb-16 lg:pt-32 lg:pb-24">
@@ -31,7 +35,7 @@ export default function Hero() {
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-restra-cyan animate-pulse" />
                 <span className="text-xs font-medium text-restra-text-secondary">
-                  Restaurant management, simplified
+                  {t("hero.badge")}
                 </span>
               </div>
             </motion.div>
@@ -42,10 +46,9 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="font-display text-4xl font-semibold leading-[1.1] tracking-tight text-restra-text sm:text-5xl lg:text-6xl"
             >
-              Run your{" "}
-              <span className="text-restra-yellow">restaurant</span>.
-              <br />
-              Without the chaos.
+              {titleParts[0]}
+              <span className="text-restra-yellow">{t("hero.titleHighlight")}</span>
+              {titleParts[1] || ""}
             </motion.h1>
 
             <motion.p
@@ -54,8 +57,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-6 max-w-lg text-base leading-relaxed text-restra-text-secondary lg:text-lg"
             >
-              Restra brings POS, billing, QR ordering, inventory, order tracking, staff roles and more
-              into one restaurant management system.
+              {t("hero.subtitle")}
             </motion.p>
 
             <motion.div
@@ -68,7 +70,7 @@ export default function Hero() {
                 onClick={() => navigate("/auth")}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-6 py-3 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px] hover:shadow-lg hover:shadow-restra-yellow/10"
               >
-                Get Started
+                {t("nav.getStarted")}
                 <ArrowRight className="h-4 w-4" />
               </button>
               <button
@@ -76,7 +78,7 @@ export default function Hero() {
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.02] px-6 py-3 text-sm font-medium text-restra-text transition-all hover:bg-white/[0.05] hover:border-white/[0.15]"
               >
                 <Play className="h-3.5 w-3.5" />
-                Explore Restra
+                {t("hero.explore")}
               </button>
             </motion.div>
 
@@ -88,18 +90,18 @@ export default function Hero() {
               className="mt-12 flex items-center gap-6 border-t border-white/[0.06] pt-6"
             >
               <div>
-                <p className="font-display text-2xl font-semibold text-restra-text">1</p>
-                <p className="text-[11px] text-restra-text-muted">Unified Platform</p>
+                <p className="font-display text-2xl font-semibold text-restra-text">{t("hero.stat1Value")}</p>
+                <p className="text-[11px] text-restra-text-muted">{t("hero.stat1Label")}</p>
               </div>
               <div className="h-8 w-px bg-white/[0.06]" />
               <div>
-                <p className="font-display text-2xl font-semibold text-restra-text">7+</p>
-                <p className="text-[11px] text-restra-text-muted">Core Modules</p>
+                <p className="font-display text-2xl font-semibold text-restra-text">{t("hero.stat2Value")}</p>
+                <p className="text-[11px] text-restra-text-muted">{t("hero.stat2Label")}</p>
               </div>
               <div className="h-8 w-px bg-white/[0.06]" />
               <div>
-                <p className="font-display text-2xl font-semibold text-restra-text">24/7</p>
-                <p className="text-[11px] text-restra-text-muted">Operations</p>
+                <p className="font-display text-2xl font-semibold text-restra-text">{t("hero.stat3Value")}</p>
+                <p className="text-[11px] text-restra-text-muted">{t("hero.stat3Label")}</p>
               </div>
             </motion.div>
           </div>

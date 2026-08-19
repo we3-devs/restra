@@ -42,7 +42,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Restra brand tokens */
+/* Restra brand tokens (always the same regardless of theme) */
 @theme inline {
   --color-restra-yellow: #FFD43B;
   --color-restra-cyan: #22D3EE;
@@ -56,42 +56,54 @@
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-/* CHANGE VALUES FOR THEME */
+/* Light mode :root — warm, clean, restaurant-inspired */
 :root {
   --radius: 0.625rem;
-  --background: #0B0D0D;
-  --foreground: #F5F5F0;
-  --card: #181C1C;
-  --card-foreground: #F5F5F0;
-  --popover: #181C1C;
-  --popover-foreground: #F5F5F0;
-  --primary: #FFD43B;
-  --primary-foreground: #0B0D0D;
-  --secondary: #121515;
-  --secondary-foreground: #F5F5F0;
-  --muted: #121515;
-  --muted-foreground: #A7AAA7;
-  --accent: #181C1C;
-  --accent-foreground: #F5F5F0;
-  --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #FFD43B;
-  --chart-1: #FFD43B;
-  --chart-2: #22D3EE;
-  --chart-3: #34d399;
-  --chart-4: #f97316;
-  --chart-5: #ec4899;
-  --sidebar: #121515;
-  --sidebar-foreground: #F5F5F0;
-  --sidebar-primary: #FFD43B;
-  --sidebar-primary-foreground: #0B0D0D;
-  --sidebar-accent: #181C1C;
-  --sidebar-accent-foreground: #F5F5F0;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #FFD43B;
+  --background: #FAF9F6;
+  --foreground: #1A1C1C;
+  --card: #FFFFFF;
+  --card-foreground: #1A1C1C;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1C1C;
+  --primary: #D4A017;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F0EDE8;
+  --secondary-foreground: #1A1C1C;
+  --muted: #F0EDE8;
+  --muted-foreground: #6F7471;
+  --accent: #F5F2EC;
+  --accent-foreground: #1A1C1C;
+  --destructive: #dc2626;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.1);
+  --ring: #D4A017;
+  --chart-1: #D4A017;
+  --chart-2: #0891B2;
+  --chart-3: #059669;
+  --chart-4: #ea580c;
+  --chart-5: #db2777;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1A1C1C;
+  --sidebar-primary: #D4A017;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F0EDE8;
+  --sidebar-accent-foreground: #1A1C1C;
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-ring: #D4A017;
 }
 
+/* Light mode: override restra semantic tokens used by components */
+.light,
+:root {
+  --restra-bg: #FAF9F6;
+  --restra-surface: #F0EDE8;
+  --restra-card: #FFFFFF;
+  --restra-text: #1A1C1C;
+  --restra-text-secondary: #4A4D4A;
+  --restra-text-muted: #8A8D8A;
+}
+
+/* Dark mode */
 .dark {
   --background: #0B0D0D;
   --foreground: #F5F5F0;
@@ -124,6 +136,13 @@
   --sidebar-accent-foreground: #F5F5F0;
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: #FFD43B;
+
+  --restra-bg: #0B0D0D;
+  --restra-surface: #121515;
+  --restra-card: #181C1C;
+  --restra-text: #F5F5F0;
+  --restra-text-secondary: #A7AAA7;
+  --restra-text-muted: #6F7471;
 }
 
 @layer base {
@@ -139,3 +158,39 @@
     cursor: pointer;
   }
 }
+
+/* 
+  Light-mode overrides for restra-* Tailwind tokens.
+  These CSS custom properties map the Tailwind color tokens to different values
+  based on the light/dark class, so all existing bg-restra-* / text-restra-* 
+  utility classes adapt automatically.
+*/
+.light .bg-restra-bg { background-color: var(--restra-bg); }
+.light .bg-restra-surface { background-color: var(--restra-surface); }
+.light .bg-restra-card { background-color: var(--restra-card); }
+.light .text-restra-text { color: var(--restra-text); }
+.light .text-restra-text-secondary { color: var(--restra-text-secondary); }
+.light .text-restra-text-muted { color: var(--restra-text-muted); }
+.light .border-restra-card { border-color: var(--restra-card); }
+.light .border-white\/\[0\.06\] { border-color: rgba(0, 0, 0, 0.08); }
+.light .border-white\/\[0\.08\] { border-color: rgba(0, 0, 0, 0.1); }
+.light .border-white\/\[0\.1\] { border-color: rgba(0, 0, 0, 0.12); }
+.light .bg-white\/\[0\.02\] { background-color: rgba(0, 0, 0, 0.03); }
+.light .bg-white\/\[0\.03\] { background-color: rgba(0, 0, 0, 0.04); }
+.light .bg-white\/\[0\.04\] { background-color: rgba(0, 0, 0, 0.05); }
+.light .bg-white\/\[0\.05\] { background-color: rgba(0, 0, 0, 0.06); }
+.light .bg-white\/\[0\.06\] { background-color: rgba(0, 0, 0, 0.07); }
+.light .bg-restra-bg\/90 { background-color: rgba(250, 249, 246, 0.92); }
+.light .bg-restra-bg\/95 { background-color: rgba(250, 249, 246, 0.96); }
+.light .bg-restra-bg\/60 { background-color: rgba(250, 249, 246, 0.6); }
+.light .bg-restra-bg\/40 { background-color: rgba(250, 249, 246, 0.4); }
+.light .bg-restra-bg\/80 { background-color: rgba(250, 249, 246, 0.8); }
+.light .bg-restra-surface\/60 { background-color: rgba(240, 237, 232, 0.6); }
+.light .bg-restra-card\/50 { background-color: rgba(255, 255, 255, 0.5); }
+.light .bg-restra-card\/80 { background-color: rgba(255, 255, 255, 0.8); }
+.light .bg-white\/\[0\.03\] { background-color: rgba(0, 0, 0, 0.04); }
+.light .text-white\/15 { color: rgba(0, 0, 0, 0.15); }
+.light .shadow-black\/50 { --tw-shadow-color: rgba(0, 0, 0, 0.15); }
+.light .shadow-black\/40 { --tw-shadow-color: rgba(0, 0, 0, 0.1); }
+.light .shadow-restra-yellow\/10 { --tw-shadow-color: rgba(212, 160, 23, 0.15); }
+.light .shadow-restra-yellow\/\[0\.05\] { --tw-shadow-color: rgba(212, 160, 23, 0.1); }

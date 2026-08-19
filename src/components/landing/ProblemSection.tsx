@@ -1,13 +1,11 @@
 import { motion } from "framer-motion";
+import { useI18n } from "@/contexts/I18nContext";
 
-const problems = [
-  "Billing software that doesn't talk to your inventory system.",
-  "Orders taken on paper, re-entered manually, lost in translation.",
-  "Staff with full access to everything — or no access at all.",
-  "Three different apps for three different tasks, none of them in sync.",
-];
+const problemKeys = ["problem.p1", "problem.p2", "problem.p3", "problem.p4"] as const;
 
 export default function ProblemSection() {
+  const { t } = useI18n();
+
   return (
     <section className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -20,17 +18,17 @@ export default function ProblemSection() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-restra-text sm:text-4xl lg:text-5xl">
-              Running a restaurant is already complicated.
+              {t("problem.title")}
               <br />
-              <span className="text-restra-text-muted">Your software shouldn't be.</span>
+              <span className="text-restra-text-muted">{t("problem.titleSub")}</span>
             </h2>
           </motion.div>
 
           {/* Right: problems list */}
           <div className="flex flex-col justify-center gap-6">
-            {problems.map((problem, i) => (
+            {problemKeys.map((key, i) => (
               <motion.div
-                key={i}
+                key={key}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -41,7 +39,7 @@ export default function ProblemSection() {
                   <span className="text-xs font-bold text-restra-yellow">{i + 1}</span>
                 </div>
                 <p className="text-sm leading-relaxed text-restra-text-secondary lg:text-base">
-                  {problem}
+                  {t(key)}
                 </p>
               </motion.div>
             ))}
@@ -54,9 +52,7 @@ export default function ProblemSection() {
               className="mt-4 border-t border-white/[0.06] pt-6"
             >
               <p className="text-sm text-restra-text-muted">
-                Restra brings all of these into{" "}
-                <span className="font-semibold text-restra-text">one connected system</span> —
-                so your restaurant runs on a single source of truth.
+                {t("problem.conclusion")}
               </p>
             </motion.div>
           </div>

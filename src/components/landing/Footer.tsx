@@ -1,33 +1,36 @@
 import { useNavigate } from "react-router";
+import { useI18n } from "@/contexts/I18nContext";
+import type { TranslationKey } from "@/lib/translations";
 
 const footerLinks = [
   {
-    title: "Product",
+    titleKey: "footer.product" as TranslationKey,
     links: [
-      { label: "Features", href: "#features" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "How it works", href: "#workflow" },
+      { labelKey: "footer.features" as TranslationKey, href: "#features" },
+      { labelKey: "footer.pricing" as TranslationKey, href: "#pricing" },
+      { labelKey: "footer.howItWorks" as TranslationKey, href: "#workflow" },
     ],
   },
   {
-    title: "Company",
+    titleKey: "footer.company" as TranslationKey,
     links: [
-      { label: "About", href: "#" },
-      { label: "Contact", href: "#contact" },
-      { label: "Careers", href: "#" },
+      { labelKey: "footer.about" as TranslationKey, href: "#" },
+      { labelKey: "footer.contact" as TranslationKey, href: "#contact" },
+      { labelKey: "footer.careers" as TranslationKey, href: "#" },
     ],
   },
   {
-    title: "Legal",
+    titleKey: "footer.legal" as TranslationKey,
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { labelKey: "footer.privacy" as TranslationKey, href: "#" },
+      { labelKey: "footer.terms" as TranslationKey, href: "#" },
     ],
   },
 ];
 
 export default function Footer() {
   const navigate = useNavigate();
+  const { t } = useI18n();
 
   const handleNav = (href: string) => {
     if (href.startsWith("#")) {
@@ -49,30 +52,30 @@ export default function Footer() {
               Restra
             </a>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-restra-text-muted">
-              Restaurant management, without the unnecessary complexity.
+              {t("footer.desc")}
             </p>
             <button
               onClick={() => navigate("/auth")}
               className="mt-5 inline-flex items-center gap-2 rounded-lg bg-restra-yellow/10 px-4 py-2 text-xs font-semibold text-restra-yellow transition-all hover:bg-restra-yellow/20"
             >
-              Get Started →
+              {t("common.getTableStarted")}
             </button>
           </div>
 
           {/* Links */}
           {footerLinks.map((group) => (
-            <div key={group.title}>
+            <div key={group.titleKey}>
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-restra-text-muted">
-                {group.title}
+                {t(group.titleKey)}
               </h4>
               <ul className="space-y-2.5">
                 {group.links.map((link) => (
-                  <li key={link.label}>
+                  <li key={link.labelKey}>
                     <button
                       onClick={() => handleNav(link.href)}
                       className="text-sm text-restra-text-secondary transition-colors hover:text-restra-text"
                     >
-                      {link.label}
+                      {t(link.labelKey)}
                     </button>
                   </li>
                 ))}
@@ -84,11 +87,11 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
           <p className="text-xs text-restra-text-muted">
-            © {new Date().getFullYear()} Restra. All rights reserved.
+            © {new Date().getFullYear()} Restra. {t("footer.rights")}
           </p>
           <div className="flex items-center gap-1">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span className="text-[11px] text-restra-text-muted">All systems operational</span>
+            <span className="text-[11px] text-restra-text-muted">{t("footer.systemsOk")}</span>
           </div>
         </div>
       </div>
