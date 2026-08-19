@@ -38,9 +38,8 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
   },
-  // Fill in once you generate these in Google Search Console / other verification tools.
   verification: {
-    google: undefined,
+    google: "okZp2oXhviRyArGcUE2WunTNT0JAO3ABFpuYyMaFmcg",
   },
 };
 
