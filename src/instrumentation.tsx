@@ -69,8 +69,8 @@ async function reportErrorToVly(errorData: {
   lineno?: number;
   colno?: number;
 }) {
-  const appId = import.meta.env.VITE_VLY_APP_ID;
-  const monitoringUrl = import.meta.env.VITE_VLY_MONITORING_URL;
+  const appId = process.env.NEXT_PUBLIC_VLY_APP_ID;
+  const monitoringUrl = process.env.NEXT_PUBLIC_VLY_MONITORING_URL;
 
   if (!appId || !monitoringUrl) {
     return;
@@ -162,7 +162,7 @@ function ErrorDialog({
             Your error details are also available in chat.
           </span>
           <a
-            href={`https://freebuff.com/project/${import.meta.env.VITE_VLY_APP_ID}`}
+            href={`https://freebuff.com/project/${process.env.NEXT_PUBLIC_VLY_APP_ID}`}
             target="_blank"
             rel="noreferrer"
           >

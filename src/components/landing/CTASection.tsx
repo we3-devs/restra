@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router";
+import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
 
 export default function CTASection() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { t } = useI18n();
 
   return (
@@ -31,7 +31,7 @@ export default function CTASection() {
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <button
-                onClick={() => navigate("/auth")}
+                onClick={() => router.push("/auth")}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-7 py-3 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px] hover:shadow-lg hover:shadow-restra-yellow/10"
               >
                 {t("nav.getStarted")}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useI18n } from "@/contexts/I18nContext";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -15,7 +15,7 @@ const navLinkKeys = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
   const { t } = useI18n();
 
   useEffect(() => {
@@ -66,13 +66,13 @@ export default function Navbar() {
           <ThemeSwitcher />
           <div className="h-5 w-px bg-white/[0.08] mx-1" />
           <button
-            onClick={() => navigate("/auth")}
+            onClick={() => router.push("/auth")}
             className="text-sm font-medium text-restra-text-secondary transition-colors hover:text-restra-text"
           >
             {t("nav.login")}
           </button>
           <button
-            onClick={() => navigate("/auth")}
+            onClick={() => router.push("/auth")}
             className="rounded-lg bg-restra-yellow px-5 py-2 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px]"
           >
             {t("nav.getStarted")}
@@ -108,13 +108,13 @@ export default function Navbar() {
             ))}
             <div className="my-2 h-px bg-white/[0.06]" />
             <button
-              onClick={() => { setMobileOpen(false); navigate("/auth"); }}
+              onClick={() => { setMobileOpen(false); router.push("/auth"); }}
               className="py-2.5 text-left text-sm font-medium text-restra-text-secondary"
             >
               {t("nav.login")}
             </button>
             <button
-              onClick={() => { setMobileOpen(false); navigate("/auth"); }}
+              onClick={() => { setMobileOpen(false); router.push("/auth"); }}
               className="mt-2 w-full rounded-lg bg-restra-yellow px-5 py-2.5 text-sm font-semibold text-restra-bg"
             >
               {t("nav.getStarted")}
