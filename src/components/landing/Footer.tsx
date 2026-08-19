@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useRouter } from "next/navigation";
 import { useI18n } from "@/contexts/I18nContext";
 import type { TranslationKey } from "@/lib/translations";
 
@@ -29,7 +29,7 @@ const footerLinks = [
 ];
 
 export default function Footer() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { t } = useI18n();
 
   const handleNav = (href: string) => {
@@ -55,7 +55,7 @@ export default function Footer() {
               {t("footer.desc")}
             </p>
             <button
-              onClick={() => navigate("/auth")}
+              onClick={() => router.push("/auth")}
               className="mt-5 inline-flex items-center gap-2 rounded-lg bg-restra-yellow/10 px-4 py-2 text-xs font-semibold text-restra-yellow transition-all hover:bg-restra-yellow/20"
             >
               {t("common.getTableStarted")}

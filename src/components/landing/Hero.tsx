@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router";
+import { useRouter } from "next/navigation";
 import { ArrowRight, Play } from "lucide-react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
 import DashboardPreview from "./DashboardPreview";
 
 export default function Hero() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { t } = useI18n();
 
   const scrollTo = (href: string) => {
@@ -67,7 +67,7 @@ export default function Hero() {
               className="mt-8 flex flex-col gap-3 sm:flex-row"
             >
               <button
-                onClick={() => navigate("/auth")}
+                onClick={() => router.push("/auth")}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-6 py-3 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px] hover:shadow-lg hover:shadow-restra-yellow/10"
               >
                 {t("nav.getStarted")}
