@@ -9,7 +9,7 @@ export default function CTASection() {
 
   return (
     <section id="contact" className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ export default function CTASection() {
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <button
-                onClick={() => router.push("/auth")}
+                onClick={() => router.push("/")}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-7 py-3 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px] hover:shadow-lg hover:shadow-restra-yellow/10"
               >
                 {t("nav.getStarted")}

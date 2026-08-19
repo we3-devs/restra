@@ -73,7 +73,7 @@ export default function RoleBasedAccess() {
     <section className="relative py-24 lg:py-32">
       <div className="absolute inset-0 bg-restra-surface/50" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1600px] px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -16,35 +16,22 @@ export default function Hero() {
   const titleParts = t("hero.title").split(t("hero.titleHighlight"));
 
   return (
-    <section className="relative min-h-screen overflow-hidden pt-24 pb-16 lg:pt-32 lg:pb-24">
+    <section className="relative min-h-screen overflow-hidden pt-30 pb-16 lg:pt-40 lg:pb-24">
       {/* Background texture */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,212,59,0.06),transparent)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_60%,rgba(34,211,238,0.03),transparent)]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1600px] px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           {/* Left: Copy */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-restra-cyan animate-pulse" />
-                <span className="text-xs font-medium text-restra-text-secondary">
-                  {t("hero.badge")}
-                </span>
-              </div>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-display text-4xl font-semibold leading-[1.1] tracking-tight text-restra-text sm:text-5xl lg:text-6xl"
+              className="font-display text-4xl font-semibold leading-[1.1] tracking-tight text-restra-text sm:text-5xl lg:text-6xl sm:mt-16"
             >
               {titleParts[0]}
               <span className="text-restra-yellow">{t("hero.titleHighlight")}</span>
@@ -67,7 +54,7 @@ export default function Hero() {
               className="mt-8 flex flex-col gap-3 sm:flex-row"
             >
               <button
-                onClick={() => router.push("/auth")}
+                onClick={() => router.push("/")}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-6 py-3 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px] hover:shadow-lg hover:shadow-restra-yellow/10"
               >
                 {t("nav.getStarted")}

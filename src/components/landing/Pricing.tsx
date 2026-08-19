@@ -45,7 +45,7 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

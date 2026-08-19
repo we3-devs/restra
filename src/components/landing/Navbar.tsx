@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useI18n } from "@/contexts/I18nContext";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -15,7 +14,6 @@ const navLinkKeys = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const router = useRouter();
   const { t } = useI18n();
 
   useEffect(() => {
@@ -32,23 +30,28 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-restra-bg/90 backdrop-blur-md border-b border-white/[0.06]"
-          : "bg-transparent"
+      className={`fixed left-0 right-0 z-50 transition-[top] duration-500 ease-in-out ${
+        scrolled ? "top-3" : "top-0"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <nav
+        className={`mx-auto grid grid-cols-2 items-center overflow-hidden px-6 transition-[height,max-width,border-radius,background-color,box-shadow,border-color] duration-500 ease-in-out md:grid-cols-[1fr_auto_1fr] lg:px-8 ${
+          scrolled
+            ? "h-14 max-w-4xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-2xl backdrop-saturate-150"
+            : "h-30 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none"
+        }`}
+      >
         {/* Logo */}
         <a
           href="/"
-          className="font-display text-xl font-semibold tracking-tight text-restra-text"
+          className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-text"
         >
-          Restra
+          <img src="/logo.svg" alt="Restra logo" className="h-11 w-auto shrink-0" />
+          
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 md:flex md:justify-self-center">
           {navLinkKeys.map((link) => (
             <button
               key={link.href}
@@ -61,26 +64,13 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 md:flex md:justify-self-end">
           <LanguageSwitcher />
           <ThemeSwitcher />
-          <div className="h-5 w-px bg-white/[0.08] mx-1" />
-          <button
-            onClick={() => router.push("/auth")}
-            className="text-sm font-medium text-restra-text-secondary transition-colors hover:text-restra-text"
-          >
-            {t("nav.login")}
-          </button>
-          <button
-            onClick={() => router.push("/auth")}
-            className="rounded-lg bg-restra-yellow px-5 py-2 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px]"
-          >
-            {t("nav.getStarted")}
-          </button>
         </div>
 
         {/* Mobile toggle */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 justify-self-end md:hidden">
           <LanguageSwitcher />
           <ThemeSwitcher />
           <button
@@ -106,19 +96,6 @@ export default function Navbar() {
                 {t(link.key)}
               </button>
             ))}
-            <div className="my-2 h-px bg-white/[0.06]" />
-            <button
-              onClick={() => { setMobileOpen(false); router.push("/auth"); }}
-              className="py-2.5 text-left text-sm font-medium text-restra-text-secondary"
-            >
-              {t("nav.login")}
-            </button>
-            <button
-              onClick={() => { setMobileOpen(false); router.push("/auth"); }}
-              className="mt-2 w-full rounded-lg bg-restra-yellow px-5 py-2.5 text-sm font-semibold text-restra-bg"
-            >
-              {t("nav.getStarted")}
-            </button>
           </div>
         </div>
       )}

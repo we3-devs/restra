@@ -1,7 +1,9 @@
 "use client";
 
-import { ConvexProviders } from "@/components/ConvexProviders";
-import { InstrumentationProvider } from "@/instrumentation";
+import { InstrumentationProvider } from "@/components/instrumentation-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { I18nProvider } from "@/contexts/I18nContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import { VlyToolbar } from "../../vly-toolbar-readonly";
 import React from "react";
 
@@ -28,7 +30,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ToolbarErrorBoundary>
         <VlyToolbar />
       </ToolbarErrorBoundary>
-      <ConvexProviders>{children}</ConvexProviders>
+      <I18nProvider>
+        <ThemeProvider>
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </I18nProvider>
     </InstrumentationProvider>
   );
 }

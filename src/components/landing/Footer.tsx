@@ -41,21 +41,22 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-white/[0.06] bg-restra-bg">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
+      <div className="mx-auto max-w-[1600px] px-6 py-12 lg:px-8 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
             <a
               href="/"
-              className="font-display text-xl font-semibold tracking-tight text-restra-text"
+              className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-text"
             >
-              Restra
+              <img src="/logo.svg" alt="Restra logo" className="h-11 w-auto shrink-0" />
+              
             </a>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-restra-text-muted">
               {t("footer.desc")}
             </p>
             <button
-              onClick={() => router.push("/auth")}
+              onClick={() => router.push("/")}
               className="mt-5 inline-flex items-center gap-2 rounded-lg bg-restra-yellow/10 px-4 py-2 text-xs font-semibold text-restra-yellow transition-all hover:bg-restra-yellow/20"
             >
               {t("common.getTableStarted")}

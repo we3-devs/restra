@@ -48,7 +48,7 @@ export default function ProductWorkflow() {
     <section id="workflow" className="relative py-24 lg:py-32">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_20%_50%,rgba(34,211,238,0.03),transparent)]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1600px] px-6 lg:px-8">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
