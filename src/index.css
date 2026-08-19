@@ -42,21 +42,21 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Restra brand tokens (always the same regardless of theme) */
+/* Restra brand tokens — reference CSS variables that change per theme */
 @theme inline {
-  --color-restra-yellow: #FFD43B;
-  --color-restra-cyan: #22D3EE;
-  --color-restra-bg: #0B0D0D;
-  --color-restra-surface: #121515;
-  --color-restra-card: #181C1C;
-  --color-restra-text: #F5F5F0;
-  --color-restra-text-secondary: #A7AAA7;
-  --color-restra-text-muted: #6F7471;
+  --color-restra-yellow: var(--restra-yellow);
+  --color-restra-cyan: var(--restra-cyan);
+  --color-restra-bg: var(--restra-bg);
+  --color-restra-surface: var(--restra-surface);
+  --color-restra-card: var(--restra-card);
+  --color-restra-text: var(--restra-text);
+  --color-restra-text-secondary: var(--restra-text-secondary);
+  --color-restra-text-muted: var(--restra-text-muted);
   --font-display: "Newsreader", Georgia, "Times New Roman", serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-/* Light mode :root — warm, clean, restaurant-inspired */
+/* ========== LIGHT MODE :root ========== */
 :root {
   --radius: 0.625rem;
   --background: #FAF9F6;
@@ -90,11 +90,10 @@
   --sidebar-accent-foreground: #1A1C1C;
   --sidebar-border: rgba(0, 0, 0, 0.08);
   --sidebar-ring: #D4A017;
-}
 
-/* Light mode: override restra semantic tokens used by components */
-.light,
-:root {
+  /* Restra semantic tokens — light mode */
+  --restra-yellow: #D4A017;
+  --restra-cyan: #0891B2;
   --restra-bg: #FAF9F6;
   --restra-surface: #F0EDE8;
   --restra-card: #FFFFFF;
@@ -103,7 +102,7 @@
   --restra-text-muted: #8A8D8A;
 }
 
-/* Dark mode */
+/* ========== DARK MODE ========== */
 .dark {
   --background: #0B0D0D;
   --foreground: #F5F5F0;
@@ -137,6 +136,9 @@
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: #FFD43B;
 
+  /* Restra semantic tokens — dark mode */
+  --restra-yellow: #FFD43B;
+  --restra-cyan: #22D3EE;
   --restra-bg: #0B0D0D;
   --restra-surface: #121515;
   --restra-card: #181C1C;
@@ -159,38 +161,82 @@
   }
 }
 
-/* 
-  Light-mode overrides for restra-* Tailwind tokens.
-  These CSS custom properties map the Tailwind color tokens to different values
-  based on the light/dark class, so all existing bg-restra-* / text-restra-* 
-  utility classes adapt automatically.
-*/
-.light .bg-restra-bg { background-color: var(--restra-bg); }
-.light .bg-restra-surface { background-color: var(--restra-surface); }
-.light .bg-restra-card { background-color: var(--restra-card); }
-.light .text-restra-text { color: var(--restra-text); }
-.light .text-restra-text-secondary { color: var(--restra-text-secondary); }
-.light .text-restra-text-muted { color: var(--restra-text-muted); }
-.light .border-restra-card { border-color: var(--restra-card); }
-.light .border-white\/\[0\.06\] { border-color: rgba(0, 0, 0, 0.08); }
-.light .border-white\/\[0\.08\] { border-color: rgba(0, 0, 0, 0.1); }
-.light .border-white\/\[0\.1\] { border-color: rgba(0, 0, 0, 0.12); }
-.light .bg-white\/\[0\.02\] { background-color: rgba(0, 0, 0, 0.03); }
-.light .bg-white\/\[0\.03\] { background-color: rgba(0, 0, 0, 0.04); }
-.light .bg-white\/\[0\.04\] { background-color: rgba(0, 0, 0, 0.05); }
-.light .bg-white\/\[0\.05\] { background-color: rgba(0, 0, 0, 0.06); }
-.light .bg-white\/\[0\.06\] { background-color: rgba(0, 0, 0, 0.07); }
-.light .bg-restra-bg\/90 { background-color: rgba(250, 249, 246, 0.92); }
-.light .bg-restra-bg\/95 { background-color: rgba(250, 249, 246, 0.96); }
-.light .bg-restra-bg\/60 { background-color: rgba(250, 249, 246, 0.6); }
-.light .bg-restra-bg\/40 { background-color: rgba(250, 249, 246, 0.4); }
-.light .bg-restra-bg\/80 { background-color: rgba(250, 249, 246, 0.8); }
-.light .bg-restra-surface\/60 { background-color: rgba(240, 237, 232, 0.6); }
-.light .bg-restra-card\/50 { background-color: rgba(255, 255, 255, 0.5); }
-.light .bg-restra-card\/80 { background-color: rgba(255, 255, 255, 0.8); }
-.light .bg-white\/\[0\.03\] { background-color: rgba(0, 0, 0, 0.04); }
-.light .text-white\/15 { color: rgba(0, 0, 0, 0.15); }
-.light .shadow-black\/50 { --tw-shadow-color: rgba(0, 0, 0, 0.15); }
-.light .shadow-black\/40 { --tw-shadow-color: rgba(0, 0, 0, 0.1); }
-.light .shadow-restra-yellow\/10 { --tw-shadow-color: rgba(212, 160, 23, 0.15); }
-.light .shadow-restra-yellow\/\[0\.05\] { --tw-shadow-color: rgba(212, 160, 23, 0.1); }
+/* ========================================================================
+   LIGHT-MODE OVERRIDES
+   Tailwind compiles "white/[0.06]" etc. to oklch(...) values at build time.
+   We override them under .light so they adapt to the light background.
+   ======================================================================== */
+
+/* Borders: swap white-alpha → black-alpha */
+.light .border-white\/\[0\.06\]  { border-color: rgba(0, 0, 0, 0.08) !important; }
+.light .border-white\/\[0\.08\]  { border-color: rgba(0, 0, 0, 0.10) !important; }
+.light .border-white\/\[0\.1\]   { border-color: rgba(0, 0, 0, 0.12) !important; }
+.light .border-white\/\[0\.12\]  { border-color: rgba(0, 0, 0, 0.14) !important; }
+.light .border-white\/\[0\.15\]  { border-color: rgba(0, 0, 0, 0.16) !important; }
+
+/* Backgrounds: swap white-alpha → black-alpha for subtle fills */
+.light .bg-white\/\[0\.02\]  { background-color: rgba(0, 0, 0, 0.03) !important; }
+.light .bg-white\/\[0\.03\]  { background-color: rgba(0, 0, 0, 0.04) !important; }
+.light .bg-white\/\[0\.04\]  { background-color: rgba(0, 0, 0, 0.05) !important; }
+.light .bg-white\/\[0\.05\]  { background-color: rgba(0, 0, 0, 0.06) !important; }
+.light .bg-white\/\[0\.06\]  { background-color: rgba(0, 0, 0, 0.07) !important; }
+.light .bg-white\/\[0\.08\]  { background-color: rgba(0, 0, 0, 0.09) !important; }
+
+/* Navbar & overlay backgrounds */
+.light .bg-restra-bg\/90  { background-color: rgba(250, 249, 246, 0.92) !important; }
+.light .bg-restra-bg\/95  { background-color: rgba(250, 249, 246, 0.96) !important; }
+.light .bg-restra-bg\/80  { background-color: rgba(250, 249, 246, 0.85) !important; }
+.light .bg-restra-bg\/60  { background-color: rgba(250, 249, 246, 0.65) !important; }
+.light .bg-restra-bg\/40  { background-color: rgba(250, 249, 246, 0.50) !important; }
+
+/* Card and surface with alpha */
+.light .bg-restra-card\/50  { background-color: rgba(255, 255, 255, 0.60) !important; }
+.light .bg-restra-card\/80  { background-color: rgba(255, 255, 255, 0.80) !important; }
+.light .bg-restra-surface\/60 { background-color: rgba(240, 237, 232, 0.70) !important; }
+.light .bg-restra-surface\/50 { background-color: rgba(240, 237, 232, 0.60) !important; }
+
+/* Shadows: soften for light mode */
+.light .shadow-black\/50 { --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+.light .shadow-black\/40 { --tw-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.10); }
+.light .shadow-restra-yellow\/10 { --tw-shadow: 0 8px 20px -4px rgba(212, 160, 23, 0.15); }
+.light .shadow-restra-yellow\/\[0\.05\] { --tw-shadow: 0 4px 12px -2px rgba(212, 160, 23, 0.10); }
+
+/* Text: swap white-alpha → black-alpha for muted indicators */
+.light .text-white\/15   { color: rgba(0, 0, 0, 0.15) !important; }
+.light .text-white\/30   { color: rgba(0, 0, 0, 0.25) !important; }
+.light .text-restra-text-muted\/30 { color: rgba(138, 141, 138, 0.35) !important; }
+
+/* Role cards: fix inverted border/bg in light mode */
+.light .border-white\/\[0\.08\].bg-white\/\[0\.02\] {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+.light .bg-white\/\[0\.05\].text-restra-text-muted {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Gradient ambient glows: reduce intensity in light mode */
+.light .bg-restra-yellow\/\[0\.03\] { background-color: rgba(212, 160, 23, 0.04) !important; }
+.light .bg-restra-yellow\/\[0\.04\] { background-color: rgba(212, 160, 23, 0.05) !important; }
+.light .bg-restra-yellow\/\[0\.06\] { background-color: rgba(212, 160, 23, 0.07) !important; }
+.light .bg-restra-cyan\/\[0\.03\] { background-color: rgba(8, 145, 178, 0.04) !important; }
+
+/* Radial gradient backgrounds in Hero/Workflow: soften for light */
+.light [class*="bg-\\[radial-gradient"] {
+  opacity: 0.6;
+}
+
+/* Price card highlight: soften yellow glow in light */
+.light .shadow-restra-yellow\/\[0\.05\] {
+  --tw-shadow: 0 4px 16px -2px rgba(212, 160, 23, 0.12);
+}
+.light .bg-restra-yellow\/\[0\.04\] { background-color: rgba(212, 160, 23, 0.06) !important; }
+
+/* CTA section card bg in light mode */
+.light .bg-restra-card { background-color: #FFFFFF !important; }
+
+/* Ensure dark indicators (dots, badges) stay visible on light backgrounds */
+.light .bg-restra-yellow { background-color: #D4A017 !important; }
+.light .bg-restra-cyan { background-color: #0891B2 !important; }
+.light .bg-emerald-400 { background-color: #10b981 !important; }
+.light .bg-emerald-500 { background-color: #059669 !important; }
