@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useI18n } from "@/contexts/I18nContext";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -42,13 +43,13 @@ export default function Navbar() {
         }`}
       >
         {/* Logo */}
-        <a
+        <Link
           href="/"
           className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-text"
         >
           <img src="/logo.svg" alt="Restra logo" className="h-11 w-auto shrink-0" />
-          
-        </a>
+
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-8 md:flex md:justify-self-center">

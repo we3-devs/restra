@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useI18n } from "@/contexts/I18nContext";
 import type { TranslationKey } from "@/lib/translations";
 
@@ -45,13 +46,13 @@ export default function Footer() {
         <div className="grid gap-10 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a
+            <Link
               href="/"
               className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-text"
             >
               <img src="/logo.svg" alt="Restra logo" className="h-11 w-auto shrink-0" />
-              
-            </a>
+
+            </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-restra-text-muted">
               {t("footer.desc")}
             </p>

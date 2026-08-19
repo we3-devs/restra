@@ -16,7 +16,7 @@ export default function Hero() {
   const titleParts = t("hero.title").split(t("hero.titleHighlight"));
 
   return (
-    <section className="relative min-h-screen overflow-hidden pt-30 pb-16 lg:pt-40 lg:pb-24">
+    <section className="relative min-h-screen overflow-hidden pt-30 pb-16 lg:pt-40 lg:pb-24 flex items-center wrap ">
       {/* Background texture */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,212,59,0.06),transparent)]" />
