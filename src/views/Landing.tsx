@@ -8,8 +8,11 @@ import QROrdering from "@/components/landing/QROrdering";
 import InventoryPreview from "@/components/landing/InventoryPreview";
 import Pricing from "@/components/landing/Pricing";
 import WhyRestra from "@/components/landing/WhyRestra";
+import Team from "@/components/landing/Team";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
+import ChatWidget from "@/components/landing/ChatWidget";
+import BackToTop from "@/components/landing/BackToTop";
 
 export default function Landing() {
   return (
@@ -24,10 +27,13 @@ export default function Landing() {
         <QROrdering />
         <InventoryPreview />
         <WhyRestra />
+        <Team />
         <Pricing />
         <CTASection />
       </main>
       <Footer />
+      <ChatWidget />
+      <BackToTop />
     </div>
   );
 }

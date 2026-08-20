@@ -64,7 +64,9 @@ const statusLabels: Record<string, string> = {
   served: "Served",
 };
 
-export default function DashboardPreview() {
+export default function DashboardPreview({ compact = false }: { compact?: boolean }) {
+  const visibleStats = compact ? stats.slice(0, 2) : stats;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -75,52 +77,54 @@ export default function DashboardPreview() {
       {/* Browser frame */}
       <div className="rounded-xl border border-white/[0.08] bg-restra-surface shadow-2xl shadow-black/40 overflow-hidden">
         {/* Browser chrome */}
-        <div className="flex items-center gap-2 border-b border-white/[0.06] bg-restra-bg/80 px-4 py-2.5">
+        <div className={`flex items-center gap-2 border-b border-white/[0.06] bg-restra-bg/80 ${compact ? "px-3 py-2" : "px-4 py-2.5"}`}>
           <div className="flex gap-1.5">
-            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
-            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
-            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <div className="h-2 w-2 rounded-full bg-white/10" />
+            <div className="h-2 w-2 rounded-full bg-white/10" />
+            <div className="h-2 w-2 rounded-full bg-white/10" />
           </div>
-          <div className="flex-1 text-center">
-            <div className="mx-auto flex max-w-xs items-center justify-center gap-1.5 rounded-md bg-white/[0.04] px-3 py-1">
-              <span className="text-[10px] text-restra-text-muted">app.restra.com/dashboard</span>
+          {!compact && (
+            <div className="flex-1 text-center">
+              <div className="mx-auto flex max-w-xs items-center justify-center gap-1.5 rounded-md bg-white/[0.04] px-3 py-1">
+                <span className="text-[10px] text-restra-text-muted">app.restra.com/dashboard</span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Dashboard content */}
-        <div className="p-4 md:p-6">
+        <div className={compact ? "p-3" : "p-4 md:p-6"}>
           {/* Header */}
-          <div className="mb-5 flex items-center justify-between">
+          <div className="mb-3 flex items-center justify-between">
             <div>
-              <p className="text-[11px] font-medium text-restra-text-muted uppercase tracking-wider">Dashboard</p>
-              <h3 className="font-display text-lg font-semibold text-restra-text mt-0.5">
+              <p className="text-[10px] font-medium text-restra-text-muted uppercase tracking-wider">Dashboard</p>
+              <h3 className={`font-display font-semibold text-restra-text mt-0.5 ${compact ? "text-sm" : "text-lg"}`}>
                 Good evening, <span className="text-restra-yellow">Manager</span>
               </h3>
             </div>
-            <div className="flex items-center gap-1.5 rounded-md bg-restra-cyan/10 px-2.5 py-1">
+            <div className="flex items-center gap-1.5 rounded-md bg-restra-cyan/10 px-2 py-1">
               <div className="h-1.5 w-1.5 rounded-full bg-restra-cyan animate-pulse" />
               <span className="text-[10px] font-medium text-restra-cyan">Live</span>
             </div>
           </div>
 
           {/* Stats grid */}
-          <div className="mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
-            {stats.map((stat, i) => (
+          <div className={`grid grid-cols-2 gap-2.5 lg:grid-cols-4 ${compact ? "mb-0" : "mb-5"}`}>
+            {visibleStats.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
-                className="rounded-lg border border-white/[0.06] bg-restra-bg/60 p-3"
+                className={`rounded-lg border border-white/[0.06] bg-restra-bg/60 ${compact ? "p-2" : "p-3"}`}
               >
-                <div className="mb-2 flex items-center justify-between">
+                <div className="mb-1.5 flex items-center justify-between">
                   <span className="text-[10px] font-medium text-restra-text-muted uppercase tracking-wider">
                     {stat.label}
                   </span>
                   <stat.icon className={`h-3.5 w-3.5 ${stat.color}`} />
                 </div>
-                <p className="font-display text-xl font-semibold text-restra-text">{stat.value}</p>
+                <p className={`font-display font-semibold text-restra-text ${compact ? "text-base" : "text-xl"}`}>{stat.value}</p>
                 <p className={`mt-0.5 text-[10px] font-medium ${
                   stat.change.includes("+") || stat.change.includes("-")
                     ? stat.change.startsWith("+") ? "text-emerald-400" : "text-restra-cyan"
@@ -133,7 +137,8 @@ export default function DashboardPreview() {
           </div>
 
           {/* Bottom section: Orders + Inventory */}
-          <div className="grid gap-3 lg:grid-cols-3">
+          {!compact && (
+          <div className="mt-5 grid gap-3 lg:grid-cols-3">
             {/* Recent orders */}
             <div className="rounded-lg border border-white/[0.06] bg-restra-bg/60 p-3 lg:col-span-2">
               <div className="mb-3 flex items-center justify-between">
@@ -201,6 +206,7 @@ export default function DashboardPreview() {
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
 

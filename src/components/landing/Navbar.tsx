@@ -6,9 +6,11 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const navLinkKeys = [
+  { key: "nav.home" as const, href: "#hero" },
   { key: "nav.features" as const, href: "#features" },
   { key: "nav.howItWorks" as const, href: "#workflow" },
   { key: "nav.pricing" as const, href: "#pricing" },
+  { key: "nav.team" as const, href: "#team" },
   { key: "nav.contact" as const, href: "#contact" },
 ];
 
@@ -36,10 +38,10 @@ export default function Navbar() {
       }`}
     >
       <nav
-        className={`mx-auto grid grid-cols-2 items-center overflow-hidden px-6 transition-[height,max-width,border-radius,background-color,box-shadow,border-color] duration-500 ease-in-out md:grid-cols-[1fr_auto_1fr] lg:px-8 ${
+        className={`mx-auto grid grid-cols-2 items-center overflow-hidden px-4 transition-[height,max-width,border-radius,background-color,box-shadow,border-color] duration-500 ease-in-out sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8 ${
           scrolled
             ? "h-14 max-w-4xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-2xl backdrop-saturate-150"
-            : "h-30 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none"
+            : "h-20 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none sm:h-24 lg:h-30"
         }`}
       >
         {/* Logo */}
@@ -47,7 +49,7 @@ export default function Navbar() {
           href="/"
           className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-text"
         >
-          <img src="/logo.svg" alt="Restra logo" className="h-11 w-auto shrink-0" />
+          <img src="/logo.svg" alt="Restra logo" className="h-8 w-auto shrink-0 sm:h-11" />
 
         </Link>
 

@@ -2,17 +2,19 @@ export type Language = "en" | "ne";
 
 const en = {
   // Navbar
+  "nav.home": "Home",
   "nav.features": "Features",
   "nav.howItWorks": "How it works",
   "nav.pricing": "Pricing",
+  "nav.team": "Team",
   "nav.contact": "Contact",
   "nav.login": "Login",
   "nav.getStarted": "Get Started",
 
   // Hero
   "hero.badge": "Restaurant management, simplified",
-  "hero.title": "Run your restaurant. Without the chaos.",
-  "hero.titleHighlight": "restaurant",
+  "hero.title": "Restaurant Management Software In Nepal",
+  "hero.titleHighlight": "In Nepal",
   "hero.subtitle": "Restra brings POS, billing, QR ordering, inventory, order tracking, staff roles and more into one restaurant management system.",
   "hero.explore": "Explore Restra",
   "hero.stat1Value": "1",
@@ -21,6 +23,11 @@ const en = {
   "hero.stat2Label": "Core Modules",
   "hero.stat3Value": "24/7",
   "hero.stat3Label": "Operations",
+  "hero.slide2.badge": "Works everywhere",
+  "hero.slide2.title": "All-in-one. Use on any device.",
+  "hero.slide2.titleHighlight": "any device",
+  "hero.slide2.subtitle": "Compatible and user-friendly across desktop, laptop, tablet, and mobile — no need to worry about devices anymore.",
+  "hero.slide2.cta": "Explore Features",
 
   // Dashboard Preview
   "dash.goodEvening": "Good evening,",
@@ -216,6 +223,20 @@ const en = {
   "cta.subtitle": "Let Restra handle the system behind it.",
   "cta.talkToUs": "Talk to Us",
 
+  // Team
+  "team.badge": "Meet the Team",
+  "team.title": "The people building Restra",
+  "team.subtitle": "A small team focused on making restaurant operations simpler.",
+  "team.m1.name": "Sujan Katuwal",
+  "team.m1.role": "Core Member",
+  "team.m1.quote": "Great products come from teams that care about the details.",
+  "team.m2.name": "Prashanta Guragain",
+  "team.m2.role": "Core Member",
+  "team.m2.quote": "Simplicity is the foundation of software people actually enjoy using.",
+  "team.m3.name": "Ujwal Khatiwada",
+  "team.m3.role": "Core Member",
+  "team.m3.quote": "We build Restra the way we'd want to run our own restaurant.",
+
   // Footer
   "footer.desc": "Restaurant management, without the unnecessary complexity.",
   "footer.product": "Product",
@@ -238,17 +259,19 @@ const en = {
 
 const ne: Record<keyof typeof en, string> = {
   // Navbar
+  "nav.home": "गृहपृष्ठ",
   "nav.features": "सुविधाहरू",
   "nav.howItWorks": "कसरी काम गर्छ",
   "nav.pricing": "मूल्य निर्धारण",
+  "nav.team": "टिम",
   "nav.contact": "सम्पर्क",
   "nav.login": "लग इन",
   "nav.getStarted": "सुरु गर्नुहोस्",
 
   // Hero
   "hero.badge": "रेस्टुरेन्ट व्यवस्थापन, सरल बनाइएको",
-  "hero.title": "आफ्नो रेस्टुरेन्ट चलाउनुहोस्। अस्तव्यस्तता बिना।",
-  "hero.titleHighlight": "रेस्टुरेन्ट",
+  "hero.title": "नेपालमा रेस्टुरेन्ट व्यवस्थापन सफ्टवेयर",
+  "hero.titleHighlight": "नेपालमा",
   "hero.subtitle": "Restra ले POS, बिलिङ, QR अर्डरिङ, इन्भेन्टरी, अर्डर ट्र्याकिङ, कर्मचारी भूमिकाहरू र थप कुराहरू एकै रेस्टुरेन्ट व्यवस्थापन प्रणालीमा ल्याउँछ।",
   "hero.explore": "Restra अन्वेषण गर्नुहोस्",
   "hero.stat1Value": "१",
@@ -257,6 +280,11 @@ const ne: Record<keyof typeof en, string> = {
   "hero.stat2Label": "मुख्य मोड्युलहरू",
   "hero.stat3Value": "२४/७",
   "hero.stat3Label": "सञ्चालन",
+  "hero.slide2.badge": "जहाँ पनि काम गर्छ",
+  "hero.slide2.title": "सम्पूर्ण समाधान। जुनसुकै उपकरणमा प्रयोग गर्नुहोस्।",
+  "hero.slide2.titleHighlight": "जुनसुकै उपकरणमा",
+  "hero.slide2.subtitle": "डेस्कटप, ल्यापटप, ट्याब्लेट र मोबाइलमा उत्तिकै मिल्दो र प्रयोग गर्न सजिलो — अब उपकरणको बारेमा चिन्ता लिनु पर्दैन।",
+  "hero.slide2.cta": "सुविधाहरू हेर्नुहोस्",
 
   // Dashboard Preview
   "dash.goodEvening": "शुभ सन्ध्या,",
@@ -451,6 +479,20 @@ const ne: Record<keyof typeof en, string> = {
   "cta.title": "तपाईंको रेस्टुरेन्टलाई व्यवस्थापन गर्न पर्याप्त कुराहरू छन्।",
   "cta.subtitle": "Restra लाई पछाडिको प्रणाली सम्हाल्न दिनुहोस्।",
   "cta.talkToUs": "हामीसँग कुरा गर्नुहोस्",
+
+  // Team
+  "team.badge": "टिमसँग परिचय",
+  "team.title": "Restra निर्माण गर्ने टिम",
+  "team.subtitle": "रेस्टुरेन्ट सञ्चालनलाई सरल बनाउनमा केन्द्रित एउटा सानो टिम।",
+  "team.m1.name": "सुजन कटुवाल",
+  "team.m1.role": "मुख्य सदस्य",
+  "team.m1.quote": "राम्रा उत्पादनहरू विवरणमा ध्यान दिने टिमबाट आउँछन्।",
+  "team.m2.name": "प्रशान्त गुरागाईं",
+  "team.m2.role": "मुख्य सदस्य",
+  "team.m2.quote": "सरलता नै मानिसहरूले साँच्चै मन पराउने सफ्टवेयरको आधार हो।",
+  "team.m3.name": "उज्वल खतिवडा",
+  "team.m3.role": "मुख्य सदस्य",
+  "team.m3.quote": "हामी Restra लाई आफ्नै रेस्टुरेन्ट चलाएझैं गरी बनाउँछौं।",
 
   // Footer
   "footer.desc": "अनावश्यक जटिलता बिना रेस्टुरेन्ट व्यवस्थापन।",
