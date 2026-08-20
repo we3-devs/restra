@@ -183,7 +183,7 @@ export default function ChatWidget() {
               onClick={() => setOpen(true)}
               className="text-left"
             >
-              {greetingText[language]}
+              {greetingText.ne}
             </button>
           </motion.div>
         )}

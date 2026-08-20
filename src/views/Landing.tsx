@@ -13,10 +13,12 @@ import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
 import ChatWidget from "@/components/landing/ChatWidget";
 import BackToTop from "@/components/landing/BackToTop";
+import ScrollProgress from "@/components/landing/ScrollProgress";
 
 export default function Landing() {
   return (
     <div className="min-h-screen bg-restra-bg text-restra-text font-body">
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
