@@ -22,7 +22,7 @@ export default function InventoryPreview() {
     <section className="relative py-24 lg:py-32">
       <div className="absolute inset-0 bg-restra-surface/50" />
 
-      <div className="relative mx-auto max-w-[1600px] px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-5 lg:items-start lg:gap-16">
           {/* Left: Copy */}
           <motion.div

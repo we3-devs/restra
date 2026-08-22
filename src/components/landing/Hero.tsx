@@ -40,7 +40,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_60%,rgba(34,211,238,0.03),transparent)]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1600px] px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
           {/* Left: Copy */}
           <AnimatePresence mode="wait">

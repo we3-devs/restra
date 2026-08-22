@@ -13,6 +13,7 @@ import {
   Flame,
   UtensilsCrossed,
 } from "lucide-react";
+import OrderLifecycle3D from "./OrderLifecycle3D";
 
 const workflowStepKeys: { icon: typeof Smartphone; labelKey: TranslationKey; detailKey: TranslationKey }[] = [
   { icon: Smartphone, labelKey: "workflow.step1", detailKey: "workflow.step1d" },
@@ -48,7 +49,7 @@ export default function ProductWorkflow() {
     <section id="workflow" className="relative py-24 lg:py-32">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_20%_50%,rgba(34,211,238,0.03),transparent)]" />
 
-      <div className="relative mx-auto max-w-[1600px] px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -121,57 +122,18 @@ export default function ProductWorkflow() {
             {t("workflow.orderLifecycle")}
           </h3>
 
-          {/* Desktop: horizontal pipeline */}
-          <div className="hidden lg:block">
-            <div className="flex items-center gap-2">
-              {orderStepKeys.map((step, i) => (
-                <div key={step.labelKey} className="flex items-center gap-2 flex-1">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.35, delay: i * 0.08 }}
-                    className="flex-1 rounded-xl border border-white/[0.06] bg-restra-card p-4"
-                  >
-                    <div className={`mb-3 flex h-9 w-9 items-center justify-center rounded-lg border ${step.color}`}>
-                      <step.icon className={`h-4 w-4 ${step.textColor}`} />
-                    </div>
-                    <p className={`text-sm font-semibold ${step.textColor}`}>{t(step.labelKey)}</p>
-                    <p className="mt-1 text-xs text-restra-text-muted">{t(step.descKey)}</p>
-                  </motion.div>
-                  {i < orderStepKeys.length - 1 && (
-                    <div className="flex h-px w-6 shrink-0 items-center justify-center">
-                      <div className="h-px w-full bg-gradient-to-r from-white/[0.12] to-white/[0.04]" />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile: vertical timeline */}
-          <div className="lg:hidden">
-            <div className="relative ml-4 space-y-4 border-l border-white/[0.06] pl-6">
-              {orderStepKeys.map((step, i) => (
-                <motion.div
-                  key={step.labelKey}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.08 }}
-                  className="relative"
-                >
-                  <div className={`absolute -left-[calc(1.5rem+5px)] top-3 flex h-[10px] w-[10px] items-center justify-center rounded-full border ${step.color}`}>
-                    <div className={`h-1.5 w-1.5 rounded-full ${step.dotColor}`} />
-                  </div>
-                  <div className="rounded-xl border border-white/[0.06] bg-restra-card p-4">
-                    <p className={`text-sm font-semibold ${step.textColor}`}>{t(step.labelKey)}</p>
-                    <p className="mt-1 text-xs text-restra-text-muted">{t(step.descKey)}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          {/* 3D showcase */}
+          <OrderLifecycle3D
+            steps={orderStepKeys.map((step) => ({
+              key: step.labelKey,
+              icon: step.icon,
+              label: t(step.labelKey),
+              desc: t(step.descKey),
+              color: step.color,
+              textColor: step.textColor,
+              dotColor: step.dotColor,
+            }))}
+          />
 
           {/* Status visualization */}
           <motion.div

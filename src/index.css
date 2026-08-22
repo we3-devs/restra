@@ -61,11 +61,11 @@
   padding: 0;
   margin: 0;
   --radius: 0.625rem;
-  --background: #FAF9F6;
+  --background: #FFFFFF;
   --foreground: #1A1C1C;
-  --card: #FFFFFF;
+  --card: #FFFCF5;
   --card-foreground: #1A1C1C;
-  --popover: #FFFFFF;
+  --popover: #FFFCF5;
   --popover-foreground: #1A1C1C;
   --primary: #D4A017;
   --primary-foreground: #FFFFFF;
@@ -93,12 +93,12 @@
   --sidebar-border: rgba(0, 0, 0, 0.08);
   --sidebar-ring: #D4A017;
 
-  /* Restra semantic tokens — light mode */
+  /* Restra semantic tokens — light mode: white page/sections, warm card treatment */
   --restra-yellow: #D4A017;
   --restra-cyan: #0891B2;
-  --restra-bg: #FAF9F6;
-  --restra-surface: #F0EDE8;
-  --restra-card: #FFFFFF;
+  --restra-bg: #FFFFFF;
+  --restra-surface: #F5F5F3;
+  --restra-card: #FFFCF5;
   --restra-text: #1A1C1C;
   --restra-text-secondary: #4A4D4A;
   --restra-text-muted: #8A8D8A;
@@ -160,10 +160,47 @@
     @apply bg-background text-foreground overflow-x-hidden;
     font-family: "Inter", system-ui, -apple-system, sans-serif;
   }
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
   button:not([disabled]),
   [role="button"]:not([disabled]) {
     cursor: pointer;
   }
+
+  /* Global click "break" animation: a burst ring that fires from the click point */
+  button:not([disabled]):active,
+  a.btn-cta:active {
+    transform: scale(0.96);
+  }
+  button:not([disabled]),
+  a.btn-cta {
+    transition: transform 0.15s ease;
+  }
+}
+
+@keyframes btn-burst {
+  0% {
+    transform: scale(0);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.btn-burst-el {
+  position: absolute;
+  border-radius: 9999px;
+  background: currentColor;
+  pointer-events: none;
+  transform: scale(0);
+  animation: btn-burst 0.55s ease-out forwards;
 }
 
 /* ========================================================================
@@ -188,17 +225,17 @@
 .light .bg-white\/\[0\.08\]  { background-color: rgba(0, 0, 0, 0.09) !important; }
 
 /* Navbar & overlay backgrounds */
-.light .bg-restra-bg\/90  { background-color: rgba(250, 249, 246, 0.92) !important; }
-.light .bg-restra-bg\/95  { background-color: rgba(250, 249, 246, 0.96) !important; }
-.light .bg-restra-bg\/80  { background-color: rgba(250, 249, 246, 0.85) !important; }
-.light .bg-restra-bg\/60  { background-color: rgba(250, 249, 246, 0.65) !important; }
-.light .bg-restra-bg\/40  { background-color: rgba(250, 249, 246, 0.50) !important; }
+.light .bg-restra-bg\/90  { background-color: rgba(255, 255, 255, 0.92) !important; }
+.light .bg-restra-bg\/95  { background-color: rgba(255, 255, 255, 0.96) !important; }
+.light .bg-restra-bg\/80  { background-color: rgba(255, 255, 255, 0.85) !important; }
+.light .bg-restra-bg\/60  { background-color: rgba(255, 255, 255, 0.65) !important; }
+.light .bg-restra-bg\/40  { background-color: rgba(255, 255, 255, 0.50) !important; }
 
 /* Card and surface with alpha */
-.light .bg-restra-card\/50  { background-color: rgba(255, 255, 255, 0.60) !important; }
-.light .bg-restra-card\/80  { background-color: rgba(255, 255, 255, 0.80) !important; }
-.light .bg-restra-surface\/60 { background-color: rgba(240, 237, 232, 0.70) !important; }
-.light .bg-restra-surface\/50 { background-color: rgba(240, 237, 232, 0.60) !important; }
+.light .bg-restra-card\/50  { background-color: rgba(255, 252, 245, 0.65) !important; }
+.light .bg-restra-card\/80  { background-color: rgba(255, 252, 245, 0.85) !important; }
+.light .bg-restra-surface\/60 { background-color: rgba(245, 245, 243, 0.75) !important; }
+.light .bg-restra-surface\/50 { background-color: rgba(245, 245, 243, 0.65) !important; }
 
 /* Shadows: soften for light mode */
 .light .shadow-black\/50 { --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
@@ -237,8 +274,11 @@
 }
 .light .bg-restra-yellow\/\[0\.04\] { background-color: rgba(212, 160, 23, 0.06) !important; }
 
-/* CTA section card bg in light mode */
-.light .bg-restra-card { background-color: #FFFFFF !important; }
+/* Cards: sweet warm-white with a whisper of yellow → red in the corner, instead of flat white */
+.light .bg-restra-card {
+  background-color: #FFFCF5 !important;
+  background-image: linear-gradient(135deg, #FFFDF8 0%, #FFF6E7 55%, #FFF0EC 100%) !important;
+}
 
 /* Ensure dark indicators (dots, badges) stay visible on light backgrounds */
 .light .bg-restra-yellow { background-color: #D4A017 !important; }

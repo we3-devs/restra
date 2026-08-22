@@ -1,7 +1,7 @@
 import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
 import ProblemSection from "@/components/landing/ProblemSection";
-import Features from "@/components/landing/Features";
+import SpecialFeatures from "@/components/landing/SpecialFeatures";
 import ProductWorkflow from "@/components/landing/ProductWorkflow";
 import RoleBasedAccess from "@/components/landing/RoleBasedAccess";
 import QROrdering from "@/components/landing/QROrdering";
@@ -14,16 +14,18 @@ import Footer from "@/components/landing/Footer";
 import ChatWidget from "@/components/landing/ChatWidget";
 import BackToTop from "@/components/landing/BackToTop";
 import ScrollProgress from "@/components/landing/ScrollProgress";
+import ClickBurst from "@/components/landing/ClickBurst";
 
 export default function Landing() {
   return (
     <div className="min-h-screen bg-restra-bg text-restra-text font-body">
       <ScrollProgress />
+      <ClickBurst />
       <Navbar />
       <main>
         <Hero />
         <ProblemSection />
-        <Features />
+        <SpecialFeatures />
         <ProductWorkflow />
         <RoleBasedAccess />
         <QROrdering />

@@ -9,7 +9,7 @@ export default function CTASection() {
 
   return (
     <section id="contact" className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-[1600px] px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export default function CTASection() {
               </button>
               <a
                 href="mailto:hello@restra.com"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.02] px-7 py-3 text-sm font-medium text-restra-text transition-all hover:bg-white/[0.05]"
+                className="btn-cta inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.02] px-7 py-3 text-sm font-medium text-restra-text transition-all hover:bg-white/[0.05]"
               >
                 {t("cta.talkToUs")}
               </a>

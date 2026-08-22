@@ -23,7 +23,7 @@ export default function QROrdering() {
 
   return (
     <section className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-[1600px] px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
           {/* Left: copy */}
           <motion.div

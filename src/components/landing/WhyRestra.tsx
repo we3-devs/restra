@@ -29,7 +29,7 @@ export default function WhyRestra() {
     <section className="relative py-24 lg:py-32">
       <div className="absolute inset-0 bg-restra-surface/50" />
 
-      <div className="relative mx-auto max-w-[1600px] px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left: Headline */}
           <motion.div

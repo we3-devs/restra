@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
 import type { TranslationKey } from "@/lib/translations";
 import { Check, Star } from "lucide-react";
+import { getWhatsAppLink } from "@/lib/whatsapp";
 
 const plans = [
   {
@@ -45,7 +46,7 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-[1600px] px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -120,15 +121,20 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <button
-                className={`w-full rounded-lg py-2.5 text-sm font-semibold transition-all ${
+              <a
+                href={getWhatsAppLink(
+                  `Hi Restra! I'm interested in the ${t(plan.nameKey)} plan (${plan.price} ${t(plan.periodKey)}). Please share more details.`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`btn-cta block w-full rounded-lg py-2.5 text-center text-sm font-semibold transition-all ${
                   plan.highlight
                     ? "bg-restra-yellow text-restra-bg hover:bg-restra-yellow/90 hover:translate-y-[-1px]"
                     : "border border-white/[0.1] bg-white/[0.03] text-restra-text hover:bg-white/[0.06]"
                 }`}
               >
                 {t("price.choose")} {t(plan.nameKey)}
-              </button>
+              </a>
             </motion.div>
           ))}
         </div>
