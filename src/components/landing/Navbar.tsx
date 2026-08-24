@@ -1,32 +1,63 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import {
+  Home,
+  LayoutGrid,
+  Workflow,
+  Tag,
+  Users,
+  Mail,
+} from "lucide-react";
 import { useI18n } from "@/contexts/I18nContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const navLinkKeys = [
-  { key: "nav.home" as const, href: "#hero" },
-  { key: "nav.features" as const, href: "#features" },
-  { key: "nav.howItWorks" as const, href: "#workflow" },
-  { key: "nav.pricing" as const, href: "#pricing" },
-  { key: "nav.team" as const, href: "#team" },
-  { key: "nav.contact" as const, href: "#contact" },
+  { key: "nav.home" as const, href: "#hero", icon: Home },
+  { key: "nav.features" as const, href: "#features", icon: LayoutGrid },
+  { key: "nav.howItWorks" as const, href: "#workflow", icon: Workflow },
+  { key: "nav.team" as const, href: "#team", icon: Users },
+  { key: "nav.pricing" as const, href: "#pricing", icon: Tag },
+  { key: "nav.contact" as const, href: "#contact", icon: Mail },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState(navLinkKeys[0].href);
   const { t } = useI18n();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
+      let current = navLinkKeys[0].href;
+      if (atBottom) {
+        current = navLinkKeys[navLinkKeys.length - 1].href;
+      } else {
+        for (const link of navLinkKeys) {
+          const el = document.querySelector(link.href);
+          if (!el) continue;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120 && rect.bottom > 120) {
+            current = link.href;
+            break;
+          }
+          if (rect.top <= 120) {
+            current = link.href;
+          }
+        }
+      }
+      setActiveHref(current);
+    };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const handleNav = (href: string) => {
-    setMobileOpen(false);
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -59,7 +90,9 @@ export default function Navbar() {
             <button
               key={link.href}
               onClick={() => handleNav(link.href)}
-              className="text-sm font-medium text-restra-text-secondary transition-colors hover:text-restra-text"
+              className={`text-sm font-medium transition-colors hover:text-restra-text ${
+                link.href === activeHref ? "text-restra-text" : "text-restra-text-secondary"
+              }`}
             >
               {t(link.key)}
             </button>
@@ -72,36 +105,83 @@ export default function Navbar() {
           <ThemeSwitcher />
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile controls */}
         <div className="flex items-center gap-2 justify-self-end md:hidden">
           <LanguageSwitcher />
           <ThemeSwitcher />
-          <button
-            className="text-restra-text"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle navigation"
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
         </div>
       </nav>
+    </header>
+  );
+}
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="border-t border-white/[0.06] bg-restra-bg/95 backdrop-blur-md md:hidden">
-          <div className="flex flex-col gap-1 px-6 py-4">
-            {navLinkKeys.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNav(link.href)}
-                className="py-2.5 text-left text-sm font-medium text-restra-text-secondary transition-colors hover:text-restra-text"
+export function MobileTabBar() {
+  const [activeHref, setActiveHref] = useState(navLinkKeys[0].href);
+  const { t } = useI18n();
+
+  useEffect(() => {
+    const onScroll = () => {
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
+      let current = navLinkKeys[0].href;
+      if (atBottom) {
+        current = navLinkKeys[navLinkKeys.length - 1].href;
+      } else {
+        for (const link of navLinkKeys) {
+          const el = document.querySelector(link.href);
+          if (!el) continue;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120 && rect.bottom > 120) {
+            current = link.href;
+            break;
+          }
+          if (rect.top <= 120) {
+            current = link.href;
+          }
+        }
+      }
+      setActiveHref(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleNav = (href: string) => {
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <nav
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-white/8 bg-restra-bg/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-2xl backdrop-saturate-150 md:hidden"
+      aria-label="Mobile navigation"
+    >
+      <div className="flex items-stretch justify-between px-1">
+        {navLinkKeys.map((link) => {
+          const Icon = link.icon;
+          const isActive = link.href === activeHref;
+          return (
+            <button
+              key={link.href}
+              onClick={() => handleNav(link.href)}
+              className="flex flex-1 flex-col items-center gap-0.5 py-2.5 text-[10px] font-medium transition-colors"
+            >
+              <Icon
+                className={`h-5 w-5 transition-colors ${
+                  isActive ? "text-restra-cyan" : "text-restra-text-secondary"
+                }`}
+              />
+              <span
+                className={isActive ? "text-restra-cyan" : "text-restra-text-secondary"}
               >
                 {t(link.key)}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
   );
 }

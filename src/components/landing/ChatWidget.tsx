@@ -71,7 +71,7 @@ export default function ChatWidget() {
   const handleSend = () => sendText(input);
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-3 md:bottom-6 md:right-6">
       <AnimatePresence>
         {open && (
           <motion.div
