@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 
@@ -12,9 +13,10 @@ export interface LifecycleStep {
   color: string;
   textColor: string;
   dotColor: string;
+  image?: string;
 }
 
-const ROTATE_MS = 2600;
+const ROTATE_MS = 4500;
 
 export default function OrderLifecycle3D({
   steps,
@@ -81,7 +83,7 @@ export default function OrderLifecycle3D({
       </div>
 
       {/* Stackable photo switcher */}
-      <div className="relative mx-auto h-56 w-full max-w-xs sm:h-64 lg:w-1/2">
+      <div className="relative mx-auto h-72 w-full max-w-sm sm:h-80 lg:w-1/2">
         {steps.map((step, i) => {
           const offset = (i - active + steps.length) % steps.length;
           if (offset > 2) return null;
@@ -89,7 +91,9 @@ export default function OrderLifecycle3D({
           return (
             <motion.div
               key={step.key}
-              className={`absolute inset-x-4 top-0 flex h-full flex-col items-center justify-center rounded-2xl border bg-restra-card/90 p-6 shadow-xl backdrop-blur-sm ${step.color}`}
+              className={`absolute inset-x-4 top-0 flex h-full flex-col items-center overflow-hidden rounded-2xl border bg-restra-card/90 shadow-xl backdrop-blur-sm ${step.color} ${
+                step.image ? "justify-end" : "justify-center p-6"
+              }`}
               animate={{
                 scale: 1 - offset * 0.06,
                 y: offset * 14,
@@ -99,6 +103,15 @@ export default function OrderLifecycle3D({
               transition={{ duration: 0.5, ease: "easeOut" }}
               style={{ zIndex: 10 - offset }}
             >
+              {step.image && (
+                <Image
+                  src={step.image}
+                  alt={step.label}
+                  fill
+                  sizes="384px"
+                  className="rounded-2xl object-cover"
+                />
+              )}
               <AnimatePresence>
                 {isTop && (
                   <motion.div
@@ -107,7 +120,9 @@ export default function OrderLifecycle3D({
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
-                    className="flex flex-col items-center text-center"
+                    className={`relative flex flex-col items-center text-center ${
+                      step.image ? "mt-auto w-full rounded-b-2xl bg-linear-to-t from-restra-bg via-restra-bg/80 to-transparent px-4 pb-4 pt-10" : ""
+                    }`}
                   >
                     <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl border bg-restra-bg/60 ${step.color}`}>
                       <step.icon className={`h-6 w-6 ${step.textColor}`} />

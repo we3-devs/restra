@@ -35,12 +35,12 @@ const orderLifecycleKeys: { statusKey: TranslationKey; color: string; textColor:
   { statusKey: "workflow.statusServed", color: "bg-emerald-500", textColor: "text-emerald-400" },
 ];
 
-const orderStepKeys: { icon: typeof CircleDot; labelKey: TranslationKey; descKey: TranslationKey; color: string; textColor: string; dotColor: string }[] = [
-  { icon: CircleDot, labelKey: "workflow.statusNew", descKey: "workflow.orderNewDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan" },
-  { icon: CheckCircle2, labelKey: "workflow.statusConfirmed", descKey: "workflow.orderConfirmedDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan" },
-  { icon: Flame, labelKey: "workflow.statusPreparing", descKey: "workflow.orderPreparingDesc", color: "border-restra-yellow/40 bg-restra-yellow/10", textColor: "text-restra-yellow", dotColor: "bg-restra-yellow" },
-  { icon: UtensilsCrossed, labelKey: "workflow.statusReady", descKey: "workflow.orderReadyDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan" },
-  { icon: CheckCircle2, labelKey: "workflow.statusServed", descKey: "workflow.orderServedDesc", color: "border-emerald-500/40 bg-emerald-500/10", textColor: "text-emerald-400", dotColor: "bg-emerald-500" },
+const orderStepKeys: { icon: typeof CircleDot; labelKey: TranslationKey; descKey: TranslationKey; color: string; textColor: string; dotColor: string; image: string }[] = [
+  { icon: CircleDot, labelKey: "workflow.statusNew", descKey: "workflow.orderNewDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-new.png" },
+  { icon: CheckCircle2, labelKey: "workflow.statusConfirmed", descKey: "workflow.orderConfirmedDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-confirmed.png" },
+  { icon: Flame, labelKey: "workflow.statusPreparing", descKey: "workflow.orderPreparingDesc", color: "border-restra-yellow/40 bg-restra-yellow/10", textColor: "text-restra-yellow", dotColor: "bg-restra-yellow", image: "/order-lifecycle/order-preparing.png" },
+  { icon: UtensilsCrossed, labelKey: "workflow.statusReady", descKey: "workflow.orderReadyDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-ready.png" },
+  { icon: CheckCircle2, labelKey: "workflow.statusServed", descKey: "workflow.orderServedDesc", color: "border-emerald-500/40 bg-emerald-500/10", textColor: "text-emerald-400", dotColor: "bg-emerald-500", image: "/order-lifecycle/order-served.png" },
 ];
 
 export default function ProductWorkflow() {
@@ -134,6 +134,7 @@ export default function ProductWorkflow() {
               color: step.color,
               textColor: step.textColor,
               dotColor: step.dotColor,
+              image: step.image,
             }))}
             onActiveChange={setActiveLifecycleStep}
           />

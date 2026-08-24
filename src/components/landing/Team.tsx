@@ -10,13 +10,45 @@ const members: {
   roleKey: TranslationKey;
   quoteKey: TranslationKey;
   photo: string;
+  socials: { icon: typeof Facebook; url: string; label: string }[];
 }[] = [
-  { nameKey: "team.m1.name", roleKey: "team.m1.role", quoteKey: "team.m1.quote", photo: "/team/sujan.jpg" },
-  { nameKey: "team.m2.name", roleKey: "team.m2.role", quoteKey: "team.m2.quote", photo: "/team/prashanta.jpeg" },
-  { nameKey: "team.m3.name", roleKey: "team.m3.role", quoteKey: "team.m3.quote", photo: "/team/ujwal.jpg" },
+  {
+    nameKey: "team.m1.name",
+    roleKey: "team.m1.role",
+    quoteKey: "team.m1.quote",
+    photo: "/team/sujan.jpg",
+    socials: [
+      { icon: Facebook, label: "Facebook", url: "https://www.facebook.com/profile.php?id=61556730426323" },
+      { icon: Github, label: "GitHub", url: "https://github.com/sujan-977" },
+      { icon: Linkedin, label: "LinkedIn", url: "https://www.linkedin.com/in/sujan-katwal-247a103a5/" },
+      { icon: Globe, label: "Portfolio", url: "https://sujan-katuwal.com.np/" },
+    ],
+  },
+  {
+    nameKey: "team.m2.name",
+    roleKey: "team.m2.role",
+    quoteKey: "team.m2.quote",
+    photo: "/team/prashanta.jpeg",
+    socials: [
+      { icon: Facebook, label: "Facebook", url: "https://www.facebook.com/prashanta.93/" },
+      { icon: Github, label: "GitHub", url: "https://github.com/prashantaguragain" },
+      { icon: Linkedin, label: "LinkedIn", url: "https://www.linkedin.com/in/prashanta-guragain-0a24bb335/" },
+      { icon: Globe, label: "Portfolio", url: "https://www.prashantaguragain.com.np/" },
+    ],
+  },
+  {
+    nameKey: "team.m3.name",
+    roleKey: "team.m3.role",
+    quoteKey: "team.m3.quote",
+    photo: "/team/ujwal.jpg",
+    socials: [
+      { icon: Facebook, label: "Facebook", url: "https://www.facebook.com/ujwalkhatiwadaa" },
+      { icon: Github, label: "GitHub", url: "https://github.com/ujwalkhatiwadaa" },
+      { icon: Linkedin, label: "LinkedIn", url: "https://www.linkedin.com/in/ujwalkhatiwadaa/" },
+      { icon: Globe, label: "Portfolio", url: "https://ujwalkhatiwada.com.np/" },
+    ],
+  },
 ];
-
-const socialIcons = [Facebook, Github, Linkedin, Globe];
 
 const HOVER_PAUSE_MS = 6000;
 const AUTO_INTERVAL_MS = 3200;
@@ -119,13 +151,18 @@ export default function Team() {
                 </p>
 
                 <div className="mt-3 flex items-center gap-2 border-t border-white/4 pt-3">
-                  {socialIcons.map((Icon, idx) => (
-                    <span
-                      key={idx}
+                  {member.socials.map(({ icon: Icon, url, label }) => (
+                    <a
+                      key={label}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      onClick={(e) => e.stopPropagation()}
                       className="flex h-7 w-7 items-center justify-center rounded-full bg-restra-surface text-restra-text-secondary transition-colors duration-200 hover:text-restra-cyan"
                     >
                       <Icon className="h-3.5 w-3.5" />
-                    </span>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -192,13 +229,18 @@ export default function Team() {
                         {t(member.quoteKey)}
                       </p>
                       <div className="mt-3 flex items-center gap-2 border-t border-white/4 pt-3">
-                        {socialIcons.map((Icon, idx) => (
-                          <span
-                            key={idx}
+                        {member.socials.map(({ icon: Icon, url, label }) => (
+                          <a
+                            key={label}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={label}
+                            onClick={(e) => e.stopPropagation()}
                             className="flex h-7 w-7 items-center justify-center rounded-full bg-restra-surface text-restra-text-secondary transition-colors duration-200 hover:text-restra-cyan"
                           >
                             <Icon className="h-3.5 w-3.5" />
-                          </span>
+                          </a>
                         ))}
                       </div>
                     </motion.div>
