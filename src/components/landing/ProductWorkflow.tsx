@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
 import type { TranslationKey } from "@/lib/translations";
@@ -44,6 +45,7 @@ const orderStepKeys: { icon: typeof CircleDot; labelKey: TranslationKey; descKey
 
 export default function ProductWorkflow() {
   const { t } = useI18n();
+  const [activeLifecycleStep, setActiveLifecycleStep] = useState(0);
 
   return (
     <section id="workflow" className="relative py-24 lg:py-32">
@@ -133,6 +135,7 @@ export default function ProductWorkflow() {
               textColor: step.textColor,
               dotColor: step.dotColor,
             }))}
+            onActiveChange={setActiveLifecycleStep}
           />
 
           {/* Status visualization */}
@@ -151,7 +154,13 @@ export default function ProductWorkflow() {
               <div className="flex items-center gap-2 flex-wrap">
                 {orderLifecycleKeys.map((s, i) => (
                   <div key={s.statusKey} className="flex items-center gap-2">
-                    <span className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${s.textColor} bg-white/[0.03] border border-current/20`}>
+                    <span
+                      className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider transition-all duration-300 ${s.textColor} border ${
+                        i === activeLifecycleStep
+                          ? "bg-current/10 border-current shadow-sm scale-105"
+                          : "bg-white/[0.03] border-current/20"
+                      }`}
+                    >
                       {t(s.statusKey)}
                     </span>
                     {i < orderLifecycleKeys.length - 1 && (
