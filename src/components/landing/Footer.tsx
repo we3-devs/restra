@@ -50,7 +50,7 @@ export default function Footer() {
               href="/"
               className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-text"
             >
-              <img src="/logo.svg" alt="Restra logo" className="h-11 w-auto shrink-0" />
+              <img src="/logo.svg" alt="RESTRA logo" className="h-11 w-auto shrink-0" />
 
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-restra-text-muted">
@@ -86,10 +86,21 @@ export default function Footer() {
           ))}
         </div>
 
+          <nav aria-label="RESTRA resources" className="mt-10 border-t border-white/[0.06] pt-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-restra-text-muted">Explore RESTRA</p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-restra-text-secondary">
+              <Link href="/restaurant-management-system">Restaurant management system</Link>
+              <Link href="/features">Restaurant software features</Link>
+              <Link href="/features/pos">Restaurant POS system</Link>
+              <Link href="/features/inventory">Restaurant inventory management</Link>
+              <Link href="/features/qr-ordering">QR ordering</Link>
+            </div>
+          </nav>
+
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
           <p className="text-xs text-restra-text-muted">
-            © {new Date().getFullYear()} Restra. {t("footer.rights")}
+            Ã‚Â© {new Date().getFullYear()} Restra. {t("footer.rights")}
           </p>
           <div className="flex items-center gap-1">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />

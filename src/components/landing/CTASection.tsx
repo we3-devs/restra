@@ -38,7 +38,7 @@ export default function CTASection() {
                 <ArrowRight className="h-4 w-4" />
               </button>
               <a
-                href="mailto:hello@restra.com"
+                href="mailto:restraservices@gmail.com"
                 className="btn-cta inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.02] px-7 py-3 text-sm font-medium text-restra-text transition-all hover:bg-white/[0.05]"
               >
                 {t("cta.talkToUs")}

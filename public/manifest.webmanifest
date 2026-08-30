@@ -1,7 +1,7 @@
 {
-  "name": "Restra — Restaurant Management System",
-  "short_name": "Restra",
-  "description": "Run your restaurant without the chaos. POS, billing, QR ordering, inventory, order tracking, and staff management in one platform.",
+  "name": "RESTRA - Restaurant Management System",
+  "short_name": "RESTRA",
+  "description": "RESTRA is a restaurant management system for restaurants, cafes, and cloud kitchens.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B0D0D",

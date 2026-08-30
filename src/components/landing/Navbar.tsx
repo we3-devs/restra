@@ -80,7 +80,7 @@ export default function Navbar() {
           href="/"
           className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-text"
         >
-          <img src="/logo.svg" alt="Restra logo" className="h-8 w-auto shrink-0 sm:h-11" />
+          <img src="/logo.svg" alt="RESTRA logo" className="h-8 w-auto shrink-0 sm:h-11" />
 
         </Link>
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
 import type { TranslationKey } from "@/lib/translations";
-import { Check, TrendingUp, Package, Wallet, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Check, Package, Wallet, AlertTriangle, CheckCircle2 } from "lucide-react";
 import MultiDeviceShowcase from "./MultiDeviceShowcase";
 
 const orderBulletKeys: TranslationKey[] = ["sf.orders.b1", "sf.orders.b2", "sf.orders.b3"];
@@ -133,22 +133,21 @@ function QrMockup() {
 }
 
 function AnalyticsMockup() {
-  const bars = [40, 65, 50, 80, 60, 90];
   return (
-    <div className="flex h-56 w-full flex-col justify-center rounded-xl border border-white/6 bg-restra-bg/60 p-5">
-      <div className="mb-4 flex items-center gap-1.5 text-[11px] font-semibold text-restra-cyan">
-        <TrendingUp className="h-3.5 w-3.5" />
-        Revenue trending up
-      </div>
-      <div className="flex h-28 items-end gap-1.5">
-        {bars.map((h, i) => (
-          <div
-            key={i}
-            className="flex-1 rounded-t bg-linear-to-t from-restra-cyan/50 to-restra-cyan/10"
-            style={{ height: `${h}%` }}
-          />
-        ))}
-      </div>
+    <div className="relative h-56 w-full overflow-hidden rounded-xl border border-white/6 shadow-xl">
+      <motion.div
+        whileHover={{ scale: 1.06 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="relative h-full w-full"
+      >
+        <Image
+          src="/features/analytics-reports.png"
+          alt="Restra analytics and reports dashboard"
+          fill
+          sizes="(min-width: 1024px) 25vw, 100vw"
+          className="object-cover object-top"
+        />
+      </motion.div>
     </div>
   );
 }
