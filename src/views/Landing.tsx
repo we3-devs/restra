@@ -14,10 +14,12 @@ import Footer from "@/components/landing/Footer";
 import ChatWidget from "@/components/landing/ChatWidget";
 import ScrollProgress from "@/components/landing/ScrollProgress";
 import ClickBurst from "@/components/landing/ClickBurst";
+import LoadingScreen from "@/components/landing/LoadingScreen";
 
 export default function Landing() {
   return (
     <div className="min-h-screen bg-restra-bg text-restra-text font-body pb-16 md:pb-0">
+      <LoadingScreen />
       <ScrollProgress />
       <ClickBurst />
       <Navbar />
