@@ -11,7 +11,6 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     const startedAt = performance.now();
-    let blinkTimer: number | undefined;
     let hideTimer: number | undefined;
 
     const hide = () => {
@@ -23,7 +22,10 @@ export default function LoadingScreen() {
       hideTimer = window.setTimeout(() => setIsVisible(false), remainingTime);
     };
 
-    blinkTimer = window.setTimeout(() => setShouldBlink(true), BLINK_DELAY);
+    const blinkTimer = window.setTimeout(
+      () => setShouldBlink(true),
+      BLINK_DELAY,
+    );
 
     if (document.readyState === "complete") {
       hide();
