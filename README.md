@@ -1,4 +1,4 @@
-## Overview
+# Overview
 
 This project uses the following tech stack:
 - Next.js (App Router)
