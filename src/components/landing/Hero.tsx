@@ -95,14 +95,14 @@ export default function Hero() {
 
               <div className="order-4 mt-5 flex flex-col gap-2.5 sm:flex-row">
                 <button
-                  onClick={() => router.push("/")}
+                  onClick={() => (slide === 0 ? scrollTo("#contact") : router.push("/features"))}
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-6 py-2.5 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px] hover:shadow-lg hover:shadow-restra-yellow/10 sm:py-3"
                 >
                   {slide === 0 ? t("nav.getStarted") : t("hero.slide2.cta")}
                   <ArrowRight className="h-4 w-4" />
                 </button>
                 <button
-                  onClick={() => scrollTo("#features")}
+                  onClick={() => router.push("/features")}
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.02] px-6 py-2.5 text-sm font-medium text-restra-text transition-all hover:bg-white/[0.05] hover:border-white/[0.15] sm:py-3"
                 >
                   <Play className="h-3.5 w-3.5" />

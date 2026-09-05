@@ -10,6 +10,7 @@ const en = {
   "nav.contact": "Contact",
   "nav.login": "Login",
   "nav.getStarted": "Get Started",
+  "nav.blog": "Blog",
 
   // Hero
   "hero.badge": "Restaurant management, simplified",
@@ -293,6 +294,7 @@ const ne: Record<keyof typeof en, string> = {
   "nav.contact": "सम्पर्क",
   "nav.login": "लग इन",
   "nav.getStarted": "सुरु गर्नुहोस्",
+  "nav.blog": "ब्लग",
 
   // Hero
   "hero.badge": "रेस्टुरेन्ट व्यवस्थापन, सरल बनाइएको",

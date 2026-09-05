@@ -1,11 +1,7 @@
 import Navbar, { MobileTabBar } from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
 import ProblemSection from "@/components/landing/ProblemSection";
-import SpecialFeatures from "@/components/landing/SpecialFeatures";
 import ProductWorkflow from "@/components/landing/ProductWorkflow";
-import RoleBasedAccess from "@/components/landing/RoleBasedAccess";
-import QROrdering from "@/components/landing/QROrdering";
-import InventoryPreview from "@/components/landing/InventoryPreview";
 import Pricing from "@/components/landing/Pricing";
 import WhyRestra from "@/components/landing/WhyRestra";
 import Team from "@/components/landing/Team";
@@ -27,11 +23,7 @@ export default function Landing() {
       <main>
         <Hero />
         <ProblemSection />
-        <SpecialFeatures />
         <ProductWorkflow />
-        <RoleBasedAccess />
-        <QROrdering />
-        <InventoryPreview />
         <WhyRestra />
         <Team />
         <Pricing />
