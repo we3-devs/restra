@@ -1,1 +1,58 @@
-import type { Metadata } from "next";import {notFound} from "next/navigation";import SeoPageView,{seoJsonLd} from "@/components/seo/SeoPage";import {absoluteUrl,featureSlugs,seoPages} from "@/lib/seo-content";export function generateStaticParams(){return featureSlugs.map(slug=>({slug}))}export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params;const page=seoPages[slug];if(!page)return{};return{title:page.title,description:page.description,alternates:{canonical:absoluteUrl("/features/"+slug)},openGraph:{title:page.title,description:page.description,url:absoluteUrl("/features/"+slug)}}}export default async function Page({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const page=seoPages[slug];if(!page)notFound();return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(seoJsonLd(page,"/features/"+slug))}}/><SeoPageView page={page}/></>}
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import SeoPageView, { seoJsonLd } from "@/components/seo/SeoPage";
+import {
+  absoluteUrl,
+  featurePath,
+  featureSlugs,
+  getSeoPage,
+} from "@/lib/seo-content";
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export function generateStaticParams() {
+  return featureSlugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const page = getSeoPage(slug);
+  if (!page) return {};
+
+  const url = absoluteUrl(featurePath(slug));
+
+  return {
+    title: page.title,
+    description: page.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      url,
+      type: "website",
+    },
+  };
+}
+
+export default async function FeaturePage({ params }: PageProps) {
+  const { slug } = await params;
+  const page = getSeoPage(slug);
+
+  if (!page) {
+    notFound();
+  }
+
+  const path = featurePath(slug);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(seoJsonLd(page, path)) }}
+      />
+      <SeoPageView page={page} />
+    </>
+  );
+}
