@@ -75,10 +75,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <meta name="google-site-verification" content="T-fSL7dAgM_eZ5J2qTxTLE1L39X-zm0FeAapdg_4UWw" />
-        <meta name="theme-color" content="#0B0D0D" />
+        <meta name="theme-color" content="#FBFAF7" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

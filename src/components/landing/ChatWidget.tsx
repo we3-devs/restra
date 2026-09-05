@@ -12,24 +12,17 @@ interface ChatMessage {
   text: string;
 }
 
-const suggestedQuestions: Record<"en" | "ne", string[]> = {
+const suggestedQuestions: Record<"en", string[]> = {
   en: [
     "Tell me more about Restra",
     "Price to start this software",
     "Can I use this software free of cost?",
     "How does QR ordering work?",
   ],
-  ne: [
-    "Restra को बारेमा थप बताउनुहोस्",
-    "यो सफ्टवेयर सुरु गर्न मूल्य कति हो?",
-    "के म यो सफ्टवेयर निःशुल्क प्रयोग गर्न सक्छु?",
-    "QR अर्डरिङ कसरी काम गर्छ?",
-  ],
 };
 
-const greetingText: Record<"en" | "ne", string> = {
+const greetingText: Record<"en", string> = {
   en: "🙏 Namaste!! Welcome to Restra Chat. Have a question? Ask away!",
-  ne: "🙏 नमस्ते!! Restra Chat मा यहाँलाइ स्वागत छ। कुनै प्रश्न छ? सोध्नुहोस्!",
 };
 
 export default function ChatWidget() {
@@ -41,10 +34,7 @@ export default function ChatWidget() {
     {
       id: "welcome",
       role: "bot",
-      text:
-        language === "ne"
-          ? "🙏 नमस्ते!! Restra Chat मा यहाँलाइ स्वागत छ। म तपाईंलाई कसरी सहयोग गर्न सक्छु?"
-          : "🙏 Namaste!! Welcome to Restra Chat. How can I help you today?",
+      text: "🙏 Namaste!! Welcome to Restra Chat. How can I help you today?",
     },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -87,7 +77,7 @@ export default function ChatWidget() {
                   Restra Assistant
                 </p>
                 <p className="text-xs text-restra-text-secondary">
-                  {language === "ne" ? "सामान्य प्रश्नहरूको जवाफ" : "Answers to common questions"}
+                  Answers to common questions
                 </p>
               </div>
               <button
@@ -143,7 +133,7 @@ export default function ChatWidget() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder={language === "ne" ? "प्रश्न टाइप गर्नुहोस्..." : "Type a question..."}
+                placeholder="Type a question..."
                 className="flex-1 rounded-lg border border-white/[0.08] bg-restra-card px-3 py-2 text-sm text-restra-text placeholder:text-restra-text-secondary/70 focus:border-restra-yellow/50 focus:outline-none"
               />
               <button
@@ -183,7 +173,7 @@ export default function ChatWidget() {
               onClick={() => setOpen(true)}
               className="text-left"
             >
-              {greetingText.ne}
+              {greetingText.en}
             </button>
           </motion.div>
         )}

@@ -15,8 +15,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
 import { featurePages, featurePath } from "@/lib/seo-content";
 import type { TranslationKey } from "@/lib/translations";
-import LanguageSwitcher from "./LanguageSwitcher";
-import ThemeSwitcher from "./ThemeSwitcher";
 
 type SectionNavItem = {
   type: "section";
@@ -37,10 +35,10 @@ export type NavItem = SectionNavItem | PageNavItem;
 const navItems: NavItem[] = [
   { type: "section", key: "nav.home", section: "#hero", icon: Home },
   { type: "page", key: "nav.features", path: "/features", icon: LayoutGrid },
-  { type: "section", key: "nav.howItWorks", section: "#workflow", icon: Workflow },
+  { type: "page", key: "nav.howItWorks", path: "/how-it-works", icon: Workflow },
+  { type: "page", key: "nav.pricing", path: "/pricing", icon: Tag },
   { type: "section", key: "nav.team", section: "#team", icon: Users },
-  { type: "section", key: "nav.pricing", section: "#pricing", icon: Tag },
-  { type: "section", key: "nav.contact", section: "#contact", icon: Mail },
+  { type: "page", key: "nav.contact", path: "/contact", icon: Mail },
 ];
 
 const sectionItems = navItems.filter(
@@ -77,7 +75,7 @@ function FeaturesNavMenu({ label }: { label: string }) {
         href="/features"
         aria-haspopup="menu"
         aria-expanded={open}
-        className="inline-flex items-center gap-1 text-sm font-medium text-restra-text-secondary transition-colors hover:text-restra-text"
+        className="inline-flex items-center gap-1 font-body text-base font-medium text-restra-text-secondary transition-colors hover:text-restra-text"
       >
         {label}
         <ChevronDown
@@ -236,7 +234,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-8 md:flex md:justify-self-center">
           {navItems.map((item) => {
             const isActive = item.type === "section" && item.section === activeHref;
-            const className = `text-sm font-medium transition-colors hover:text-restra-text ${
+            const className = `font-body text-base font-medium transition-colors hover:text-restra-text ${
               isActive ? "text-restra-text" : "text-restra-text-secondary"
             }`;
 
@@ -266,14 +264,22 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden items-center gap-2 md:flex md:justify-self-end">
-          <LanguageSwitcher />
-          <ThemeSwitcher />
+          <Link
+            href="/contact"
+            className="btn-cta inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-4 py-2 font-body text-base font-semibold text-restra-bg transition-all hover:-translate-y-px hover:bg-restra-yellow/90"
+          >
+            {t("nav.getStarted")}
+          </Link>
         </div>
 
         {/* Mobile controls */}
         <div className="flex items-center gap-2 justify-self-end md:hidden">
-          <LanguageSwitcher />
-          <ThemeSwitcher />
+          <Link
+            href="/contact"
+            className="btn-cta inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-3.5 py-2 text-xs font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90"
+          >
+            {t("nav.getStarted")}
+          </Link>
         </div>
       </nav>
     </header>

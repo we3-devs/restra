@@ -1,46 +1,25 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
-import { type Language, type TranslationKey, getTranslation } from "@/lib/translations";
+import { createContext, useContext, useCallback, useMemo, type ReactNode } from "react";
+import { type TranslationKey, getTranslation } from "@/lib/translations";
 
+/**
+ * English-only i18n context. The language switcher was removed, but the t()
+ * API is kept so section copy still resolves through the translation table.
+ */
 interface I18nContextValue {
-  language: Language;
-  setLanguage: (lang: Language) => void;
+  language: "en";
+  setLanguage: () => void;
   t: (key: TranslationKey) => string;
 }
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-function getInitialLanguage(): Language {
-  try {
-    const stored = localStorage.getItem("restra-lang");
-    if (stored === "en" || stored === "ne") return stored;
-  } catch {
-    // SSR or unavailable
-  }
-  return "en";
-}
-
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [language, setLangState] = useState<Language>(getInitialLanguage);
+  const t = useCallback((key: TranslationKey) => getTranslation("en", key), []);
+  const setLanguage = useCallback(() => {}, []);
 
-  const setLanguage = useCallback((lang: Language) => {
-    setLangState(lang);
-    try {
-      localStorage.setItem("restra-lang", lang);
-    } catch {
-      // ignore
-    }
-  }, []);
+  const value = useMemo(() => ({ language: "en" as const, setLanguage, t }), [setLanguage, t]);
 
-  const t = useCallback(
-    (key: TranslationKey) => getTranslation(language, key),
-    [language],
-  );
-
-  return (
-    <I18nContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </I18nContext.Provider>
-  );
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 
 export function useI18n() {

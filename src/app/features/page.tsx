@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, Check, MessageCircle } from "lucide-react";
 import CtaBand from "@/components/seo/CtaBand";
-import { FeatureIcon } from "@/components/seo/FeatureIcon";
 import SiteFooter from "@/components/seo/SiteFooter";
 import SiteHeader from "@/components/seo/SiteHeader";
+import MockupRenderer from "@/components/mockups/MockupRenderer";
+import { featureIconMap } from "@/lib/showcase";
 import {
   absoluteUrl,
   featurePath,
-  featurePages,
   seoPages,
 } from "@/lib/seo-content";
+import { featureGroups } from "@/lib/showcase";
 
 export const metadata: Metadata = {
   title: "Restaurant Software Features",
@@ -43,18 +44,12 @@ export default function FeaturesPage() {
             </nav>
 
             <div className="mx-auto max-w-3xl">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-restra-text-muted transition-colors hover:text-restra-yellow"
-              >
-                <ArrowLeft className="h-3.5 w-3.5" />
-                Back to home
-              </Link>
-              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-restra-yellow">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-restra-yellow">
                 RESTRA capabilities
               </p>
-              <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
-                Everything your restaurant actually needs
+              <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+                Everything your restaurant{" "}
+                <span className="text-restra-yellow">actually needs</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-restra-text-secondary">
                 RESTRA connects the operational workflows restaurants use every day — from
@@ -71,10 +66,10 @@ export default function FeaturesPage() {
                   Talk to the team
                 </Link>
                 <Link
-                  href="/restaurant-management-system"
+                  href="/how-it-works"
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.03] px-6 py-3 text-sm font-semibold text-restra-text transition-colors hover:border-white/[0.2] hover:bg-white/[0.06]"
                 >
-                  What is RESTRA?
+                  See how it works
                   <ArrowRight className="h-4 w-4 text-restra-cyan" />
                 </Link>
               </div>
@@ -82,39 +77,93 @@ export default function FeaturesPage() {
           </div>
         </section>
 
-        {/* Feature cards */}
-        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featurePages.map((page) => (
-              <Link
-                key={page.slug}
-                href={featurePath(page.slug)}
-                className="group relative flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-restra-card p-6 transition-all hover:-translate-y-1 hover:border-restra-yellow/50"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow transition-colors group-hover:border-restra-yellow/40">
-                    <FeatureIcon slug={page.slug} className="h-5 w-5" />
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-restra-text-muted transition-all group-hover:translate-x-0.5 group-hover:text-restra-yellow" />
-                </div>
-                <h2 className="mt-5 font-display text-xl font-semibold leading-snug text-restra-text transition-colors group-hover:text-restra-yellow">
-                  {page.title}
-                </h2>
-                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-restra-text-secondary">
-                  {page.intro}
-                </p>
-                <span className="mt-5 inline-flex items-center gap-1 border-t border-white/[0.06] pt-4 text-sm font-semibold text-restra-yellow">
-                  Learn more
-                </span>
-              </Link>
-            ))}
+        {/* Grouped feature sections */}
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+          <div className="space-y-16 lg:space-y-24">
+            {featureGroups.map((group, index) => {
+              const Icon = featureIconMap[group.pages[0]];
+              const flip = index % 2 === 1;
+              return (
+                <section
+                  key={group.id}
+                  id={group.id}
+                  aria-labelledby={`${group.id}-title`}
+                  className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+                >
+                  {/* Copy */}
+                  <div className={flip ? "lg:order-2" : undefined}>
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-restra-cyan">
+                        {String(index + 1).padStart(2, "0")} · {group.tagline}
+                      </span>
+                    </div>
+                    <h2
+                      id={`${group.id}-title`}
+                      className="mt-5 font-display text-3xl font-semibold tracking-tight text-restra-text sm:text-4xl"
+                    >
+                      {group.name}
+                    </h2>
+                    <p className="mt-4 max-w-xl leading-relaxed text-restra-text-secondary">
+                      {group.description}
+                    </p>
+
+                    <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                      {group.benefits.map((benefit) => (
+                        <li
+                          key={benefit}
+                          className="flex items-start gap-2.5 text-sm text-restra-text-secondary"
+                        >
+                          <span className="mt-0.5 flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-restra-yellow/15 text-restra-yellow">
+                            <Check className="h-3 w-3" />
+                          </span>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-7 flex flex-wrap items-center gap-4">
+                      <Link
+                        href={group.href}
+                        className="inline-flex items-center gap-2 rounded-lg bg-restra-yellow px-5 py-2.5 text-sm font-semibold text-restra-bg transition-all hover:-translate-y-0.5 hover:bg-restra-yellow/90"
+                      >
+                        Learn more
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                      {group.pages.map((slug) => (
+                        <Link
+                          key={slug}
+                          href={featurePath(slug)}
+                          className="text-sm font-medium text-restra-text-muted underline-offset-4 transition-colors hover:text-restra-yellow hover:underline"
+                        >
+                          {seoPages[slug].title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Product mockup */}
+                  <div className={flip ? "lg:order-1" : undefined}>
+                    <div className="relative">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -inset-6 rounded-2xl bg-[radial-gradient(ellipse_60%_55%_at_50%_30%,rgba(255,212,59,0.05),transparent_70%)]"
+                      />
+                      <MockupRenderer mock={group.mock} className="relative" />
+                    </div>
+                  </div>
+                </section>
+              );
+            })}
           </div>
 
           {/* Overview card */}
-          <div className="mt-6 flex flex-col gap-6 rounded-xl border border-white/[0.08] bg-restra-card p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-20 flex flex-col gap-6 rounded-xl border border-white/[0.08] bg-restra-card p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-start gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-restra-cyan/10 text-restra-cyan">
-                <FeatureIcon slug="analytics" className="h-5 w-5" />
+                <MessageCircle className="h-5 w-5" />
               </span>
               <div>
                 <h2 className="font-display text-2xl font-semibold text-restra-text">

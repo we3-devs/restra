@@ -9,7 +9,7 @@
   z-index: 9999;
   display: grid;
   place-items: center;
-  background: #0b0d0d;
+  background: #fbfaf7;
 }
 
 .loading-screen__logo {
@@ -75,6 +75,56 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --animate-shiny-text: shiny-text 8s infinite;
+  --animate-aurora: aurora 8s ease-in-out infinite alternate;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;
+    }
+  30%, 60% {
+    background-position: calc(100% + var(--shiny-width)) 0;
+    }
+  }
+  @keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
+  25% {
+    background-position: 50% 100%;
+    transform: rotate(5deg) scale(1.1);
+    }
+  50% {
+    background-position: 100% 50%;
+    transform: rotate(-3deg) scale(0.95);
+    }
+  75% {
+    background-position: 50% 0%;
+    transform: rotate(3deg) scale(1.05);
+    }
+  100% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
+  }
 }
 
 /* Restra brand tokens — reference CSS variables that change per theme */
@@ -91,97 +141,55 @@
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-/* ========== LIGHT MODE :root ========== */
+/* ========================================================================
+   LIGHT MODE (site default — light-only, no .dark class is applied)
+   Page: low white (soft off-white). Cards: white blended with light yellow.
+   ======================================================================== */
 :root {
   padding: 0;
   margin: 0;
   --radius: 0.625rem;
   --background: #FFFFFF;
   --foreground: #1A1C1C;
-  --card: #FFFCF5;
+  --card: #FFFDF4;
   --card-foreground: #1A1C1C;
-  --popover: #FFFCF5;
+  --popover: #FFFDF4;
   --popover-foreground: #1A1C1C;
   --primary: #D4A017;
   --primary-foreground: #FFFFFF;
-  --secondary: #F0EDE8;
+  --secondary: #F7F3E8;
   --secondary-foreground: #1A1C1C;
-  --muted: #F0EDE8;
+  --muted: #F5F1E6;
   --muted-foreground: #6F7471;
-  --accent: #F5F2EC;
+  --accent: #F8F4EA;
   --accent-foreground: #1A1C1C;
   --destructive: #dc2626;
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.1);
+  --border: rgba(26, 28, 28, 0.09);
+  --input: rgba(26, 28, 28, 0.12);
   --ring: #D4A017;
   --chart-1: #D4A017;
   --chart-2: #0891B2;
   --chart-3: #059669;
   --chart-4: #ea580c;
   --chart-5: #db2777;
-  --sidebar: #FFFFFF;
+  --sidebar: #FFFCF2;
   --sidebar-foreground: #1A1C1C;
   --sidebar-primary: #D4A017;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F0EDE8;
+  --sidebar-accent: #F5F1E6;
   --sidebar-accent-foreground: #1A1C1C;
-  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-border: rgba(26, 28, 28, 0.08);
   --sidebar-ring: #D4A017;
 
-  /* Restra semantic tokens — light mode: white page/sections, warm card treatment */
+  /* Restra semantic tokens — light mode: low-white page, warm yellow-tinted cards */
   --restra-yellow: #D4A017;
   --restra-cyan: #0891B2;
-  --restra-bg: #FFFFFF;
-  --restra-surface: #F5F5F3;
-  --restra-card: #FFFCF5;
+  --restra-bg: #FBFAF7;
+  --restra-surface: #F4F1E9;
+  --restra-card: #FFFDF4;
   --restra-text: #1A1C1C;
   --restra-text-secondary: #4A4D4A;
   --restra-text-muted: #8A8D8A;
-}
-
-/* ========== DARK MODE ========== */
-.dark {
-  --background: #0B0D0D;
-  --foreground: #F5F5F0;
-  --card: #181C1C;
-  --card-foreground: #F5F5F0;
-  --popover: #181C1C;
-  --popover-foreground: #F5F5F0;
-  --primary: #FFD43B;
-  --primary-foreground: #0B0D0D;
-  --secondary: #121515;
-  --secondary-foreground: #F5F5F0;
-  --muted: #121515;
-  --muted-foreground: #A7AAA7;
-  --accent: #181C1C;
-  --accent-foreground: #F5F5F0;
-  --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #FFD43B;
-  --chart-1: #FFD43B;
-  --chart-2: #22D3EE;
-  --chart-3: #34d399;
-  --chart-4: #f97316;
-  --chart-5: #ec4899;
-  --sidebar: #121515;
-  --sidebar-foreground: #F5F5F0;
-  --sidebar-primary: #FFD43B;
-  --sidebar-primary-foreground: #0B0D0D;
-  --sidebar-accent: #181C1C;
-  --sidebar-accent-foreground: #F5F5F0;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #FFD43B;
-
-  /* Restra semantic tokens — dark mode */
-  --restra-yellow: #FFD43B;
-  --restra-cyan: #22D3EE;
-  --restra-bg: #0B0D0D;
-  --restra-surface: #121515;
-  --restra-card: #181C1C;
-  --restra-text: #F5F5F0;
-  --restra-text-secondary: #A7AAA7;
-  --restra-text-muted: #6F7471;
 }
 
 @layer base {
@@ -239,84 +247,123 @@
 }
 
 /* ========================================================================
-   LIGHT-MODE OVERRIDES
-   Tailwind compiles "white/[0.06]" etc. to oklch(...) values at build time.
-   We override them under .light so they adapt to the light background.
+   LIGHT-THEME ADAPTATIONS
+   The markup uses dark-theme utilities (white-alpha borders/fills, black
+   shadows). On the light page we re-map them to black-alpha equivalents and
+   soft shadows so every existing component reads correctly — no per-file
+   edits required.
    ======================================================================== */
 
-/* Borders: swap white-alpha → black-alpha */
-.light .border-white\/\[0\.06\]  { border-color: rgba(0, 0, 0, 0.08) !important; }
-.light .border-white\/\[0\.08\]  { border-color: rgba(0, 0, 0, 0.10) !important; }
-.light .border-white\/\[0\.1\]   { border-color: rgba(0, 0, 0, 0.12) !important; }
-.light .border-white\/\[0\.12\]  { border-color: rgba(0, 0, 0, 0.14) !important; }
-.light .border-white\/\[0\.15\]  { border-color: rgba(0, 0, 0, 0.16) !important; }
+/* Borders: white-alpha -> black-alpha */
+.border-white\/\[0\.04\] { border-color: rgba(26, 28, 28, 0.06) !important; }
+.border-white\/\[0\.05\] { border-color: rgba(26, 28, 28, 0.07) !important; }
+.border-white\/\[0\.06\] { border-color: rgba(26, 28, 28, 0.08) !important; }
+.border-white\/\[0\.07\] { border-color: rgba(26, 28, 28, 0.09) !important; }
+.border-white\/\[0\.08\] { border-color: rgba(26, 28, 28, 0.1) !important; }
+.border-white\/1 { border-color: rgba(26, 28, 28, 0.1) !important; }
+.border-white\/4 { border-color: rgba(26, 28, 28, 0.07) !important; }
+.border-white\/8 { border-color: rgba(26, 28, 28, 0.11) !important; }
+.border-white\/10 { border-color: rgba(26, 28, 28, 0.12) !important; }
+.border-white\/\[0\.1\] { border-color: rgba(26, 28, 28, 0.12) !important; }
+.border-white\/\[0\.12\] { border-color: rgba(26, 28, 28, 0.14) !important; }
 
-/* Backgrounds: swap white-alpha → black-alpha for subtle fills */
-.light .bg-white\/\[0\.02\]  { background-color: rgba(0, 0, 0, 0.03) !important; }
-.light .bg-white\/\[0\.03\]  { background-color: rgba(0, 0, 0, 0.04) !important; }
-.light .bg-white\/\[0\.04\]  { background-color: rgba(0, 0, 0, 0.05) !important; }
-.light .bg-white\/\[0\.05\]  { background-color: rgba(0, 0, 0, 0.06) !important; }
-.light .bg-white\/\[0\.06\]  { background-color: rgba(0, 0, 0, 0.07) !important; }
-.light .bg-white\/\[0\.08\]  { background-color: rgba(0, 0, 0, 0.09) !important; }
+.hover\:border-white\/\[0\.1\]:hover { border-color: rgba(26, 28, 28, 0.2) !important; }
+.hover\:border-white\/\[0\.12\]:hover { border-color: rgba(26, 28, 28, 0.22) !important; }
+.hover\:border-white\/\[0\.14\]:hover { border-color: rgba(26, 28, 28, 0.24) !important; }
+.hover\:border-white\/\[0\.15\]:hover { border-color: rgba(26, 28, 28, 0.25) !important; }
+.hover\:border-white\/\[0\.16\]:hover { border-color: rgba(26, 28, 28, 0.26) !important; }
+.hover\:border-white\/\[0\.2\]:hover { border-color: rgba(26, 28, 28, 0.3) !important; }
+.hover\:border-white\/10:hover { border-color: rgba(26, 28, 28, 0.2) !important; }
 
-/* Navbar & overlay backgrounds */
-.light .bg-restra-bg\/90  { background-color: rgba(255, 255, 255, 0.92) !important; }
-.light .bg-restra-bg\/95  { background-color: rgba(255, 255, 255, 0.96) !important; }
-.light .bg-restra-bg\/80  { background-color: rgba(255, 255, 255, 0.85) !important; }
-.light .bg-restra-bg\/60  { background-color: rgba(255, 255, 255, 0.65) !important; }
-.light .bg-restra-bg\/40  { background-color: rgba(255, 255, 255, 0.50) !important; }
+/* Fills: white-alpha -> black-alpha */
+.bg-white\/\[0\.02\] { background-color: rgba(26, 28, 28, 0.02) !important; }
+.bg-white\/\[0\.03\] { background-color: rgba(26, 28, 28, 0.03) !important; }
+.bg-white\/\[0\.04\] { background-color: rgba(26, 28, 28, 0.04) !important; }
+.bg-white\/\[0\.05\] { background-color: rgba(26, 28, 28, 0.05) !important; }
+.bg-white\/\[0\.06\] { background-color: rgba(26, 28, 28, 0.06) !important; }
+.bg-white\/\[0\.07\] { background-color: rgba(26, 28, 28, 0.07) !important; }
+.bg-white\/\[0\.08\] { background-color: rgba(26, 28, 28, 0.08) !important; }
+.bg-white\/10 { background-color: rgba(26, 28, 28, 0.1) !important; }
+.bg-white\/15 { background-color: rgba(26, 28, 28, 0.12) !important; }
 
-/* Card and surface with alpha */
-.light .bg-restra-card\/50  { background-color: rgba(255, 252, 245, 0.65) !important; }
-.light .bg-restra-card\/80  { background-color: rgba(255, 252, 245, 0.85) !important; }
-.light .bg-restra-surface\/60 { background-color: rgba(245, 245, 243, 0.75) !important; }
-.light .bg-restra-surface\/50 { background-color: rgba(245, 245, 243, 0.65) !important; }
+.hover\:bg-white\/\[0\.02\]:hover { background-color: rgba(26, 28, 28, 0.04) !important; }
+.hover\:bg-white\/\[0\.05\]:hover { background-color: rgba(26, 28, 28, 0.07) !important; }
+.hover\:bg-white\/\[0\.06\]:hover { background-color: rgba(26, 28, 28, 0.08) !important; }
+.hover\:bg-white\/6:hover { background-color: rgba(26, 28, 28, 0.08) !important; }
+.hover\:bg-white\/\[0\.3\]:hover { background-color: rgba(26, 28, 28, 0.3) !important; }
 
-/* Shadows: soften for light mode */
-.light .shadow-black\/50 { --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
-.light .shadow-black\/40 { --tw-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.10); }
-.light .shadow-restra-yellow\/10 { --tw-shadow: 0 8px 20px -4px rgba(212, 160, 23, 0.15); }
-.light .shadow-restra-yellow\/\[0\.05\] { --tw-shadow: 0 4px 12px -2px rgba(212, 160, 23, 0.10); }
+/* Navbars / overlays: translucent white instead of translucent black */
+.bg-restra-bg\/60 { background-color: rgba(251, 250, 247, 0.75) !important; }
+.bg-restra-bg\/70 { background-color: rgba(251, 250, 247, 0.82) !important; }
+.bg-restra-bg\/80 { background-color: rgba(251, 250, 247, 0.88) !important; }
+.bg-restra-bg\/90 { background-color: rgba(251, 250, 247, 0.92) !important; }
+.bg-restra-bg\/95 { background-color: rgba(251, 250, 247, 0.96) !important; }
 
-/* Text: swap white-alpha → black-alpha for muted indicators */
-.light .text-white\/15   { color: rgba(0, 0, 0, 0.15) !important; }
-.light .text-white\/30   { color: rgba(0, 0, 0, 0.25) !important; }
-.light .text-restra-text-muted\/30 { color: rgba(138, 141, 138, 0.35) !important; }
+/* Shadows: soft light-theme shadows */
+.shadow-black\/5 { --tw-shadow: 0 4px 16px -4px rgba(26, 28, 28, 0.08); }
+.shadow-black\/20 { --tw-shadow: 0 10px 30px -8px rgba(26, 28, 28, 0.1); }
+.shadow-black\/30 { --tw-shadow: 0 14px 40px -10px rgba(26, 28, 28, 0.12); }
+.shadow-black\/40 { --tw-shadow: 0 18px 50px -12px rgba(26, 28, 28, 0.14); }
+.shadow-black\/50 { --tw-shadow: 0 22px 60px -14px rgba(26, 28, 28, 0.16); }
 
-/* Role cards: fix inverted border/bg in light mode */
-.light .border-white\/\[0\.08\].bg-white\/\[0\.02\] {
-  border-color: rgba(0, 0, 0, 0.08) !important;
-  background-color: rgba(0, 0, 0, 0.02) !important;
+/* Cards: white blended with light yellow */
+.bg-restra-card {
+  background-color: #fffdf4 !important;
+  background-image: linear-gradient(140deg, #ffffff 0%, #fffdf4 55%, #fdf6df 100%);
 }
-.light .bg-white\/\[0\.05\].text-restra-text-muted {
-  background-color: rgba(0, 0, 0, 0.05) !important;
+.bg-restra-card\/50 { background-color: rgba(255, 253, 244, 0.6) !important; }
+.bg-restra-card\/90 { background-color: rgba(255, 253, 244, 0.92) !important; }
+.bg-restra-surface\/40 { background-color: rgba(244, 241, 233, 0.5) !important; }
+.bg-restra-surface\/50 { background-color: rgba(244, 241, 233, 0.6) !important; }
+.bg-restra-surface\/60 { background-color: rgba(244, 241, 233, 0.75) !important; }
+
+/* Section accent: pale yellow panel behind alternating sections */
+.bg-restra-surface\/40.bg-restra-surface\/40,
+section.bg-restra-surface\/40,
+section.bg-restra-surface\/50 {
+  background-color: #f7f3e8 !important;
 }
 
-/* Gradient ambient glows: reduce intensity in light mode */
-.light .bg-restra-yellow\/\[0\.03\] { background-color: rgba(212, 160, 23, 0.04) !important; }
-.light .bg-restra-yellow\/\[0\.04\] { background-color: rgba(212, 160, 23, 0.05) !important; }
-.light .bg-restra-yellow\/\[0\.06\] { background-color: rgba(212, 160, 23, 0.07) !important; }
-.light .bg-restra-cyan\/\[0\.03\] { background-color: rgba(8, 145, 178, 0.04) !important; }
+/* White text on colored chips must flip to charcoal on light fills */
+.text-white\/15 { color: rgba(26, 28, 28, 0.15) !important; }
+.text-white\/30 { color: rgba(26, 28, 28, 0.3) !important; }
 
-/* Radial gradient backgrounds in Hero/Workflow: soften for light */
-.light [class*="bg-\\[radial-gradient"] {
-  opacity: 0.6;
+/* ========================================================================
+   YELLOW FOOTERS — brand-yellow band used by both footers site-wide
+   ======================================================================== */
+.restra-footer {
+  background:
+    radial-gradient(ellipse 90% 120% at 90% 0%, rgba(255, 255, 255, 0.12), transparent 55%),
+    linear-gradient(160deg, #f5c518 0%, #eec117 55%, #e3b512 100%);
+  color: #241d05;
 }
 
-/* Price card highlight: soften yellow glow in light */
-.light .shadow-restra-yellow\/\[0\.05\] {
-  --tw-shadow: 0 4px 16px -2px rgba(212, 160, 23, 0.12);
-}
-.light .bg-restra-yellow\/\[0\.04\] { background-color: rgba(212, 160, 23, 0.06) !important; }
-
-/* Cards: sweet warm-white with a whisper of yellow → red in the corner, instead of flat white */
-.light .bg-restra-card {
-  background-color: #FFFCF5 !important;
-  background-image: linear-gradient(135deg, #FFFDF8 0%, #FFF6E7 55%, #FFF0EC 100%) !important;
+/* Footer token colors */
+.bg-restra-footer,
+.text-restra-footer-heading,
+.text-restra-footer-muted {
+  --tw-bg-opacity: 1;
 }
 
-/* Ensure dark indicators (dots, badges) stay visible on light backgrounds */
-.light .bg-restra-yellow { background-color: #D4A017 !important; }
-.light .bg-restra-cyan { background-color: #0891B2 !important; }
-.light .bg-emerald-400 { background-color: #10b981 !important; }
-.light .bg-emerald-500 { background-color: #059669 !important; }
+.text-restra-footer-heading {
+  color: #241d05 !important;
+}
+
+.text-restra-footer-muted {
+  color: rgba(36, 29, 5, 0.72) !important;
+}
+
+.text-restra-footer-muted:hover {
+  color: rgba(36, 29, 5, 0.95) !important;
+}
+
+/* Yellow CTA buttons previously used text-restra-bg (near-black in dark mode).
+   On the light theme restra-bg is near-white, so remap to dark cocoa for a
+   classic yellow-on-charcoal button contrast. Same for the badge star fill. */
+.text-restra-bg {
+  color: #241d05 !important;
+}
+
+.fill-restra-bg {
+  fill: #241d05 !important;
+}

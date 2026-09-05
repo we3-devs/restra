@@ -1,25 +1,35 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowLeft, LayoutGrid } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen flex flex-col"
-    >
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="max-w-5xl mx-auto relative px-4">
-          <div className="flex items-center justify-center min-h-[200px]">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
-              <p className="text-lg text-gray-600">Page Not Found</p>
-            </div>
-          </div>
-        </div>
+    <main className="flex min-h-screen flex-col items-center justify-center bg-restra-bg px-6 text-restra-text">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-restra-yellow">
+        404
+      </p>
+      <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+        Page not found
+      </h1>
+      <p className="mt-4 max-w-md text-center leading-relaxed text-restra-text-secondary">
+        The page you&apos;re looking for doesn&apos;t exist or has moved. Head back
+        home, or explore what RESTRA can do for your restaurant.
+      </p>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <Link
+          href="/"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-6 py-3 text-sm font-semibold text-restra-bg transition-all hover:-translate-y-0.5 hover:bg-restra-yellow/90"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to home
+        </Link>
+        <Link
+          href="/features"
+          className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.03] px-6 py-3 text-sm font-semibold text-restra-text transition-colors hover:border-white/[0.2]"
+        >
+          <LayoutGrid className="h-4 w-4 text-restra-cyan" />
+          Explore features
+        </Link>
       </div>
-    </motion.div>
+    </main>
   );
 }

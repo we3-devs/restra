@@ -7,14 +7,18 @@ import {
   ArrowRight,
   ArrowUpRight,
   ChevronDown,
+  Home,
   LayoutGrid,
+  Mail,
   Menu,
   Newspaper,
+  Tag,
+  Users,
+  Workflow,
   X,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { featurePages, featurePath } from "@/lib/seo-content";
-import ThemeSwitcher from "@/components/landing/ThemeSwitcher";
 import { FeatureIcon } from "./FeatureIcon";
 
 function useIsActive(href: string, pathname: string): boolean {
@@ -45,7 +49,7 @@ function FeaturesDropdown({ isActive = false }: { isActive?: boolean }) {
         href="/features"
         aria-haspopup="menu"
         aria-expanded={open}
-        className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+        className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 font-body text-base font-medium transition-colors ${
           isActive ? "text-restra-text" : "text-restra-text-secondary hover:text-restra-text"
         }`}
       >
@@ -145,6 +149,15 @@ function MobileMenu() {
               </p>
               <nav className="mt-3 space-y-1">
                 <Link
+                  href="/"
+                  className={linkClass(pathname === "/")}
+                >
+                  <span className="inline-flex items-center gap-2.5">
+                    <Home className="h-4 w-4 text-restra-cyan" /> Home
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-restra-text-muted" />
+                </Link>
+                <Link
                   href="/features"
                   className={linkClass(
                     pathname === "/features" || pathname.startsWith("/features/"),
@@ -163,6 +176,42 @@ function MobileMenu() {
                 >
                   <span className="inline-flex items-center gap-2.5">
                     <Newspaper className="h-4 w-4 text-restra-cyan" /> Blog
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-restra-text-muted" />
+                </Link>
+                <Link
+                  href="/how-it-works"
+                  className={linkClass(pathname === "/how-it-works")}
+                >
+                  <span className="inline-flex items-center gap-2.5">
+                    <Workflow className="h-4 w-4 text-restra-cyan" /> How it works
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-restra-text-muted" />
+                </Link>
+                <Link
+                  href="/pricing"
+                  className={linkClass(pathname === "/pricing")}
+                >
+                  <span className="inline-flex items-center gap-2.5">
+                    <Tag className="h-4 w-4 text-restra-cyan" /> Pricing
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-restra-text-muted" />
+                </Link>
+                <Link
+                  href="/about"
+                  className={linkClass(pathname === "/about")}
+                >
+                  <span className="inline-flex items-center gap-2.5">
+                    <Users className="h-4 w-4 text-restra-cyan" /> About
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-restra-text-muted" />
+                </Link>
+                <Link
+                  href="/contact"
+                  className={linkClass(pathname === "/contact")}
+                >
+                  <span className="inline-flex items-center gap-2.5">
+                    <Mail className="h-4 w-4 text-restra-cyan" /> Contact
                   </span>
                   <ArrowRight className="h-4 w-4 text-restra-text-muted" />
                 </Link>
@@ -223,7 +272,7 @@ export default function SiteHeader() {
       <Link
         key={href}
         href={href}
-        className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+        className={`relative rounded-lg px-3 py-2 font-body text-base font-medium transition-colors ${
           active ? "text-restra-text" : "text-restra-text-secondary hover:text-restra-text"
         }`}
       >
@@ -252,14 +301,16 @@ export default function SiteHeader() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
+          {desktopLink("/", "Home", pathname === "/")}
           <FeaturesDropdown isActive={isFeaturesActive} />
+          {desktopLink("/how-it-works", "How it works", pathname === "/how-it-works")}
+          {desktopLink("/pricing", "Pricing", pathname === "/pricing")}
           {desktopLink("/blog", "Blog", isBlogActive)}
           <span className="mx-2 h-5 w-px bg-white/[0.08]" />
           <div className="flex items-center gap-1.5">
-            <ThemeSwitcher />
             <Link
-              href="/#contact"
-              className="inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-4 py-2 text-sm font-semibold text-restra-bg transition-colors hover:bg-restra-yellow/90"
+              href="/contact"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-4 py-2 font-body text-base font-semibold text-restra-bg transition-colors hover:bg-restra-yellow/90"
             >
               Get Started
               <ArrowRight className="h-3.5 w-3.5" />
@@ -267,9 +318,8 @@ export default function SiteHeader() {
           </div>
         </nav>
 
-        {/* Mobile: theme + menu */}
+        {/* Mobile: menu */}
         <div className="flex items-center gap-2 md:hidden">
-          <ThemeSwitcher />
           <MobileMenu />
         </div>
       </div>

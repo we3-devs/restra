@@ -4,8 +4,8 @@
   "description": "RESTRA is a restaurant management system for restaurants, cafes, and cloud kitchens.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0B0D0D",
-  "theme_color": "#0B0D0D",
+  "background_color": "#FBFAF7",
+  "theme_color": "#FBFAF7",
   "icons": [
     {
       "src": "/logo.png",

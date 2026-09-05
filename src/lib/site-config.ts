@@ -8,7 +8,7 @@ export const siteConfig = {
   socialProfiles: ["https://www.instagram.com/restra_services", "https://github.com/we3-devs/"],
   description:
     "RESTRA - Restaurant Management System for restaurants, cafes, and cloud kitchens. Manage POS, billing, QR ordering, inventory, kitchen workflows, staff permissions, and reporting in one platform.",
-  url: configuredUrl || "https://restra-services.vercel.app",
+  url: configuredUrl || "https://restraservices.com",
   keywords: [
     "RESTRA",
     "restaurant management system Nepal",

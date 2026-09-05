@@ -99,7 +99,7 @@ Avoid paid spam networks, link farms, fabricated guest posts, fake reviews, manu
 
 - Authority stage: Early stage (user-confirmed).
 - AI visibility: Baseline not yet established (user-confirmed).
-- Current website: https://restra-services.vercel.app (temporary canonical; user-confirmed).
+- Current website: https://restraservices.com.
 
 ## 6. Authority gap analysis
 

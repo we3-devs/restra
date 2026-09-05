@@ -8,6 +8,8 @@ import {
   seoPages,
   type SeoPage,
 } from "@/lib/seo-content";
+import { getFeatureGroupBySlug } from "@/lib/showcase";
+import MockupRenderer from "@/components/mockups/MockupRenderer";
 import {
   Accordion,
   AccordionContent,
@@ -157,35 +159,30 @@ function FeatureHero({ page, isFeaturePage }: { page: SeoPage; isFeaturePage: bo
             </div>
           </div>
 
-          {/* Icon stage */}
+          {/* Product visual stage */}
           <div className="relative mx-auto w-full max-w-xs lg:max-w-none">
             <div className="absolute inset-0 -z-0 rounded-3xl bg-restra-yellow/10 blur-3xl" aria-hidden="true" />
-            <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-restra-card p-8 text-center">
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow">
-                <FeatureIcon slug={page.slug} className="h-9 w-9" />
-              </div>
-              <p className="mt-6 font-display text-xl font-semibold text-restra-text">
-                One platform.
-              </p>
-              <p className="mt-1 text-sm text-restra-text-secondary">
-                Every module works together — order, kitchen, stock, bill, and report as
-                one connected flow.
-              </p>
-
-              <div className="mt-6 flex items-center justify-center gap-2">
-                <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
-                  POS
-                </span>
-                <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
-                  QR
-                </span>
-                <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
-                  Stock
-                </span>
-                <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
-                  Reports
-                </span>
-              </div>
+            <div className="relative">
+              {(() => {
+                const group = getFeatureGroupBySlug(page.slug);
+                if (group) {
+                  return <MockupRenderer mock={group.mock} />;
+                }
+                return (
+                  <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-restra-card p-8 text-center">
+                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow">
+                      <FeatureIcon slug={page.slug} className="h-9 w-9" />
+                    </div>
+                    <p className="mt-6 font-display text-xl font-semibold text-restra-text">
+                      One platform.
+                    </p>
+                    <p className="mt-1 text-sm text-restra-text-secondary">
+                      Every module works together — order, kitchen, stock, bill, and report as
+                      one connected flow.
+                    </p>
+                  </div>
+                );
+              })()}
             </div>
           </div>
         </div>
