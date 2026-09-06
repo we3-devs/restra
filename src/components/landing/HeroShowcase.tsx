@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import Image from "next/image";
 import {
   CalendarCheck,
   ChefHat,
+  Coffee,
   CreditCard,
+  Check,
   Soup,
   TrendingUp,
   Users,
@@ -12,10 +15,13 @@ import { BorderBeam } from "@/components/ui/border-beam";
 
 /**
  * Hero product showcase — a restaurant-management dashboard mock rendered
- * in the light theme: browser-framed window, KPI row, revenue chart,
- * orders/reservations/occupancy panels, with small overlapping glass cards.
- * Purely presentational, so it stays server-renderable.
+ * in the light theme, photographed at a cafe. The photo sits behind the
+ * browser frame and glass cards; dashboard content and floating cards layer
+ * on top. Purely presentational so it stays server-renderable.
  */
+
+const dashboardBg = "/images/dashboard-bg.jpg";
+// TODO: replace placeholder with actual cafe photo at /images/dashboard-bg.jpg
 
 const kpis = [
   {
@@ -100,9 +106,71 @@ function GlassCard({
 
 export default function HeroShowcase() {
   return (
-    <div className="relative mx-auto w-full max-w-4xl" aria-hidden="true">
-      {/* Atmospheric glows behind the dashboard */}
+    <div className="relative mx-auto w-full max-w-4xl" aria-hidden="true">      {/* Cafe photo behind the dashboard */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <Image
+          src={dashboardBg}
+          alt=""
+          role="presentation"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        {/* Soft wash so dashboard text stays readable over the cafe photo */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.55] via-white/[0.35] to-white/40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,transparent_40%,rgba(250,250,248,0.75)_100%)]" />
+        {/* Warm brand glows sit on top of the photo wash, under the glass cards */}
+        <div className="absolute -left-32 top-40 h-[22rem] w-[22rem] rounded-full bg-restra-cyan/[0.06] blur-3xl" />
+        <div className="absolute -right-32 top-72 h-[22rem] w-[22rem] rounded-full bg-restra-yellow/[0.07] blur-3xl" />
+      </div>
+
+      {/* Atmospheric glows behind the dashboard — kept for the brand beams */}
       <div className="pointer-events-none absolute -inset-x-10 top-10 -bottom-16 rounded-[2.5rem] bg-gradient-to-b from-restra-yellow/[0.08] via-restra-cyan/[0.04] to-transparent blur-2xl" />
+
+      {/* Foreground cafe table items layered in front of the dashboard */}
+      <div className="pointer-events-none absolute inset-0 z-20" aria-hidden="true">
+        {/* Coffee mug — left side */}        <div className="-left-10 top-[24%] hidden h-28 w-24 lg:block xl:-left-20">
+          <div className="absolute right-0 top-2 h-14 w-10 -translate-y-1/2 rotate-[8deg]">
+            <div className="absolute -left-2 top-1 flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/90 shadow-lg shadow-black/10">
+              <div className="absolute left-1 top-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#F4F1EB] shadow-inner">
+                <Coffee className="h-8 w-8 text-[#4B4F4C]" />
+              </div>
+            </div>
+          </div>
+
+        </div>        {/* Smartphone — lower right */}
+        <div className="right-2 top-[78%] hidden h-24 w-16 lg:block xl:bottom-4 xl:right-2">          <div className="absolute inset-0 rounded-[1.25rem] border-2 border-white/90 shadow-md shadow-black/10">
+            <div className="absolute inset-2 rounded-[0.85rem] bg-[#1A1C1C]">
+              <div className="mx-auto h-9 w-10">
+                <div className="mx-auto mb-1 h-2 w-10 rounded bg-white/20" />
+                <div className="h-1.5 w-full rounded bg-white/10" />
+                <div className="mx-auto mt-1 h-2 w-6 rounded bg-restra-yellow/80" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Spiral notepad — right side */}
+        <div className="right-2 top-[22%] hidden h-44 w-44 rotate-[4deg] lg:block xl:right-0 xl:top-[20%]">
+          <div className="absolute inset-0 rounded-[0.75rem] border border-white/90 shadow-md shadow-black/10">
+            <div className="absolute left-2 h-full w-5 -translate-x-1/2 rounded-full bg-white/95 shadow-sm shadow-black/5" />
+            <div className="absolute left-2 top-1 h-6 w-0.5 rounded-full bg-[#D4A017]" />
+            <div className="mx-3 my-2.5 h-3 w-10 rounded border border-[#EAEAE5]" />
+            <div className="mx-3 h-2 w-12 rounded border border-[#EAEAE5]" />
+            <div className="mt-6 flex flex-col gap-2">
+              <div className="flex h-2.5 w-8 rounded border border-[#D4A017] items-center justify-center">
+                <div className="h-1 w-[58%] rounded bg-[#0891B2]" />
+              </div>
+              <div className="flex h-2.5 w-8 rounded border border-[#EAEAE5] items-center justify-center">
+                <div className="h-1 w-[58%] rounded bg-[#0891B2]" />
+              </div>
+              <div className="flex h-2.5 w-8 rounded border border-[#D4A017] items-center justify-center" />
+              <div className="flex h-2.5 w-8 rounded border border-[#EAEAE5] items-center justify-center" />
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Browser-framed dashboard */}
       <motion.div
@@ -430,6 +498,94 @@ export default function HeroShowcase() {
           </div>
         </GlassCard>
       </motion.div>
+
+      {/* Floating notepad over the cafe photo */}
+      <motion.div
+        initial={{ opacity: 0, rotate: -4, y: 22 }}
+        animate={{ opacity: 1, rotate: -4, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.4, ease: EASE }}
+        className="absolute -right-2 top-[28%] z-10 hidden w-48 rotate-[-3deg] lg:block xl:-right-16"
+      >
+        <GlassCard className="p-3">
+          <BorderBeam
+            size={120}
+            duration={7}
+            delay={2.5}
+            borderWidth={1.5}
+            colorFrom="#0891B2"
+            colorTo="#D4A017"
+            reverse
+          />
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-restra-cyan">Today</p>
+          <ul className="mt-2 space-y-1.5">
+            {[
+              { label: "Check orders", done: true },
+              { label: "Update menu", done: true },
+              { label: "Inventory", done: true },
+              { label: "Staff schedule", done: true },
+            ].map((item) => (
+              <li key={item.label} className="flex items-center gap-2 text-[11px]">
+                <span
+                  className={`flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full ${item.done ? "bg-emerald-500" : "bg-restra-border"}`}
+                >
+                  {item.done && <span className="text-white"><Check className="h-2.5 w-2.5" /></span>}
+                </span>
+                <span className={`${item.done ? "text-restra-text" : "text-restra-text-muted"}`}>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 border-t border-border pt-2 text-[9px] text-restra-text-muted">
+            Restra Cafe · Admin
+          </p>
+        </GlassCard>
+      </motion.div>
+
+      {/* Floating coffee mug card over the cafe photo */}        <motion.div
+        initial={{ opacity: 0, rotate: 3, y: 20 }}
+        animate={{ opacity: 1, rotate: 3, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.55, ease: EASE }}
+        className="-left-2 top-[26%] z-10 hidden h-32 w-28 rotate-[2deg] lg:block xl:-left-14"
+      >
+        <GlassCard className="flex h-full flex-col items-center justify-center p-3">
+          <BorderBeam
+            size={80}
+            duration={7}
+            delay={3}
+            borderWidth={1.5}
+            colorFrom="#0891B2"
+            colorTo="#D4A017"
+          />
+
+          <Coffee className="h-8 w-8 text-restra-yellow" />
+
+          <p className="mt-1 text-[10px] font-medium text-restra-text-secondary">Pulled espresso</p>
+          <p className="text-[9px] text-restra-text-muted">fresh refill</p>
+        </GlassCard>
+      </motion.div>
+
+      {/* Floating phone card over the cafe photo */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92, y: 18 }}
+        animate={{ opacity: 1, scale: 0.92, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.7, ease: EASE }}
+        className="absolute bottom-8 right-2 z-10 hidden h-28 w-20 lg:block xl:bottom-6 xl:right-4"
+      >
+        <GlassCard className="flex h-full flex-col items-center justify-center p-2">
+          <BorderBeam
+            size={90}
+            duration={7}
+            delay={3.5}
+            borderWidth={1.5}
+            colorFrom="#D4A017"
+            colorTo="#0891B2"
+          />
+          <div className="flex h-12 w-full items-center justify-center rounded-md border border-border bg-restra-surface/60">
+            <span className="text-[9px] uppercase tracking-wider text-restra-text-muted">Phone view</span>
+          </div>
+          <p className="text-[9px] text-restra-text-muted">Mobile view</p>
+        </GlassCard>
+      </motion.div>
+
     </div>
   );
 }
