@@ -152,6 +152,20 @@ export default async function BlogPostPage({ params }: PageProps) {
           { "@type": "ListItem", position: 3, name: post.title, item: url },
         ],
       },
+      ...post.content
+        .filter((block) => block.type === "faq")
+        .flatMap((block) =>
+          block.type === "faq"
+            ? [{
+                "@type": "FAQPage",
+                mainEntity: block.items.map((item) => ({
+                  "@type": "Question",
+                  name: item.question,
+                  acceptedAnswer: { "@type": "Answer", text: item.answer },
+                })),
+              }]
+            : [],
+        ),
     ],
   };
 
@@ -212,6 +226,17 @@ export default async function BlogPostPage({ params }: PageProps) {
                   </span>
                   {post.authorName}
                 </span>
+                {post.authorSocials?.map((social) => (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-restra-yellow transition-colors hover:text-restra-text"
+                  >
+                    {social.label}
+                  </a>
+                ))}
                 <time
                   dateTime={post.publishedAt}
                   className="inline-flex items-center gap-1.5"

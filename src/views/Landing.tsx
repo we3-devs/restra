@@ -4,6 +4,7 @@ import ConnectedSystem from "@/components/landing/ConnectedSystem";
 import ProductWorkflow from "@/components/landing/ProductWorkflow";
 import FeatureBento from "@/components/landing/FeatureBento";
 import ModuleShowcase from "@/components/landing/ModuleShowcase";
+import RestaurantShowcase from "@/components/landing/RestaurantShowcase";
 import WhyRestra from "@/components/landing/WhyRestra";
 import HomeFaq from "@/components/landing/HomeFaq";
 import Team from "@/components/landing/Team";
@@ -35,6 +36,7 @@ export default function Landing() {
         <ProductWorkflow />
         <FeatureBento />
         <ModuleShowcase />
+        <RestaurantShowcase />
         <WhyRestra />
         <Team />
         <Pricing />

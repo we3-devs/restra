@@ -44,9 +44,9 @@ export default function Hero() {
           className="object-cover object-center"
         />
         {/* Wash the photo out so copy stays readable on the light theme */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/55 to-restra-bg/95" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_60%_at_50%_30%,transparent_35%,rgba(250,250,248,0.75)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-restra-bg" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/45 via-white/30 to-restra-bg/85" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_60%_at_50%_30%,transparent_45%,rgba(250,250,248,0.45)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-restra-bg/90" />
         {/* Subtle brand glows on top of the photo wash */}
         <div className="absolute inset-x-0 top-0 h-[36rem] bg-[radial-gradient(ellipse_70%_55%_at_50%_-10%,rgba(212,160,23,0.08),transparent_65%)]" />
         <div className="absolute -left-40 top-40 h-96 w-96 rounded-full bg-restra-cyan/[0.05] blur-3xl" />
@@ -100,7 +100,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Oversized showcase overlapping the hero's lower edge */}
+        {/* Restaurant environment visual centerpiece */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}

@@ -351,11 +351,19 @@ const en = {
   "showcase.staffSubtitle": "Admins run everything, managers run the day, and workers see exactly the tools their job needs.",
   "showcase.analyticsBadge": "Analytics & Reports",
   "showcase.analyticsTitle": "Decisions based on",
-  "showcase.analyticsTitleHighlight": "the day's data",
-  "showcase.analyticsSubtitle": "Sales, orders, tables, and stock movement — reviewed in one live dashboard and end-of-day reports.",
+  "showcase.analyticsTitleHighlight": "the day's data",  "showcase.analyticsSubtitle": "Sales, orders, tables, and stock movement — reviewed in one live dashboard and end-of-day reports.",
   "showcase.learnMore": "Learn more",
   "showcase.benefitHeading": "What that means for your restaurant",
-
+  
+  // Restaurant visual showcase (premium photo + floating cards)
+  "showcase.restaurantBadge": "In action",
+  "showcase.restaurantTitle": "Everything your restaurant needs,",
+  "showcase.restaurantTitleHighlight": "in one place.",
+  "showcase.restaurantSubtitle": "From orders and billing to inventory and insights, Restra brings your restaurant operations together in one simple system.",
+  "showcase.restaurantCta": "Explore Restra",
+  "showcase.restaurantSeeHow": "See how it works",
+  "home.restaurantSectionAlt": "Restaurant live environment and Restra dashboard cards in one view.",
+  
   // Home FAQ
   "home.faqBadge": "FAQ",
   "home.faqTitle": "Questions restaurant owners ask",
@@ -869,6 +877,15 @@ const ne: Record<keyof typeof en, string> = {
   "showcase.learnMore": "थप जान्नुहोस्",
   "showcase.benefitHeading": "तपाईंको रेस्टुरेन्टका लागि यसको अर्थ",
 
+  // Restaurant visual showcase
+  "showcase.restaurantBadge": "वास्तवमा",
+  "showcase.restaurantTitle": "तपाईंको रेस्टुरेन्टलाई चाहिने सबै कुरा,",
+  "showcase.restaurantTitleHighlight": "एउटै ठाउँमा।",
+  "showcase.restaurantSubtitle": "अर्डर र बिलिङदेखि इन्भेन्टरी र अन्तर्दृष्टिसम्म, Restra ले तपाईंको रेस्टुरेन्ट सञ्चालनलाई एउटै सजिलो प्रणालीमा जोड्छ।",
+  "showcase.restaurantCta": "Restra अन्वेषण गर्नुहोस्",
+  "showcase.restaurantSeeHow": "यसरी काम गर्छ हेर्नुहोस्",
+  "home.restaurantSectionAlt": "रेस्टुरेन्टको वास्तविक वातावरण र Restra ड्यासबोर्ड कार्डहरू एकै नजारामा।",
+  
   // Home FAQ
   "home.faqBadge": "FAQ",
   "home.faqTitle": "रेस्टुरेन्ट सञ्चालकहरूले सोध्ने प्रश्नहरू",

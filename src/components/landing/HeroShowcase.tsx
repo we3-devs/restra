@@ -20,8 +20,7 @@ import { BorderBeam } from "@/components/ui/border-beam";
  * on top. Purely presentational so it stays server-renderable.
  */
 
-const dashboardBg = "/images/dashboard-bg.jpg";
-// TODO: replace placeholder with actual cafe photo at /images/dashboard-bg.jpg
+const dashboardBg = "/images/dashboard-bg.jpeg";
 
 const kpis = [
   {
@@ -118,7 +117,7 @@ export default function HeroShowcase() {
           className="object-cover"
         />
         {/* Soft wash so dashboard text stays readable over the cafe photo */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.55] via-white/[0.35] to-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.5] via-white/[0.3] to-white/35" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,transparent_40%,rgba(250,250,248,0.75)_100%)]" />
         {/* Warm brand glows sit on top of the photo wash, under the glass cards */}
         <div className="absolute -left-32 top-40 h-[22rem] w-[22rem] rounded-full bg-restra-cyan/[0.06] blur-3xl" />
@@ -130,34 +129,34 @@ export default function HeroShowcase() {
 
       {/* Foreground cafe table items layered in front of the dashboard */}
       <div className="pointer-events-none absolute inset-0 z-20" aria-hidden="true">
-        {/* Coffee mug — left side */}        <div className="-left-10 top-[24%] hidden h-28 w-24 lg:block xl:-left-20">
-          <div className="absolute right-0 top-2 h-14 w-10 -translate-y-1/2 rotate-[8deg]">
+        {/* Coffee mug — left side */}        <div className="-left-10 top-[24%] hidden h-28 w-24 lg:block xl:-left-20">            <div className="absolute right-0 top-2 h-14 w-10 -translate-y-1/2 rotate-[4deg]">
             <div className="absolute -left-2 top-1 flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/90 shadow-lg shadow-black/10">
               <div className="absolute left-1 top-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#F4F1EB] shadow-inner">
-                <Coffee className="h-8 w-8 text-[#4B4F4C]" />
+                <div className="absolute -bottom-0.5 left-1/2 h-1 w-5 -translate-x-1/2 rounded-full bg-white/60 shadow-inner shadow-black/5" />                <Coffee className="h-8 w-8 text-[#4B4F4C]" />
+                <div className="absolute -bottom-0.5 left-1/2 h-1 w-5 -translate-x-1/2 rounded-full bg-white/60 shadow-inner shadow-black/5" />
               </div>
             </div>
-          </div>
+          </div>      </div>
 
-        </div>        {/* Smartphone — lower right */}
-        <div className="right-2 top-[78%] hidden h-24 w-16 lg:block xl:bottom-4 xl:right-2">          <div className="absolute inset-0 rounded-[1.25rem] border-2 border-white/90 shadow-md shadow-black/10">
-            <div className="absolute inset-2 rounded-[0.85rem] bg-[#1A1C1C]">
-              <div className="mx-auto h-9 w-10">
-                <div className="mx-auto mb-1 h-2 w-10 rounded bg-white/20" />
-                <div className="h-1.5 w-full rounded bg-white/10" />
-                <div className="mx-auto mt-1 h-2 w-6 rounded bg-restra-yellow/80" />
+        {/* Smartphone — lower right */}
+        <div className="right-2 top-[78%] hidden h-24 w-16 lg:block xl:bottom-4 xl:right-2">            <div className="absolute inset-0 rounded-[1.25rem] border-2 border-white/90 shadow-sm shadow-black/10">
+              <div className="absolute inset-2 rounded-[0.85rem] bg-[#1A1C1C]">
+                <div className="mx-auto h-9 w-10">
+                  <div className="mx-auto mb-1 h-2 w-10 rounded bg-white/20" />
+                  <div className="h-1.5 w-full rounded bg-white/10" />
+                  <div className="mx-auto mt-1 h-2 w-6 rounded bg-restra-yellow/80" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
         {/* Spiral notepad — right side */}
         <div className="right-2 top-[22%] hidden h-44 w-44 rotate-[4deg] lg:block xl:right-0 xl:top-[20%]">
-          <div className="absolute inset-0 rounded-[0.75rem] border border-white/90 shadow-md shadow-black/10">
+          <div className="absolute inset-0 rounded-[0.75rem] border border-white/90 shadow-sm shadow-black/10">
             <div className="absolute left-2 h-full w-5 -translate-x-1/2 rounded-full bg-white/95 shadow-sm shadow-black/5" />
             <div className="absolute left-2 top-1 h-6 w-0.5 rounded-full bg-[#D4A017]" />
             <div className="mx-3 my-2.5 h-3 w-10 rounded border border-[#EAEAE5]" />
-            <div className="mx-3 h-2 w-12 rounded border border-[#EAEAE5]" />
+            <div className="mx-3 my-1.5 h-2 w-12 rounded border border-[#EAEAE5]" />
             <div className="mt-6 flex flex-col gap-2">
               <div className="flex h-2.5 w-8 rounded border border-[#D4A017] items-center justify-center">
                 <div className="h-1 w-[58%] rounded bg-[#0891B2]" />
