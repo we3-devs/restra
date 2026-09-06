@@ -214,6 +214,7 @@
   body {
     @apply bg-background text-foreground overflow-x-hidden;
     font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: 17px;
   }
   .scrollbar-none {
     scrollbar-width: none;
@@ -360,29 +361,78 @@ section.bg-restra-surface\/50 {
    YELLOW FOOTERS — brand-yellow band used by both footers site-wide
    ======================================================================== */
 .restra-footer {
-  background:
-    radial-gradient(ellipse 90% 120% at 90% 0%, rgba(255, 255, 255, 0.12), transparent 55%),
-    linear-gradient(160deg, #f5c518 0%, #eec117 55%, #e3b512 100%);
-  color: #241d05;
+  background: #FFFFE0;
+  color: #241D05;
 }
 
-/* Footer token colors */
-.bg-restra-footer,
-.text-restra-footer-heading,
-.text-restra-footer-muted {
-  --tw-bg-opacity: 1;
-}
-
+/* Footer token colors — readable on the yellow brand band */
 .text-restra-footer-heading {
-  color: #241d05 !important;
+  color: rgba(36, 29, 5, 0.68) !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
 }
 
 .text-restra-footer-muted {
-  color: rgba(36, 29, 5, 0.72) !important;
+  color: rgba(36, 29, 5, 0.85) !important;
+  font-size: 14px;
 }
 
 .text-restra-footer-muted:hover {
-  color: rgba(36, 29, 5, 0.95) !important;
+  color: #241d05 !important;
+}
+
+.text-footer-white {
+  color: #241d05 !important;
+}
+
+.footer-divider {
+  border-color: rgba(36, 29, 5, 0.2) !important;
+}
+
+.restra-footer .text-white,
+.restra-footer .text-white\/85,
+.restra-footer .text-white\/70,
+.restra-footer .text-white\/60 {
+  color: rgba(36, 29, 5, 0.85) !important;
+}
+
+.restra-footer .border-white\/40 {
+  border-color: rgba(36, 29, 5, 0.35) !important;
+}
+
+.restra-footer .bg-white\/10 {
+  background-color: rgba(36, 29, 5, 0.1) !important;
+}
+
+.restra-footer .bg-white\/10:hover,
+.restra-footer .hover\:bg-white\/20:hover {
+  background-color: rgba(36, 29, 5, 0.16) !important;
+}
+
+.restra-footer .bg-white\/15,
+.restra-footer .footer-divider {
+  background-color: rgba(36, 29, 5, 0.2) !important;
+}
+
+/* Download button style */
+.btn-download {
+  background-color: #25D366 !important;
+  color: #000000 !important;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-download:hover {
+  background-color: #22c35a !important;
+  color: #000000 !important;
 }
 
 /* Yellow CTA buttons previously used text-restra-bg (near-black in dark mode).

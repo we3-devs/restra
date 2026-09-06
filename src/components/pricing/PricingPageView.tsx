@@ -102,9 +102,9 @@ export default function PricingPageView() {
               <Reveal key={plan.id} delay={i * 0.08}>
                 <article
                   className={cn(
-                    "relative flex h-full flex-col rounded-2xl border p-7 transition-all duration-300",
+                    "relative flex h-full flex-col rounded-2xl border p-6 transition-all duration-300 md:p-7",
                     plan.highlight
-                      ? "border-restra-yellow/50 bg-restra-yellow/[0.05] shadow-lg shadow-restra-yellow/[0.06]"
+                      ? "border-restra-yellow/50 bg-restra-yellow/[0.05] shadow-lg shadow-restra-yellow/[0.06] md:-my-4 md:scale-105 md:p-9"
                       : "border-white/[0.08] bg-restra-card hover:border-white/[0.16]",
                   )}
                 >
@@ -130,7 +130,12 @@ export default function PricingPageView() {
                   </h2>
 
                   <div className="mt-5">
-                    <span className="font-display text-4xl font-semibold tracking-tight text-restra-text">
+                    <span
+                      className={cn(
+                        "font-display font-semibold tracking-tight text-restra-text",
+                        plan.highlight ? "text-5xl" : "text-3xl",
+                      )}
+                    >
                       {plan.price}
                     </span>
                     <span className="text-sm text-restra-text-muted">{t(plan.periodKey)}</span>

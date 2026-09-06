@@ -37,6 +37,7 @@ export default function Hero() {
         <Image
           src="/images/hero-bg.jpg"
           alt=""
+          role="presentation"
           fill
           priority
           sizes="100vw"

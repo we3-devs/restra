@@ -8,7 +8,7 @@ const plans = [
   {
     nameKey: "price.monthly" as TranslationKey,
     labelKey: "price.payAsYouGo" as TranslationKey,
-    price: "NPR XX,XXX",
+    price: "NPR 2,199",
     periodKey: "price.periodMonth" as TranslationKey,
     highlight: false,
     features: [
@@ -17,25 +17,25 @@ const plans = [
     ] as TranslationKey[],
   },
   {
-    nameKey: "price.6months" as TranslationKey,
-    labelKey: "price.betterValue" as TranslationKey,
-    price: "NPR XX,XXX",
-    periodKey: "price.period6m" as TranslationKey,
-    highlight: false,
-    features: [
-      "price.f1s", "price.f2s", "price.f3s",
-      "price.f4s", "price.f5s", "price.f6s",
-    ] as TranslationKey[],
-  },
-  {
     nameKey: "price.yearly" as TranslationKey,
     labelKey: "price.bestValueLabel" as TranslationKey,
-    price: "NPR XX,XXX",
+    price: "NPR 22,999",
     periodKey: "price.periodYear" as TranslationKey,
     highlight: true,
     features: [
       "price.f1y", "price.f2y", "price.f3y",
       "price.f4y", "price.f5y", "price.f6y",
+    ] as TranslationKey[],
+  },
+  {
+    nameKey: "price.6months" as TranslationKey,
+    labelKey: "price.betterValue" as TranslationKey,
+    price: "NPR 11,999",
+    periodKey: "price.period6m" as TranslationKey,
+    highlight: false,
+    features: [
+      "price.f1s", "price.f2s", "price.f3s",
+      "price.f4s", "price.f5s", "price.f6s",
     ] as TranslationKey[],
   },
 ];
@@ -75,9 +75,9 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`relative rounded-xl border p-6 transition-all duration-300 ${
+              className={`relative rounded-xl border p-5 transition-all duration-300 md:p-6 ${
                 plan.highlight
-                  ? "border-restra-yellow/30 bg-restra-yellow/[0.04] shadow-lg shadow-restra-yellow/[0.05]"
+                  ? "border-restra-yellow/30 bg-restra-yellow/[0.04] shadow-lg shadow-restra-yellow/[0.05] md:-my-4 md:scale-105 md:p-8"
                   : "border-white/[0.06] bg-restra-card hover:border-white/[0.12]"
               }`}
             >
@@ -104,7 +104,7 @@ export default function Pricing() {
               </div>
 
               <div className="mb-6">
-                <span className="font-display text-3xl font-semibold text-restra-text">
+                <span className={`font-display font-semibold text-restra-text ${plan.highlight ? "text-4xl" : "text-2xl"}`}>
                   {plan.price}
                 </span>
                 <span className="text-sm text-restra-text-muted">{t(plan.periodKey)}</span>
