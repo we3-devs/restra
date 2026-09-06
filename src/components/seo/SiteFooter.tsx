@@ -142,6 +142,23 @@ export default async function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/25 pt-8 sm:flex-row">
+          <nav aria-label="Legal links" className="flex flex-wrap justify-center gap-3">
+            <Link href="/privacy" className="text-xs text-restra-footer-muted transition-colors hover:text-white">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-xs text-restra-footer-muted transition-colors hover:text-white">
+              Terms of Service
+            </Link>
+            <Link href="/cookies" className="text-xs text-restra-footer-muted transition-colors hover:text-white">
+              Cookie Policy
+            </Link>
+            <Link href="/refund-policy" className="text-xs text-restra-footer-muted transition-colors hover:text-white">
+              Refund Policy
+            </Link>
+            <Link href="/contact" className="text-xs text-restra-footer-muted transition-colors hover:text-white">
+              Contact
+            </Link>
+          </nav>
           <p className="text-xs text-restra-footer-muted">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>

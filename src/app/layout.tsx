@@ -78,7 +78,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="T-fSL7dAgM_eZ5J2qTxTLE1L39X-zm0FeAapdg_4UWw" />
-        <meta name="theme-color" content="#FBFAF7" />
+        <meta name="theme-color" content="#FAFAF8" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

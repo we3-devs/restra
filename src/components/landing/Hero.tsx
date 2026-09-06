@@ -1,173 +1,113 @@
-import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import { ArrowRight, Play, ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
-import DashboardPreview from "./DashboardPreview";
-import MultiDeviceShowcase from "./MultiDeviceShowcase";
+import HeroShowcase from "./HeroShowcase";
 
-const SLIDE_INTERVAL = 7000;
+/**
+ * Centered SaaS hero that sits directly below the existing fixed navbar:
+ * headline → supporting paragraph → CTA pair → oversized dashboard showcase
+ * that overlaps the lower portion of the section for depth.
+ */
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const fadeUp = (delay: number) => ({
+  initial: { opacity: 0, y: 18 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.55, delay, ease: EASE },
+});
 
 export default function Hero() {
-  const router = useRouter();
   const { t } = useI18n();
-  const [slide, setSlide] = useState<0 | 1>(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSlide((s) => (s === 0 ? 1 : 0));
-    }, SLIDE_INTERVAL);
-    return () => clearInterval(timer);
-  }, [slide]);
-
-  const goTo = useCallback((next: 0 | 1) => setSlide(next), []);
-
-  const scrollTo = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const titleParts =
-    slide === 0
-      ? t("hero.title").split(t("hero.titleHighlight"))
-      : t("hero.slide2.title").split(t("hero.slide2.titleHighlight"));
+  const [beforeHighlight, afterHighlight] = t("hero.title").split(
+    t("hero.titleHighlight"),
+  );
 
   return (
-    <section id="hero" className="relative overflow-hidden pt-22 pb-6 flex items-center wrap min-h-dvh sm:pt-26 sm:pb-10 lg:min-h-screen lg:pt-40 lg:pb-24">
-      {/* Background texture */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,212,59,0.06),transparent)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_60%,rgba(34,211,238,0.03),transparent)]" />
+    <section
+      id="hero"
+      aria-labelledby="hero-heading"
+      className="relative overflow-hidden"
+    >
+      {/* Background photo + readability overlays */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* Wash the photo out so copy stays readable on the light theme */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/55 to-restra-bg/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_60%_at_50%_30%,transparent_35%,rgba(250,250,248,0.75)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-restra-bg" />
+        {/* Subtle brand glows on top of the photo wash */}
+        <div className="absolute inset-x-0 top-0 h-[36rem] bg-[radial-gradient(ellipse_70%_55%_at_50%_-10%,rgba(212,160,23,0.08),transparent_65%)]" />
+        <div className="absolute -left-40 top-40 h-96 w-96 rounded-full bg-restra-cyan/[0.05] blur-3xl" />
+        <div className="absolute -right-40 top-72 h-96 w-96 rounded-full bg-restra-yellow/[0.06] blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
-          {/* Left: Copy */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slide}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left"
+      <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-28 sm:pt-36 lg:px-8 lg:pb-28 lg:pt-44">
+        {/* Copy */}
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <motion.div {...fadeUp(0)}>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white/70 px-3.5 py-1.5 text-xs font-medium text-restra-text-secondary shadow-sm backdrop-blur">
+              <Sparkles className="h-3.5 w-3.5 text-restra-yellow" aria-hidden="true" />
+              Restaurant management, simplified
+            </span>
+          </motion.div>
+
+          <motion.h1
+            {...fadeUp(0.08)}
+            id="hero-heading"
+            className="mt-6 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-restra-text sm:text-6xl lg:text-[4.25rem]"
+          >
+            {beforeHighlight}
+            <span className="text-restra-yellow">{t("hero.titleHighlight")}</span>
+            {afterHighlight ?? ""}
+          </motion.h1>
+
+          <motion.p
+            {...fadeUp(0.16)}
+            className="mt-5 max-w-2xl text-base leading-relaxed text-restra-text-secondary sm:mt-6 sm:text-lg"
+          >
+            {t("hero.subtitle")}
+          </motion.p>
+
+          <motion.div
+            {...fadeUp(0.24)}
+            className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+          >
+            <Link
+              href="/contact"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-restra-yellow px-7 py-3 text-sm font-semibold text-[#241D05] shadow-lg shadow-restra-yellow/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-restra-yellow/90 hover:shadow-xl hover:shadow-restra-yellow/25 sm:w-auto"
             >
-              <h1 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight text-restra-text sm:text-5xl lg:text-6xl lg:mt-16">
-                {titleParts[0]}
-                <span className="text-restra-yellow">
-                  {slide === 0 ? t("hero.titleHighlight") : t("hero.slide2.titleHighlight")}
-                </span>
-                {titleParts[1] || ""}
-              </h1>
-
-              {/* Preview (shown right after headline on mobile, right column on desktop) */}
-              <div className="relative order-2 mt-4 w-full lg:hidden">
-                <button
-                  type="button"
-                  onClick={() => goTo(slide === 0 ? 1 : 0)}
-                  aria-label="Previous slide"
-                  className="absolute -left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/[0.1] bg-restra-card/90 text-restra-text-secondary shadow-lg backdrop-blur transition-colors hover:text-restra-text"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                <div className="mx-auto max-w-60">
-                  <AnimatePresence mode="wait">
-                    {slide === 0 ? (
-                      <DashboardPreview key="dashboard-m" compact />
-                    ) : (
-                      <MultiDeviceShowcase key="devices-m" compact />
-                    )}
-                  </AnimatePresence>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => goTo(slide === 0 ? 1 : 0)}
-                  aria-label="Next slide"
-                  className="absolute -right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/[0.1] bg-restra-card/90 text-restra-text-secondary shadow-lg backdrop-blur transition-colors hover:text-restra-text"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-
-              <p className="order-3 mt-4 max-w-lg text-sm leading-relaxed text-restra-text-secondary sm:text-base lg:text-lg">
-                {slide === 0 ? t("hero.subtitle") : t("hero.slide2.subtitle")}
-              </p>
-
-              <div className="order-4 mt-5 flex flex-col gap-2.5 sm:flex-row">
-                <button
-                  onClick={() => (slide === 0 ? scrollTo("#contact") : router.push("/features"))}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-6 py-2.5 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px] hover:shadow-lg hover:shadow-restra-yellow/10 sm:py-3"
-                >
-                  {slide === 0 ? t("nav.getStarted") : t("hero.slide2.cta")}
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => router.push("/features")}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.02] px-6 py-2.5 text-sm font-medium text-restra-text transition-all hover:bg-white/[0.05] hover:border-white/[0.15] sm:py-3"
-                >
-                  <Play className="h-3.5 w-3.5" />
-                  {t("hero.explore")}
-                </button>
-              </div>
-
-              {/* Trust indicators */}
-              <div className="order-5 mt-6 flex items-center gap-6 border-t border-white/[0.06] pt-4 lg:mt-12 lg:pt-6">
-                <div>
-                  <p className="font-display text-xl font-semibold text-restra-text lg:text-2xl">{t("hero.stat1Value")}</p>
-                  <p className="text-[11px] text-restra-text-muted">{t("hero.stat1Label")}</p>
-                </div>
-                <div className="h-8 w-px bg-white/[0.06]" />
-                <div>
-                  <p className="font-display text-xl font-semibold text-restra-text lg:text-2xl">{t("hero.stat2Value")}</p>
-                  <p className="text-[11px] text-restra-text-muted">{t("hero.stat2Label")}</p>
-                </div>
-                <div className="h-8 w-px bg-white/[0.06]" />
-                <div>
-                  <p className="font-display text-xl font-semibold text-restra-text lg:text-2xl">{t("hero.stat3Value")}</p>
-                  <p className="text-[11px] text-restra-text-muted">{t("hero.stat3Label")}</p>
-                </div>
-              </div>
-
-              {/* Slide indicators */}
-              <div className="order-6 mt-4 flex items-center justify-center gap-2 lg:hidden">
-                {[0, 1].map((i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => goTo(i as 0 | 1)}
-                    aria-label={`Go to slide ${i + 1}`}
-                    className={`h-1.5 rounded-full transition-all ${
-                      slide === i ? "w-6 bg-restra-yellow" : "w-1.5 bg-white/[0.15]"
-                    }`}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Right: Preview (desktop only) */}
-          <div className="relative order-2 hidden lg:block">
-            <button
-              type="button"
-              onClick={() => goTo(slide === 0 ? 1 : 0)}
-              aria-label="Previous slide"
-              className="absolute -left-4 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/[0.1] bg-restra-card/90 text-restra-text-secondary shadow-lg backdrop-blur transition-colors hover:text-restra-text"
+              {t("hero.cta.primary")}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/features"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-restra-border bg-white px-7 py-3 text-sm font-semibold text-restra-text transition-all duration-300 hover:-translate-y-0.5 hover:border-[#DCDCD5] hover:shadow-lg hover:shadow-black/5 sm:w-auto"
             >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <AnimatePresence mode="wait">
-              {slide === 0 ? <DashboardPreview key="dashboard" /> : <MultiDeviceShowcase key="devices" />}
-            </AnimatePresence>
-            <button
-              type="button"
-              onClick={() => goTo(slide === 0 ? 1 : 0)}
-              aria-label="Next slide"
-              className="absolute -right-4 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/[0.1] bg-restra-card/90 text-restra-text-secondary shadow-lg backdrop-blur transition-colors hover:text-restra-text"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
+              {t("hero.cta.secondary")}
+            </Link>
+          </motion.div>
         </div>
+
+        {/* Oversized showcase overlapping the hero's lower edge */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
+          className="relative mt-14 sm:mt-16 lg:mt-20"
+        >
+          <HeroShowcase />
+        </motion.div>
       </div>
     </section>
   );

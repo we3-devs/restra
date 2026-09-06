@@ -241,9 +241,18 @@ export default function ContactView() {
                     {t("contact.formHint")}
                   </p>
                 ) : (
-                  <p className="mt-4 text-xs leading-relaxed text-restra-text-muted">
-                    {t("contact.formHint")}
-                  </p>
+                  <>
+                    <p className="mt-4 text-xs leading-relaxed text-restra-text-muted">
+                      {t("contact.formHint")}
+                    </p>
+                    <p className="mt-3 text-xs leading-relaxed text-restra-text-muted">
+                      {t("common.bySubmitting")}
+                      <Link href="/privacy" className="font-semibold underline underline-offset-2 hover:text-restra-yellow">
+                        {t("common.privacyPolicy")}
+                      </Link>
+                      {t("common.andConsent")}
+                    </p>
+                  </>
                 )}
               </form>
             </Reveal>

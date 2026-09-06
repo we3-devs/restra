@@ -15,7 +15,6 @@ const footerGroups: { titleKey: TranslationKey; links: FooterLink[] }[] = [
       { labelKey: "footer.features", href: "/features" },
       { labelKey: "footer.howItWorks", href: "/how-it-works" },
       { labelKey: "footer.pricing", href: "/pricing" },
-      { labelKey: "footer.privacy", href: "/restaurant-management-system" },
     ],
   },
   {
@@ -25,6 +24,15 @@ const footerGroups: { titleKey: TranslationKey; links: FooterLink[] }[] = [
       { labelKey: "nav.blog", href: "/blog" },
       { labelKey: "footer.contact", href: "/contact" },
       { labelKey: "nav.home", href: "/" },
+    ],
+  },
+  {
+    titleKey: "footer.legal",
+    links: [
+      { labelKey: "footer.privacy", href: "/privacy" },
+      { labelKey: "footer.terms", href: "/terms" },
+      { labelKey: "footer.cookies", href: "/cookies" },
+      { labelKey: "footer.refundPolicy", href: "/refund-policy" },
     ],
   },
 ];
@@ -84,12 +92,20 @@ export default function Footer() {
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-restra-footer-muted">
               {t("footer.desc")}
             </p>
-            <Link
-              href="/#contact"
-              className="mt-5 inline-flex items-center gap-2 rounded-lg bg-white/90 px-4 py-2 text-xs font-bold text-[#8a6a08] shadow-sm transition-all hover:bg-white"
-            >
-              {t("common.getTableStarted")}
-            </Link>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 rounded-lg bg-white/90 px-4 py-2 text-xs font-bold text-[#8a6a08] shadow-sm transition-all hover:bg-white"
+              >
+                {t("common.getTableStarted")}
+              </Link>
+              <Link
+                href="/cookies"
+                className="text-xs font-medium text-restra-footer-muted transition-colors hover:text-white"
+              >
+                {t("footer.cookieSettings")}
+              </Link>
+            </div>
           </div>
 
           {/* Links */}

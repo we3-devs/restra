@@ -13,7 +13,7 @@ export default async function OpengraphImage() {
 
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", padding: "80px", backgroundColor: "#FBFAF7", backgroundImage: "radial-gradient(circle at 85% 20%, rgba(212,160,23,0.14), transparent 60%)", border: "1px solid rgba(26,28,28,0.08)" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", padding: "80px", backgroundColor: "#FAFAF8", backgroundImage: "radial-gradient(circle at 85% 20%, rgba(212,160,23,0.14), transparent 60%)", border: "1px solid #EAEAE5" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "24px", marginBottom: "48px" }}>
           <img src={logoSrc} width="72" height="72" alt="" />
           <span style={{ fontSize: "40px", fontWeight: 600, color: "#1A1C1C", letterSpacing: "-0.02em" }}>RESTRA</span>

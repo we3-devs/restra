@@ -13,22 +13,11 @@ const en = {
   "nav.blog": "Blog",
 
   // Hero
-  "hero.badge": "Restaurant management, simplified",
-  "hero.title": "Restaurant Management Software In Nepal",
-  "hero.titleHighlight": "In Nepal",
-  "hero.subtitle": "Restra brings POS, billing, QR ordering, inventory, order tracking, staff roles and more into one restaurant management system.",
-  "hero.explore": "Explore Restra",
-  "hero.stat1Value": "1",
-  "hero.stat1Label": "Unified Platform",
-  "hero.stat2Value": "7+",
-  "hero.stat2Label": "Core Modules",
-  "hero.stat3Value": "24/7",
-  "hero.stat3Label": "Operations",
-  "hero.slide2.badge": "Works everywhere",
-  "hero.slide2.title": "All-in-one. Use on any device.",
-  "hero.slide2.titleHighlight": "any device",
-  "hero.slide2.subtitle": "Compatible and user-friendly across desktop, laptop, tablet, and mobile — no need to worry about devices anymore.",
-  "hero.slide2.cta": "Explore Features",
+  "hero.title": "Run your restaurant smarter, every day",
+  "hero.titleHighlight": "smarter",
+  "hero.subtitle": "Everything you need to manage your restaurant, streamline operations, and deliver exceptional guest experiences — all in one place.",
+  "hero.cta.primary": "Get Started",
+  "hero.cta.secondary": "Explore Restra",
 
   // Dashboard Preview
   "dash.goodEvening": "Good evening,",
@@ -277,11 +266,32 @@ const en = {
   "footer.careers": "Careers",
   "footer.privacy": "Privacy Policy",
   "footer.terms": "Terms of Service",
+  "footer.cookies": "Cookie Policy",
+  "footer.refundPolicy": "Refund Policy",
+  "footer.cookieSettings": "Cookie Settings",
   "footer.rights": "All rights reserved.",
   "footer.systemsOk": "All systems operational",
+  "footer.allRightsReserved": "All rights reserved.",
 
   // Common
   "common.getTableStarted": "Get Started →",
+  "common.backToHome": "Back to Home",
+  "common.cookieSettings": "Cookie Settings",
+  "common.lastUpdated": "Last updated",
+  "common.contactRestra": "Contact Restra",
+  "common.acceptAll": "Accept All",
+  "common.rejectNonEssential": "Reject Non-Essential",
+  "common.managePreferences": "Manage Preferences",
+  "common.necessaryCookies": "Necessary Cookies",
+  "common.analyticsCookies": "Analytics Cookies",
+  "common.functionalCookies": "Functional Cookies",
+  "common.marketingCookies": "Marketing Cookies",
+  "common.cookieDescription": "We use cookies to improve your experience, analyze site traffic, and support our services. By clicking \"Accept All\", you consent to our use of cookies. You can manage your preferences anytime.",
+  "common.bySubmitting": "By submitting this form, you agree to our ",
+  "common.privacyPolicy": "Privacy Policy",
+  "common.andConsent": " and consent to Restra using the information provided to respond to your request.",
+  "common.formConsentMarketing": "I agree to receive marketing communications from Restra about products, updates, and offers. You can unsubscribe at any time.",
+  
 
   // ------------------------------------------------------------------
   // Redesign: shared section headings
@@ -517,22 +527,11 @@ const ne: Record<keyof typeof en, string> = {
   "nav.blog": "ब्लग",
 
   // Hero
-  "hero.badge": "रेस्टुरेन्ट व्यवस्थापन, सरल बनाइएको",
-  "hero.title": "नेपालमा रेस्टुरेन्ट व्यवस्थापन सफ्टवेयर",
-  "hero.titleHighlight": "नेपालमा",
-  "hero.subtitle": "Restra ले POS, बिलिङ, QR अर्डरिङ, इन्भेन्टरी, अर्डर ट्र्याकिङ, कर्मचारी भूमिकाहरू र थप कुराहरू एकै रेस्टुरेन्ट व्यवस्थापन प्रणालीमा ल्याउँछ।",
-  "hero.explore": "Restra अन्वेषण गर्नुहोस्",
-  "hero.stat1Value": "१",
-  "hero.stat1Label": "एकीकृत प्लेटफर्म",
-  "hero.stat2Value": "७+",
-  "hero.stat2Label": "मुख्य मोड्युलहरू",
-  "hero.stat3Value": "२४/७",
-  "hero.stat3Label": "सञ्चालन",
-  "hero.slide2.badge": "जहाँ पनि काम गर्छ",
-  "hero.slide2.title": "सम्पूर्ण समाधान। जुनसुकै उपकरणमा प्रयोग गर्नुहोस्।",
-  "hero.slide2.titleHighlight": "जुनसुकै उपकरणमा",
-  "hero.slide2.subtitle": "डेस्कटप, ल्यापटप, ट्याब्लेट र मोबाइलमा उत्तिकै मिल्दो र प्रयोग गर्न सजिलो — अब उपकरणको बारेमा चिन्ता लिनु पर्दैन।",
-  "hero.slide2.cta": "सुविधाहरू हेर्नुहोस्",
+  "hero.title": "आफ्नो रेस्टुरेन्ट दिनहुँ बुद्धिमानीसँग चलाउनुहोस्",
+  "hero.titleHighlight": "बुद्धिमानीसँग",
+  "hero.subtitle": "तपाईंको रेस्टुरेन्ट व्यवस्थापन गर्न, कामहरू सहज बनाउन र असाधारण आतिथ्य अनुभव दिन चाहिने सबै कुरा — सबै एउटै ठाउँमा।",
+  "hero.cta.primary": "सुरु गर्नुहोस्",
+  "hero.cta.secondary": "Restra अन्वेषण गर्नुहोस्",
 
   // Dashboard Preview
   "dash.goodEvening": "शुभ सन्ध्या,",
@@ -781,12 +780,32 @@ const ne: Record<keyof typeof en, string> = {
   "footer.careers": "करियर",
   "footer.privacy": "गोपनीयता नीति",
   "footer.terms": "सेवा शर्तहरू",
+  "footer.cookies": "कुकी नीति",
+  "footer.refundPolicy": "रिफण्ड नीति",
+  "footer.cookieSettings": "कुकी सेटिण्गहरू",
   "footer.rights": "सबै अधिकार सुरक्षित।",
   "footer.systemsOk": "सबै प्रणाली सञ्चालनमा छ",
+  "footer.allRightsReserved": "सबै अधिकार सुरक्षित।",
 
   // Common
   "common.getTableStarted": "सुरु गर्नुहोस् →",
-
+  "common.backToHome": "गृहपृष्ठसम्म फर्कनुहोस्",
+  "common.cookieSettings": "कुकी सेटिण्गहरू",
+  "common.lastUpdated": "अन्तिम प_UPDATE",
+  "common.contactRestra": "Restra सँग सम्पर्क",
+  "common.acceptAll": "सबै स्वीकार गर्नुहोस्",
+  "common.rejectNonEssential": "गैरआवश्यक कुकी अस्वीकार गर्नुहोस्",
+  "common.managePreferences": "पसंद सेट गर्नुहोस्",
+  "common.necessaryCookies": "आवश्यक कुकीहरू",
+  "common.analyticsCookies": "एनालिटिक्स कुकीहरू",
+  "common.functionalCookies": "कार्यात्मक कुकीहरू",
+  "common.marketingCookies": "विज्ञापन कुकीहरू",
+  "common.cookieDescription": "हामी तपाईंको अनुभव सुधार गर्न, साइट ट्राफिक विश्लेषण गर्न र हाम्रो सेवाहरू समर्थन गर्न कुकीहरू प्रयोग गर्छौं। \"सबै स्वीकार गर्नुहोस्\" मा क्लिक गरेर हाम्रो कुकी प्रयोगलाई सहमति दिनुहोस्। तपाईंले आफ्नो पसंद सधैं मिलाउन सक्नुहुन्छ।",
+  "common.bySubmitting": "यो फारम सबमिट गर्दा, तपाईं हाम्रो ",
+  "common.privacyPolicy": "गोपनीयता नीति",
+  "common.andConsent": " स्वीकार गर्नुहुन्छ र Restra ले दिएको जानकारी प्रयोग गरेर तपाईंको अनुरोधमा जवाफ दिन सहमत हुनुहुन्छ।",
+  "common.formConsentMarketing": "म Restra बाट उत्पादन, अपडेट र प्रस्तावहरूमा सम्बन्धित विज्ञापन सञ्चारहरू प्राप्त गर्न सहमत छु। तपाईंले जब चाहानुहुन्छ अनुसार unsubscribe गर्न सक्नुहुन्छ।",
+  
   // ------------------------------------------------------------------
   // Redesign: shared section headings (Nepali)
   // ------------------------------------------------------------------

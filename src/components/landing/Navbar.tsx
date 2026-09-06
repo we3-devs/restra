@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ArrowUpRight,
   ChevronDown,
@@ -12,6 +13,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { FeatureIcon } from "@/components/seo/FeatureIcon";
 import { useI18n } from "@/contexts/I18nContext";
 import { featurePages, featurePath } from "@/lib/seo-content";
 import type { TranslationKey } from "@/lib/translations";
@@ -75,11 +77,15 @@ function FeaturesNavMenu({ label }: { label: string }) {
         href="/features"
         aria-haspopup="menu"
         aria-expanded={open}
-        className="inline-flex items-center gap-1 font-body text-base font-medium text-restra-text-secondary transition-colors hover:text-restra-text"
+        className={`group inline-flex items-center gap-1 rounded-full px-3 py-2 font-body text-base font-medium transition-all duration-300 hover:bg-restra-yellow/10 hover:text-restra-text ${
+          open
+            ? "bg-restra-yellow/10 text-restra-text shadow-[0_6px_18px_rgba(245,197,24,0.12)]"
+            : "text-restra-text-secondary"
+        }`}
       >
         {label}
         <ChevronDown
-          className={`h-3.5 w-3.5 transition-transform duration-300 ${
+          className={`h-3.5 w-3.5 transition-all duration-300 group-hover:text-restra-yellow ${
             open ? "rotate-180 text-restra-yellow" : ""
           }`}
         />
@@ -95,7 +101,7 @@ function FeaturesNavMenu({ label }: { label: string }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.97 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-1/2 top-full z-50 mt-4 w-[36rem] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-restra-bg/70 shadow-2xl shadow-black/20 backdrop-blur-2xl backdrop-saturate-150"
+            className="absolute left-1/2 top-full z-50 mt-4 w-[42rem] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-restra-bg/70 shadow-2xl shadow-black/20 backdrop-blur-lg"
           >
             {/* Glass shine */}
             <div
@@ -104,62 +110,48 @@ function FeaturesNavMenu({ label }: { label: string }) {
             />
 
             <div className="relative p-5">
-              {/* Hub header */}
-              <Link
-                href="/features"
-                onClick={closeMenu}
-                className="group flex items-center justify-between rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 transition-colors hover:border-restra-yellow/40"
-              >
-                <span className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-restra-yellow/10 text-restra-yellow">
-                    <LayoutGrid className="h-4 w-4" />
-                  </span>
-                  <span>
-                    <span className="block text-sm font-semibold text-restra-text">
-                      All Features
-                    </span>
-                    <span className="block text-xs text-restra-text-muted">
-                      See every RESTRA module on one page
-                    </span>
-                  </span>
-                </span>
-                <ArrowUpRight className="h-4 w-4 text-restra-text-muted transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-restra-yellow" />
-              </Link>
-
               {/* Feature links */}
-              <ul className="mt-4 grid grid-cols-2 gap-1">
+              <ul className="grid grid-cols-2 gap-1">
                 {featurePages.map((page) => (
                   <li key={page.slug}>
                     <Link
                       href={featurePath(page.slug)}
                       onClick={closeMenu}
                       role="menuitem"
-                      className="group flex items-start gap-2 rounded-lg px-3 py-2.5 transition-colors hover:bg-white/[0.05]"
+                      className="group flex items-center gap-2.5 rounded-lg border border-transparent px-3 py-2.5 transition-all duration-200 hover:-translate-y-px hover:border-restra-yellow/20 hover:bg-restra-yellow/[0.06] hover:shadow-sm"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-restra-cyan transition-colors group-hover:bg-restra-yellow" />
-                      <span>
-                        <span className="block text-sm font-medium text-restra-text transition-colors group-hover:text-restra-yellow">
-                          {page.title}
-                        </span>
-                        <span className="mt-0.5 block truncate text-xs text-restra-text-muted">
-                          {page.intro}
-                        </span>
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-restra-cyan transition-colors group-hover:border-restra-yellow/30 group-hover:text-restra-yellow">
+                        <FeatureIcon slug={page.slug} className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm font-medium leading-snug text-restra-text transition-colors group-hover:text-restra-yellow">
+                        {page.title}
                       </span>
                     </Link>
                   </li>
                 ))}
               </ul>
 
-              {/* Overview link */}
-              <Link
-                href="/restaurant-management-system"
-                onClick={closeMenu}
-                role="menuitem"
-                className="mt-4 flex items-center justify-between border-t border-white/[0.08] px-3 pt-3.5 text-sm font-semibold text-restra-text-secondary transition-colors hover:text-restra-text"
-              >
-                What is RESTRA? — product overview
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
+              {/* Quick links */}
+              <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/[0.08] px-1 pt-3.5">
+                <Link
+                  href="/features"
+                  onClick={closeMenu}
+                  role="menuitem"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-restra-text-secondary transition-colors hover:text-restra-yellow"
+                >
+                  All features
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link
+                  href="/restaurant-management-system"
+                  onClick={closeMenu}
+                  role="menuitem"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-restra-text-muted transition-colors hover:text-restra-text"
+                >
+                  What is RESTRA?
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
             </div>
           </motion.div>
         ) : null}
@@ -176,6 +168,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState(defaultSection);
   const { t } = useI18n();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
@@ -218,7 +211,7 @@ export default function Navbar() {
       <nav
         className={`mx-auto grid grid-cols-2 items-center px-4 transition-[height,max-width,border-radius,background-color,box-shadow,border-color] duration-500 ease-in-out sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8 ${
           scrolled
-            ? "h-14 max-w-4xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-2xl backdrop-saturate-150"
+            ? "h-14 max-w-4xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-lg"
             : "h-20 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none sm:h-24 lg:h-30"
         }`}
       >
@@ -245,6 +238,18 @@ export default function Navbar() {
             if (item.type === "page") {
               return (
                 <Link key={item.path} href={item.path} className={className}>
+                  {t(item.key)}
+                </Link>
+              );
+            }
+
+            if (pathname !== "/") {
+              return (
+                <Link
+                  key={item.section}
+                  href={item.section === "#hero" ? "/" : `/${item.section}`}
+                  className={className}
+                >
                   {t(item.key)}
                 </Link>
               );
@@ -330,7 +335,7 @@ export function MobileTabBar() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-white/8 bg-restra-bg/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-2xl backdrop-saturate-150 md:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-white/8 bg-restra-bg/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-lg md:hidden"
       aria-label="Mobile navigation"
     >
       <div className="flex items-stretch justify-between px-1">

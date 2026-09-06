@@ -5,6 +5,7 @@ export const siteConfig = {
   title: "RESTRA - Restaurant Management System",
   developer: "We-3: tech & innovation",
   contactEmail: "restraservices@gmail.com",
+  contactPhone: "+977 9761093528",
   socialProfiles: ["https://www.instagram.com/restra_services", "https://github.com/we3-devs/"],
   description:
     "RESTRA - Restaurant Management System for restaurants, cafes, and cloud kitchens. Manage POS, billing, QR ordering, inventory, kitchen workflows, staff permissions, and reporting in one platform.",
