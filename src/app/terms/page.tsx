@@ -69,9 +69,9 @@ export default function TermsPage() {
               </h2>
               <div className="policy-copy mt-5">
                 <p>
-                  Welcome to Restra ("we," "us," "our"). These Terms of Service
-                  ("Terms") govern your access to and use of the Restra website and
-                  restaurant management software platform (collectively, the "Service").
+                  Welcome to Restra (&quot;we,&quot; &quot;us,&quot; &quot;our&quot;). These Terms of Service
+                  (&quot;Terms&quot;) govern your access to and use of the Restra website and
+                  restaurant management software platform (collectively, the &quot;Service&quot;).
                 </p>
                 <p>
                   Restra is an all-in-one restaurant management software designed to help
@@ -344,7 +344,7 @@ export default function TermsPage() {
                 <p>
                   We may also update these Terms to reflect changes in our business, legal
                   obligations, or the Service. Where reasonably practicable, we will note
-                  material changes and update the "Last Updated" date at the top of this
+                  material changes and update the &quot;Last Updated&quot; date at the top of this
                   page.
                 </p>
               </div>
@@ -395,7 +395,7 @@ export default function TermsPage() {
                   <li>Any damages resulting from interruptions, delays, errors, omissions, or service unavailability</li>
                 </ul>
                 <p>
-                  Restra is provided on an "as is" and "as available" basis to the extent
+                  Restra is provided on an &quot;as is&quot; and &quot;as available&quot; basis to the extent
                   permitted by law. We do not guarantee that the Service will meet your
                   specific requirements, will be error-free, or will achieve any particular
                   business outcome.
@@ -472,7 +472,7 @@ export default function TermsPage() {
               <div className="policy-copy mt-5">
                 <p>
                   We may revise these Terms from time to time. When we make material changes,
-                  we will update the "Last Updated" date at the top of this page. We
+                  we will update the &quot;Last Updated&quot; date at the top of this page. We
                   encourage you to review these Terms periodically.
                 </p>
                 <p>

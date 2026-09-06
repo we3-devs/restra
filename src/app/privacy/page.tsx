@@ -374,7 +374,7 @@ export default function PrivacyPolicyPage() {
                 <p>
                   We may update this Privacy Policy from time to time to reflect changes to
                   our services, technology, legal requirements, or business practices. When we
-                  make changes, we will update the "Last Updated" date at the top of this
+                   make changes, we will update the &quot;Last Updated&quot; date at the top of this
                   page.
                 </p>
                 <p>

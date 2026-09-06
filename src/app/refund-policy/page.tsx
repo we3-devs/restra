@@ -290,7 +290,7 @@ export default function RefundPolicyPage() {
                 <p>
                   We may update this Refund Policy from time to time to reflect changes in our
                   subscription offerings, billing practices, or legal requirements. When we make
-                  material changes, we will update the "Last Updated" date at the top of this
+                  material changes, we will update the &quot;Last Updated&quot; date at the top of this
                   page.
                 </p>
                 <p>

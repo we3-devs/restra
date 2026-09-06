@@ -69,7 +69,7 @@ export default function CookiePolicyPage() {
                   information about your browsing activity.
                 </p>
                 <p>
-                  In this policy, the term "cookies" is used broadly to refer to cookies,
+                  In this policy, the term &quot;cookies&quot; is used broadly to refer to cookies,
                   local storage, session storage, and similar technologies where they are
                   used for comparable purposes.
                 </p>
@@ -293,7 +293,7 @@ export default function CookiePolicyPage() {
                 <p>
                   We may update this Cookie Policy from time to time to reflect changes in the
                   cookies we use, the services we rely on, or legal requirements. When we make
-                  changes, we will update the "Last Updated" date at the top of this page.
+                  changes, we will update the &quot;Last Updated&quot; date at the top of this page.
                 </p>
                 <p>
                   We encourage you to review this policy periodically, especially if you have
