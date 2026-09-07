@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import {
   CalendarCheck,
+  Bot,
   ChefHat,
   Package,
   CreditCard,
@@ -112,9 +113,14 @@ export default function HeroShowcase() {
   const restaurantImg = "/images/dashboard-bg.jpeg";
   return (
     <div className="relative mx-auto w-full max-w-4xl" aria-hidden="true">    
-    <div>
+    <motion.div
+      whileHover={{ rotateX: 2.5, rotateY: -2.5, y: -2 }}
+      transition={{ duration: 0.55, ease: EASE }}
+      style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+      className="group"
+    >
           {/* Visual composition */}
-          <div className="relative mt-16 sm:mt-20 lg:mt-24">
+          <div className="relative mt-16 sm:mt-20 lg:mt-0">
           {/* Restaurant environment image */}
           <div
             className="relative mx-auto aspect-[4/3] w-full max-w-4xl overflow-hidden rounded-[2.25rem] border border-white/[0.12] shadow-2xl shadow-black/10 ring-1 ring-white/20"
@@ -139,9 +145,9 @@ export default function HeroShowcase() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.25, ease: EASE }}
             whileHover={{ y: -3 }}
-            className="absolute left-2 bottom-4 z-20 hidden w-[17.5rem] rotate-[1.6deg] sm:block lg:left-4 lg:w-[19rem] restra-float"
+            className="absolute right-0 bottom-4 z-20 hidden w-[12rem] rotate-[1.6deg] sm:block lg:right-4 lg:w-[13.2rem] restra-float"
           >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-4 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="rounded-xl border border-restra-border bg-white/95 p-2.5 shadow-lg shadow-black/5 backdrop-blur-sm">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-restra-yellow/10 text-[#241D05]">
@@ -193,15 +199,31 @@ export default function HeroShowcase() {
             </div>
           </motion.div>
 
+          {/* Floating assistant bubble — lower-left */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.42, ease: EASE }}
+            whileHover={{ y: -3 }}
+            className="absolute bottom-[24%] left-[12%] z-20 hidden sm:block"
+          >
+            <div className="flex items-center gap-2 rounded-xl border border-restra-border bg-white/95 px-3 py-2 shadow-lg shadow-black/10 backdrop-blur-sm">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-restra-yellow/15 text-restra-yellow">
+                <Bot className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="whitespace-nowrap text-xs font-semibold text-restra-text">Namaste! Need a hand?</span>
+            </div>
+          </motion.div>
+
           {/* Floating card: Weekly Sales — upper-right */}
           <motion.div
             initial={{ opacity: 0, scale: 0.92, y: 18 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.34, ease: EASE }}
             whileHover={{ y: -3 }}
-            className="absolute right-0 top-6 z-20 hidden w-[17.5rem] sm:block lg:right-4 lg:w-[19rem] restra-float-delayed"
+            className="absolute right-0 top-6 z-20 hidden w-[12rem] sm:block lg:right-4 lg:w-[13.2rem] restra-float-delayed"
           >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-4 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="rounded-xl border border-restra-border bg-white/95 p-2.5 shadow-lg shadow-black/5 backdrop-blur-sm">
               <p className="text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
                 Weekly Sales
               </p>
@@ -211,7 +233,7 @@ export default function HeroShowcase() {
 
               <div className="mt-3 flex items-center gap-3">
                 {/* Simple donut-ish visualization */}
-                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white/60 shadow-inner">
+                <div className="h-8 w-8 shrink-0 overflow-hidden rounded-full border-2 border-white/60 shadow-inner">
                   <svg
                     viewBox="0 0 36 36"
                     className="h-full w-full -rotate-90"
@@ -288,10 +310,10 @@ export default function HeroShowcase() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.3, ease: EASE }}
             whileHover={{ y: -3 }}
-            className="absolute left-2 top-6 z-20 hidden w-[13.5rem] sm:block lg:left-4 lg:w-[15rem] restra-float"
+            className="absolute left-2 top-6 z-20 hidden w-[9.6rem] sm:block lg:left-4 lg:w-[10.8rem] restra-float"
             data-card="orders"
           >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-4 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="rounded-xl border border-restra-border bg-white/95 p-2.5 shadow-lg shadow-black/5 backdrop-blur-sm">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-restra-cyan/10 text-restra-cyan">
@@ -334,9 +356,9 @@ export default function HeroShowcase() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.38, ease: EASE }}
             whileHover={{ y: -3 }}
-            className="absolute right-0 bottom-4 z-20 hidden w-[13.5rem] sm:block lg:right-4 lg:w-[15rem] restra-float-delayed"
+            className="absolute left-2 bottom-4 z-20 hidden w-[9.6rem] sm:block lg:left-4 lg:w-[10.8rem] restra-float-delayed"
           >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-4 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="rounded-xl border border-restra-border bg-white/95 p-2.5 shadow-lg shadow-black/5 backdrop-blur-sm">
               <div className="flex items-center gap-2">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-restra-yellow/10 text-restra-yellow">
                   <Package className="h-3.5 w-3.5" />
@@ -368,7 +390,7 @@ export default function HeroShowcase() {
           <div className="pointer-events-none absolute -z-10 left-[12%] top-[14%] hidden h-20 w-20 rounded-full bg-restra-yellow/8 blur-2xl sm:block lg:left-[14%] lg:top-[16%]" aria-hidden="true" />
           <div className="pointer-events-none absolute -z-10 right-[18%] bottom-[22%] hidden h-32 w-32 rounded-full bg-restra-cyan/8 blur-2xl sm:block lg:right-[20%] lg:bottom-[24%]" aria-hidden="true" />
         </div>
-      </div>   
+    </motion.div>
       <style>{`
         @media (prefers-reduced-motion: reduce) {
           .restra-float,

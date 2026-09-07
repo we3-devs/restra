@@ -53,7 +53,7 @@ export default function RestaurantShowcase() {
             </Link>
           </div>
         </Reveal>
-    </div>  
+      </div>
     </section>
   );
 }

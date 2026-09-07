@@ -1,178 +1,156 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { useI18n } from "@/contexts/I18nContext";
-import type { TranslationKey } from "@/lib/translations";
 import {
-  Smartphone,
-  ChefHat,
-  CreditCard,
-  PackageCheck,
   BarChart3,
-  CircleDot,
-  CheckCircle2,
-  Clock,
-  Flame,
-  UtensilsCrossed,
+  ChefHat,
+  ClipboardList,
+  PackageCheck,
+  Settings2,
 } from "lucide-react";
-import OrderLifecycle3D from "./OrderLifecycle3D";
+import { useI18n } from "@/contexts/I18nContext";
+import Reveal from "@/components/reusable/Reveal";
 
-const workflowStepKeys: { icon: typeof Smartphone; labelKey: TranslationKey; detailKey: TranslationKey }[] = [
-  { icon: Smartphone, labelKey: "workflow.step1", detailKey: "workflow.step1d" },
-  { icon: UtensilsCrossed, labelKey: "workflow.step2", detailKey: "workflow.step2d" },
-  { icon: ChefHat, labelKey: "workflow.step3", detailKey: "workflow.step3d" },
-  { icon: Clock, labelKey: "workflow.step4", detailKey: "workflow.step4d" },
-  { icon: Flame, labelKey: "workflow.step5", detailKey: "workflow.step5d" },
-  { icon: CreditCard, labelKey: "workflow.step6", detailKey: "workflow.step6d" },
-  { icon: PackageCheck, labelKey: "workflow.step7", detailKey: "workflow.step7d" },
-  { icon: BarChart3, labelKey: "workflow.step8", detailKey: "workflow.step8d" },
-];
-
-const orderLifecycleKeys: { statusKey: TranslationKey; color: string; textColor: string }[] = [
-  { statusKey: "workflow.statusNew", color: "bg-restra-cyan", textColor: "text-restra-cyan" },
-  { statusKey: "workflow.statusConfirmed", color: "bg-restra-cyan", textColor: "text-restra-cyan" },
-  { statusKey: "workflow.statusPreparing", color: "bg-restra-yellow", textColor: "text-restra-yellow" },
-  { statusKey: "workflow.statusReady", color: "bg-restra-cyan", textColor: "text-restra-cyan" },
-  { statusKey: "workflow.statusServed", color: "bg-emerald-500", textColor: "text-emerald-400" },
-];
-
-const orderStepKeys: { icon: typeof CircleDot; labelKey: TranslationKey; descKey: TranslationKey; color: string; textColor: string; dotColor: string; image: string }[] = [
-  { icon: CircleDot, labelKey: "workflow.statusNew", descKey: "workflow.orderNewDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-new.png" },
-  { icon: CheckCircle2, labelKey: "workflow.statusConfirmed", descKey: "workflow.orderConfirmedDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-confirmed.png" },
-  { icon: Flame, labelKey: "workflow.statusPreparing", descKey: "workflow.orderPreparingDesc", color: "border-restra-yellow/40 bg-restra-yellow/10", textColor: "text-restra-yellow", dotColor: "bg-restra-yellow", image: "/order-lifecycle/order-preparing.png" },
-  { icon: UtensilsCrossed, labelKey: "workflow.statusReady", descKey: "workflow.orderReadyDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-ready.png" },
-  { icon: CheckCircle2, labelKey: "workflow.statusServed", descKey: "workflow.orderServedDesc", color: "border-emerald-500/40 bg-emerald-500/10", textColor: "text-emerald-400", dotColor: "bg-emerald-500", image: "/order-lifecycle/order-served.png" },
+const workflowSteps = [
+  {
+    number: "01",
+    label: "STEP 1",
+    title: "Set Up Your Restaurant",
+    description:
+      "Add your restaurant, tables, menu, staff, and essential settings in minutes. Everything is organized in one simple workspace.",
+    icon: Settings2,
+  },
+  {
+    number: "02",
+    label: "STEP 2",
+    title: "Capture Every Order",
+    description:
+      "Take dine-in, takeaway, delivery, and QR orders in one connected flow, with every detail visible to your team.",
+    icon: ClipboardList,
+  },
+  {
+    number: "03",
+    label: "STEP 3",
+    title: "Run Your Kitchen",
+    description:
+      "Send the right order to the kitchen, track preparation status, and keep service moving without missed tickets.",
+    icon: ChefHat,
+  },
+  {
+    number: "04",
+    label: "STEP 4",
+    title: "Stay In Control",
+    description:
+      "Keep inventory, staff activity, billing, and daily operations organized from one powerful restaurant workspace.",
+    icon: PackageCheck,
+  },
+  {
+    number: "05",
+    label: "STEP 5",
+    title: "Track & Grow",
+    description:
+      "Monitor sales, performance, and business insights so you can make smarter decisions and grow your restaurant.",
+    icon: BarChart3,
+  },
 ];
 
 export default function ProductWorkflow() {
   const { t } = useI18n();
-  const [activeLifecycleStep, setActiveLifecycleStep] = useState(0);
 
   return (
-    <section id="workflow" className="relative py-24 lg:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_20%_50%,rgba(34,211,238,0.03),transparent)]" />
+    <section id="workflow" className="relative overflow-hidden py-24 lg:py-32">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_18%_50%,rgba(34,211,238,0.04),transparent)]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 max-w-2xl"
-        >
+      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
+        <Reveal className="mx-auto mb-16 max-w-2xl text-center lg:mb-20">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-restra-cyan">
             {t("workflow.badge")}
           </p>
           <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-restra-text sm:text-4xl lg:text-5xl">
-            {t("workflow.title").replace(t("workflow.titleHighlight"), "").trimEnd() + " "}
+            {t("workflow.title").replace(t("workflow.titleHighlight"), "").trimEnd()}{" "}
             <span className="text-restra-yellow">{t("workflow.titleHighlight")}</span>
           </h2>
-          <p className="mt-4 text-base text-restra-text-secondary lg:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-restra-text-secondary lg:text-lg">
             {t("workflow.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
-        {/* Day in the restaurant flow */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-24"
-        >
-          <h3 className="mb-8 text-sm font-semibold uppercase tracking-[0.15em] text-restra-text-muted">
-            {t("workflow.dayTitle")}
-          </h3>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {workflowStepKeys.map((step, i) => (
-              <motion.div
-                key={step.labelKey}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: i * 0.06 }}
-                className="group relative"
-              >
-                <div className="rounded-xl border border-white/[0.06] bg-restra-card p-4 transition-all duration-300 hover:border-white/[0.12]">
-                  <div className="mb-3 flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-restra-yellow/10">
-                      <step.icon className="h-4 w-4 text-restra-yellow" />
-                    </div>
-                    <span className="text-[10px] font-bold text-restra-text-muted">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <h4 className="text-sm font-semibold text-restra-text">{t(step.labelKey)}</h4>
-                  <p className="mt-1 text-xs text-restra-text-muted">{t(step.detailKey)}</p>
-                </div>
-                {i < workflowStepKeys.length - 1 && (
-                  <div className="absolute right-0 top-1/2 hidden h-px w-4 -translate-y-1/2 translate-x-full bg-white/[0.08] lg:block" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Order Lifecycle */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h3 className="mb-8 text-sm font-semibold uppercase tracking-[0.15em] text-restra-text-muted">
-            {t("workflow.orderLifecycle")}
-          </h3>
-
-          {/* 3D showcase */}
-          <OrderLifecycle3D
-            steps={orderStepKeys.map((step) => ({
-              key: step.labelKey,
-              icon: step.icon,
-              label: t(step.labelKey),
-              desc: t(step.descKey),
-              color: step.color,
-              textColor: step.textColor,
-              dotColor: step.dotColor,
-              image: step.image,
-            }))}
-            onActiveChange={setActiveLifecycleStep}
-          />
-
-          {/* Status visualization */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="mt-8 rounded-xl border border-white/[0.06] bg-restra-card p-5"
+        <div className="relative">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 1000 1700"
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute inset-x-[8%] top-0 hidden h-full w-[84%] lg:block"
           >
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-bold text-restra-text">#1042</span>
-                <span className="text-xs text-restra-text-muted">Table 7 · Butter Chicken, Naan, Lassi</span>
-              </div>
-              <div className="flex items-center gap-2 flex-wrap">
-                {orderLifecycleKeys.map((s, i) => (
-                  <div key={s.statusKey} className="flex items-center gap-2">
-                    <span
-                      className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider transition-all duration-300 ${s.textColor} border ${
-                        i === activeLifecycleStep
-                          ? "bg-current/10 border-current shadow-sm scale-105"
-                          : "bg-white/[0.03] border-current/20"
-                      }`}
-                    >
-                      {t(s.statusKey)}
-                    </span>
-                    {i < orderLifecycleKeys.length - 1 && (
-                      <span className="text-restra-text-muted/30">→</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+            <path
+              id="home-workflow-connector"
+              d="M720 105 C720 260 280 250 280 430 S720 550 720 770 S280 900 280 1110 S720 1260 720 1545"
+              fill="none"
+              stroke="rgba(66, 211, 205, 0.38)"
+              strokeDasharray="7 14"
+              strokeLinecap="round"
+              strokeWidth="2"
+            />
+            {Array.from({ length: 20 }, (_, particle) => (
+              <circle key={particle} r="4" fill="#D4A017" opacity="0.95">
+                <animateMotion
+                  dur="7s"
+                  begin={`${particle * -0.35}s`}
+                  repeatCount="indefinite"
+                  path="M720 105 C720 260 280 250 280 430 S720 550 720 770 S280 900 280 1110 S720 1260 720 1545"
+                />
+              </circle>
+            ))}
+          </svg>
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 4 1000"
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute bottom-10 left-5 top-10 w-1 lg:hidden"
+          >
+            <path d="M2 0 L2 1000" fill="none" stroke="rgba(66, 211, 205, 0.35)" strokeDasharray="5 10" strokeWidth="1.5" />
+            {Array.from({ length: 20 }, (_, particle) => (
+              <circle key={particle} cx="2" cy="0" r="2.5" fill="#D4A017">
+                <animateMotion
+                  dur="4.5s"
+                  begin={`${particle * -0.225}s`}
+                  repeatCount="indefinite"
+                  path="M0 0 L0 1000"
+                />
+              </circle>
+            ))}
+          </svg>
+
+          <ol className="relative space-y-12 lg:space-y-16">
+            {workflowSteps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <li key={step.number} className={`flex ${index % 2 === 0 ? "justify-end" : "justify-start"}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.5, delay: index * 0.06 }}
+                    className="w-full max-w-xl"
+                  >
+                    <article className="relative ml-10 rounded-2xl border border-white/[0.08] bg-restra-card p-6 shadow-2xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-restra-cyan/35 sm:p-8 lg:ml-0">
+                      <span className="absolute -left-[2.05rem] top-8 flex h-4 w-4 items-center justify-center rounded-full border-2 border-restra-bg bg-restra-cyan shadow-[0_0_0_5px_rgba(66,211,205,0.1)] lg:hidden" />
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-restra-cyan/20 bg-restra-cyan/[0.07] text-restra-cyan">
+                          <Icon className="h-5 w-5" aria-hidden="true" />
+                        </div>
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-restra-cyan">{step.label}</p>
+                          <h3 className="mt-2 font-display text-2xl font-semibold leading-tight text-restra-text sm:text-3xl">{step.title}</h3>
+                        </div>
+                      </div>
+                      <p className="mt-5 max-w-lg text-base leading-7 text-restra-text-secondary">{step.description}</p>
+                      <span aria-hidden="true" className="absolute right-6 top-6 font-display text-5xl font-semibold text-white/[0.04]">{step.number}</span>
+                    </article>
+                  </motion.div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );

@@ -36,11 +36,11 @@ export type NavItem = SectionNavItem | PageNavItem;
 
 const navItems: NavItem[] = [
   { type: "section", key: "nav.home", section: "#hero", icon: Home },
-  { type: "page", key: "nav.features", path: "/features", icon: LayoutGrid },
-  { type: "page", key: "nav.howItWorks", path: "/how-it-works", icon: Workflow },
-  { type: "page", key: "nav.pricing", path: "/pricing", icon: Tag },
+  { type: "section", key: "nav.features", section: "#modules", icon: LayoutGrid },
+  { type: "section", key: "nav.howItWorks", section: "#workflow", icon: Workflow },
+  { type: "section", key: "nav.pricing", section: "#pricing", icon: Tag },
   { type: "section", key: "nav.team", section: "#team", icon: Users },
-  { type: "page", key: "nav.contact", path: "/contact", icon: Mail },
+  { type: "section", key: "nav.contact", section: "#contact", icon: Mail },
 ];
 
 const sectionItems = navItems.filter(
@@ -169,6 +169,7 @@ export default function Navbar() {
   const [activeHref, setActiveHref] = useState(defaultSection);
   const { t } = useI18n();
   const pathname = usePathname();
+  const contactHref = pathname === "/" ? "#contact" : "/#contact";
 
   useEffect(() => {
     const onScroll = () => {
@@ -211,7 +212,7 @@ export default function Navbar() {
       <nav
         className={`mx-auto grid grid-cols-2 items-center px-4 transition-[height,max-width,border-radius,background-color,box-shadow,border-color] duration-500 ease-in-out sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8 ${
           scrolled
-            ? "h-14 max-w-4xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-lg"
+            ? "h-14 max-w-6xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-lg"
             : "h-20 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none sm:h-24 lg:h-30"
         }`}
       >
@@ -270,7 +271,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden items-center gap-2 md:flex md:justify-self-end">
           <Link
-            href="/contact"
+            href={contactHref}
             className="btn-cta inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-4 py-2 font-body text-base font-semibold text-restra-bg transition-all hover:-translate-y-px hover:bg-restra-yellow/90"
           >
             {t("nav.getStarted")}
@@ -280,7 +281,7 @@ export default function Navbar() {
         {/* Mobile controls */}
         <div className="flex items-center gap-2 justify-self-end md:hidden">
           <Link
-            href="/contact"
+            href={contactHref}
             className="btn-cta inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-3.5 py-2 text-xs font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90"
           >
             {t("nav.getStarted")}
