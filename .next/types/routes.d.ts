@@ -4,7 +4,7 @@
 type AppRoutes = "/" | "/about" | "/blog" | "/blog/[slug]" | "/contact" | "/cookies" | "/faq" | "/features" | "/features/[slug]" | "/how-it-works" | "/pricing" | "/privacy" | "/privacy-policy" | "/refund-policy" | "/restaurant-management-system" | "/terms"
 type PageRoutes = never
 type LayoutRoutes = "/"
-type RedirectRoutes = never
+type RedirectRoutes = "/privacy-policy"
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes
 

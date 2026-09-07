@@ -4,6 +4,18 @@ import path from "path";
 const nextConfig: NextConfig = {
   // Disable React StrictMode double-render in dev to match Vite behavior
   reactStrictMode: true,
+  // Keep one URL form for every route. Requests with a trailing slash are
+  // normalized by Next.js to the slashless URL used in the sitemap/canonicals.
+  trailingSlash: false,
+  async redirects() {
+    return [
+      {
+        source: "/privacy-policy",
+        destination: "/privacy",
+        permanent: true,
+      },
+    ];
+  },
   // Allow hero images/videos referenced from Supabase Storage public URLs
   images: {
     remotePatterns: [{ protocol: "https", hostname: "**.supabase.co" }],
