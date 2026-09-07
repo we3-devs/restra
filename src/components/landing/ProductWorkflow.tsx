@@ -56,10 +56,10 @@ export default function ProductWorkflow() {
   const { t } = useI18n();
 
   return (
-    <section id="workflow" className="relative overflow-hidden py-24 lg:py-32">
+    <section id="workflow" className="relative overflow-hidden py-[4.8rem] lg:py-[6.4rem]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_18%_50%,rgba(34,211,238,0.04),transparent)]" />
 
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-6xl px-4 lg:px-6">
         <Reveal className="mx-auto mb-16 max-w-2xl text-center lg:mb-20">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-restra-cyan">
             {t("workflow.badge")}

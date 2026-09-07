@@ -17,8 +17,8 @@ export default function HomeFaq() {
   const { t } = useI18n();
 
   return (
-    <section className="relative py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="relative py-16 lg:py-[5.6rem]">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div>
             <SectionHeading

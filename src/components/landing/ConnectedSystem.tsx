@@ -64,8 +64,8 @@ export default function ConnectedSystem() {
   const { t } = useI18n();
 
   return (
-    <section className="relative border-y border-white/[0.05] bg-restra-surface/40 py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="relative border-y border-white/[0.05] bg-restra-surface/40 py-16 lg:py-[5.6rem]">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:gap-16">
           <div>
             <Reveal>

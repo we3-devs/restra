@@ -53,14 +53,19 @@ export default function Hero() {
         <div className="absolute -right-40 top-72 h-96 w-96 rounded-full bg-restra-yellow/[0.06] blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-28 sm:pt-36 lg:px-8 lg:pb-28 lg:pt-44">
+      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-[5.6rem] sm:pt-[7.2rem] lg:px-6 lg:pb-[5.6rem] lg:pt-[8.8rem]">
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-10">
         {/* Copy */}
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+          className="mx-auto flex max-w-3xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left"
+        >
           <motion.h1
             {...fadeUp(0.08)}
             id="hero-heading"
-            className="mt-6 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-restra-text sm:text-6xl lg:text-[4.25rem]"
+            className="mt-6 font-display text-4xl font-semibold italic leading-[1.08] tracking-tight text-restra-text sm:text-6xl lg:text-[4.25rem]"
           >
             {beforeHighlight}
             <span className="text-restra-yellow">{t("hero.titleHighlight")}</span>
@@ -92,14 +97,14 @@ export default function Hero() {
               {t("hero.cta.secondary")}
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Restaurant environment visual centerpiece */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
-          className="relative mt-14 sm:mt-16 lg:mt-0"
+          className="relative mt-14 sm:mt-16 lg:mt-0 lg:translate-x-[90px] lg:translate-y-[40px]"
         >
           <HeroShowcase />
         </motion.div>

@@ -79,7 +79,7 @@ export default function Footer() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_85%_0%,rgba(255,255,255,0.14),transparent_60%)]"
       />
-      <div className="relative mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
+      <div className="relative mx-auto max-w-7xl px-4 py-12 lg:px-6 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
