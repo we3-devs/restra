@@ -1,59 +1,50 @@
+"use client";
+
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   BarChart3,
+  BellRing,
+  Boxes,
   ChefHat,
   ClipboardList,
   PackageCheck,
+  ReceiptText,
+  ScanLine,
   Settings2,
+  Users,
 } from "lucide-react";
 import { useI18n } from "@/contexts/I18nContext";
 import Reveal from "@/components/reusable/Reveal";
+import OrderLifecycle3D from "@/components/landing/OrderLifecycle3D";
 
-const workflowSteps = [
-  {
-    number: "01",
-    label: "STEP 1",
-    title: "Set Up Your Restaurant",
-    description:
-      "Add your restaurant, tables, menu, staff, and essential settings in minutes. Everything is organized in one simple workspace.",
-    icon: Settings2,
-  },
-  {
-    number: "02",
-    label: "STEP 2",
-    title: "Capture Every Order",
-    description:
-      "Take dine-in, takeaway, delivery, and QR orders in one connected flow, with every detail visible to your team.",
-    icon: ClipboardList,
-  },
-  {
-    number: "03",
-    label: "STEP 3",
-    title: "Run Your Kitchen",
-    description:
-      "Send the right order to the kitchen, track preparation status, and keep service moving without missed tickets.",
-    icon: ChefHat,
-  },
-  {
-    number: "04",
-    label: "STEP 4",
-    title: "Stay In Control",
-    description:
-      "Keep inventory, staff activity, billing, and daily operations organized from one powerful restaurant workspace.",
-    icon: PackageCheck,
-  },
-  {
-    number: "05",
-    label: "STEP 5",
-    title: "Track & Grow",
-    description:
-      "Monitor sales, performance, and business insights so you can make smarter decisions and grow your restaurant.",
-    icon: BarChart3,
-  },
-];
+const workflowStepKeys = [
+  { labelKey: "workflow.step1", detailKey: "workflow.step1d", icon: Users },
+  { labelKey: "workflow.step2", detailKey: "workflow.step2d", icon: ScanLine },
+  { labelKey: "workflow.step3", detailKey: "workflow.step3d", icon: ChefHat },
+  { labelKey: "workflow.step4", detailKey: "workflow.step4d", icon: BellRing },
+  { labelKey: "workflow.step5", detailKey: "workflow.step5d", icon: PackageCheck },
+  { labelKey: "workflow.step6", detailKey: "workflow.step6d", icon: ReceiptText },
+  { labelKey: "workflow.step7", detailKey: "workflow.step7d", icon: Boxes },
+  { labelKey: "workflow.step8", detailKey: "workflow.step8d", icon: BarChart3 },
+] as const;
+
+const orderStepKeys = [
+  { labelKey: "workflow.statusNew", descKey: "workflow.orderNewDesc", icon: ClipboardList, color: "border-restra-cyan/30 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-new.png" },
+  { labelKey: "workflow.statusConfirmed", descKey: "workflow.orderConfirmedDesc", icon: Settings2, color: "border-blue-400/30 bg-blue-400/10", textColor: "text-blue-300", dotColor: "bg-blue-400", image: "/order-lifecycle/order-confirmed.png" },
+  { labelKey: "workflow.statusPreparing", descKey: "workflow.orderPreparingDesc", icon: ChefHat, color: "border-restra-yellow/30 bg-restra-yellow/10", textColor: "text-restra-yellow", dotColor: "bg-restra-yellow", image: "/order-lifecycle/order-preparing.png" },
+  { labelKey: "workflow.statusReady", descKey: "workflow.orderReadyDesc", icon: PackageCheck, color: "border-emerald-400/30 bg-emerald-400/10", textColor: "text-emerald-300", dotColor: "bg-emerald-400", image: "/order-lifecycle/order-ready.png" },
+  { labelKey: "workflow.statusServed", descKey: "workflow.orderServedDesc", icon: BarChart3, color: "border-violet-400/30 bg-violet-400/10", textColor: "text-violet-300", dotColor: "bg-violet-400", image: "/order-lifecycle/order-served.png" },
+] as const;
+
+const orderLifecycleKeys = orderStepKeys.map((step) => ({
+  statusKey: step.labelKey,
+  textColor: step.textColor,
+}));
 
 export default function ProductWorkflow() {
   const { t } = useI18n();
+  const [activeLifecycleStep, setActiveLifecycleStep] = useState(0);
 
   return (
     <section id="workflow" className="relative overflow-hidden py-[4.8rem] lg:py-[6.4rem]">
@@ -71,8 +62,7 @@ export default function ProductWorkflow() {
           <p className="mt-4 text-base leading-relaxed text-restra-text-secondary lg:text-lg">
             {t("workflow.subtitle")}
           </p>
-        </motion.div>
-
+        </Reveal>
         {/* Day in the restaurant flow */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
