@@ -169,8 +169,8 @@ function FeatureHero({ page, isFeaturePage }: { page: SeoPage; isFeaturePage: bo
                   return <MockupRenderer mock={group.mock} />;
                 }
                 return (
-                  <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-restra-card p-8 text-center">
-                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow">
+                  <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-restra-card p-5 text-center">
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow">
                       <FeatureIcon slug={page.slug} className="h-9 w-9" />
                     </div>
                     <p className="mt-6 font-display text-xl font-semibold text-restra-text">
@@ -228,7 +228,7 @@ export default function SeoPageView({ page }: { page: SeoPage }) {
                     {section.bullets.map((bullet) => (
                       <li
                         key={bullet}
-                        className="flex items-start gap-3 rounded-xl border border-white/[0.08] bg-restra-card p-4 text-sm leading-relaxed text-restra-text-secondary"
+                        className="flex items-start gap-3 rounded-xl border border-white/[0.08] bg-restra-card p-3 text-sm leading-relaxed text-restra-text-secondary"
                       >
                         <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-400">
                           <Check className="h-3 w-3" />
@@ -317,7 +317,7 @@ function RelatedFeatures({ currentSlug }: { currentSlug: string }) {
             <Link
               key={slug}
               href={featurePath(slug)}
-              className="group flex flex-col rounded-xl border border-white/[0.08] bg-restra-card p-6 transition-all hover:-translate-y-0.5 hover:border-restra-yellow/50"
+              className="group flex flex-col rounded-xl border border-white/[0.08] bg-restra-card p-4 transition-all hover:-translate-y-0.5 hover:border-restra-yellow/50"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow transition-colors group-hover:border-restra-yellow/40">
                 <FeatureIcon slug={slug} className="h-5 w-5" />

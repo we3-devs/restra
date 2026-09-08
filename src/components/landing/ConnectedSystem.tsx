@@ -109,7 +109,7 @@ export default function ConnectedSystem() {
                   </span>
                   <div
                     className={cn(
-                      "flex flex-1 items-center justify-between gap-3 rounded-xl border bg-restra-card px-4 py-3",
+                      "flex flex-1 items-center justify-between gap-3 rounded-xl border bg-restra-card px-3 py-2.5",
                       i % 2 === 0 ? "border-white/[0.07]" : "border-white/[0.05]",
                     )}
                   >

@@ -25,7 +25,7 @@ export default function CtaBand({
   return (
     <section
       aria-label="Get started with RESTRA"
-      className="mt-16 overflow-hidden rounded-2xl border border-white/[0.08] bg-restra-card bg-[radial-gradient(ellipse_120%_100%_at_0%_0%,rgba(255,212,59,0.07),transparent_55%),radial-gradient(ellipse_100%_100%_at_100%_100%,rgba(34,211,238,0.05),transparent_60%)] p-8 sm:p-12"
+      className="mt-16 overflow-hidden rounded-2xl border border-white/[0.08] bg-restra-card bg-[radial-gradient(ellipse_120%_100%_at_0%_0%,rgba(255,212,59,0.07),transparent_55%),radial-gradient(ellipse_100%_100%_at_100%_100%,rgba(34,211,238,0.05),transparent_60%)] p-6 sm:p-8"
     >
       <div className="mx-auto max-w-2xl text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-restra-yellow">

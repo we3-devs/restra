@@ -227,7 +227,7 @@ export default function HowItWorksView() {
           </div>
 
           {/* Detail panel */}
-          <div className="mt-10 grid items-center gap-8 rounded-2xl border border-white/[0.07] bg-restra-card p-6 lg:grid-cols-2 lg:gap-12 lg:p-10">
+          <div className="mt-10 grid items-center gap-6 rounded-2xl border border-white/[0.07] bg-restra-card p-4 lg:grid-cols-2 lg:gap-8 lg:p-6">
             <div>
               <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-restra-cyan">
                 <current.moduleIcon className="h-4 w-4" />

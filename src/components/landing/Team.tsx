@@ -125,14 +125,14 @@ export default function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.35, delay: i * 0.08 }}
-              className="group mx-auto w-full max-w-60 overflow-hidden rounded-2xl border border-white/4 bg-restra-card/50 transition-all duration-300 hover:border-white/10 hover:bg-restra-card"
+              className="group mx-auto w-full max-w-52 overflow-hidden rounded-2xl border border-white/4 bg-restra-card/50 transition-all duration-300 hover:border-white/10 hover:bg-restra-card"
             >
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image
                   src={member.photo}
                   alt={t(member.nameKey)}
                   fill
-                  sizes="240px"
+                  sizes="208px"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-restra-bg via-restra-bg/70 to-transparent p-3 pt-10">
@@ -184,9 +184,9 @@ export default function Team() {
                 <motion.div
                   key={member.nameKey}
                   className="group absolute overflow-hidden rounded-2xl border bg-restra-card/50"
-                  style={{ originX: 0.5, originY: 0.5, top: -112, left: -112 }}
+                  style={{ originX: 0.5, originY: 0.5, top: -96, left: -96 }}
                   animate={{
-                    x: diff * 230,
+                    x: diff * 200,
                     scale: isActive ? 1.2 : 0.78,
                     opacity: isActive ? 1 : 0.45,
                     zIndex: isActive ? 20 : 10 - Math.abs(diff),
@@ -200,12 +200,12 @@ export default function Team() {
                   role="button"
                   tabIndex={0}
                 >
-                  <div className="relative h-56 w-56 overflow-hidden">
+                  <div className="relative h-48 w-48 overflow-hidden">
                     <Image
                       src={member.photo}
                       alt={t(member.nameKey)}
                       fill
-                      sizes="224px"
+                      sizes="192px"
                       className="object-cover"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-restra-bg via-restra-bg/70 to-transparent p-3 pt-10">

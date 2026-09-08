@@ -20,7 +20,7 @@ export default function BlogCard({ post, priority = false }: BlogCardProps) {
     >
       <BlogMedia post={post} priority={priority} />
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-4">
         <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em]">
           <span className="text-restra-cyan">{post.category}</span>
           <span className="text-restra-text-muted">·</span>
@@ -29,14 +29,14 @@ export default function BlogCard({ post, priority = false }: BlogCardProps) {
           </time>
         </div>
 
-        <h2 className="mt-3 font-display text-xl font-semibold leading-snug tracking-tight text-restra-text transition-colors group-hover:text-restra-yellow">
+        <h2 className="mt-2.5 font-display text-lg font-semibold leading-snug tracking-tight text-restra-text transition-colors group-hover:text-restra-yellow">
           {post.title}
         </h2>
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-restra-text-secondary">
+        <p className="mt-1.5 line-clamp-3 text-[13px] leading-relaxed text-restra-text-secondary">
           {post.description}
         </p>
 
-        <div className="mt-5 flex items-center justify-between border-t border-white/[0.06] pt-4 text-sm">
+        <div className="mt-3.5 flex items-center justify-between border-t border-white/[0.06] pt-3 text-[13px]">
           <span className="inline-flex items-center gap-1.5 text-restra-text-muted">
             <Clock className="h-3.5 w-3.5" />
             {post.readMinutes} min read

@@ -46,25 +46,25 @@ export default function FeatureBento() {
                   )}
                 >
                   {/* Copy */}
-                  <div className={cn("flex flex-1 flex-col p-6", wide && "lg:max-w-[46%]")}>
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow">
-                      <Icon className="h-4.5 w-4.5" />
+                  <div className={cn("flex flex-1 flex-col p-4", wide && "lg:max-w-[46%]")}>
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow">
+                      <Icon className="h-4 w-4" />
                     </span>
                     <h3
                       className={cn(
                         "mt-4 font-display font-semibold tracking-tight text-restra-text",
-                        wide ? "text-2xl" : "text-lg",
+                        wide ? "text-xl" : "text-base",
                       )}
                     >
                       {group.name}
                     </h3>
-                    <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-restra-cyan">
+                    <p className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-restra-cyan">
                       {group.tagline}
                     </p>
-                    <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-restra-text-secondary">
+                    <p className="mt-2 line-clamp-3 flex-1 text-[13px] leading-relaxed text-restra-text-secondary">
                       {group.description}
                     </p>
-                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-restra-yellow">
+                    <span className="mt-3.5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-restra-yellow">
                       {t("showcase.learnMore")}
                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                     </span>

@@ -90,7 +90,7 @@ export default function BlogBlocks({ blocks }: { blocks: BlogBlock[] }) {
               <nav
                 key={index}
                 aria-label="Table of contents"
-                className="rounded-xl border border-white/[0.08] bg-restra-card p-6"
+                className="rounded-xl border border-white/[0.08] bg-restra-card p-4"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-restra-yellow">
                   In this guide
@@ -176,7 +176,7 @@ export default function BlogBlocks({ blocks }: { blocks: BlogBlock[] }) {
             );
           case "cta":
             return (
-              <aside key={index} className="rounded-xl border border-restra-yellow/20 bg-restra-yellow/[0.08] p-6 sm:p-8">
+              <aside key={index} className="rounded-xl border border-restra-yellow/20 bg-restra-yellow/[0.08] p-4 sm:p-5">
                 <p className="leading-7 text-restra-text-secondary">{block.text}</p>
                 <Link href={block.href} className="mt-5 inline-flex rounded-lg bg-restra-yellow px-5 py-2.5 text-sm font-semibold text-restra-bg transition-colors hover:bg-restra-yellow/90">
                   {block.label}

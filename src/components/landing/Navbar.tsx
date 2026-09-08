@@ -77,7 +77,7 @@ function FeaturesNavMenu({ label }: { label: string }) {
         href="/features"
         aria-haspopup="menu"
         aria-expanded={open}
-        className={`group inline-flex items-center gap-1 rounded-full px-3 py-2 font-body text-base font-medium transition-all duration-300 hover:bg-restra-yellow/10 hover:text-restra-text ${
+        className={`group inline-flex items-center gap-1 rounded-full px-3 py-1.5 font-body text-sm font-medium transition-all duration-300 hover:bg-restra-yellow/10 hover:text-restra-text ${
           open
             ? "bg-restra-yellow/10 text-restra-text shadow-[0_6px_18px_rgba(245,197,24,0.12)]"
             : "text-restra-text-secondary"
@@ -211,23 +211,23 @@ export default function Navbar() {
       <nav
         className={`mx-auto grid grid-cols-2 items-center px-4 transition-[height,max-width,border-radius,background-color,box-shadow,border-color] duration-500 ease-in-out sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8 ${
           scrolled
-            ? "h-14 max-w-4xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-lg"
-            : "h-20 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none sm:h-24 lg:h-30"
+            ? "h-12 max-w-4xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-lg"
+            : "h-16 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none sm:h-18 lg:h-22"
         }`}
       >
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-text"
+          className="flex items-end gap-1 font-display text-lg font-semibold tracking-tight text-restra-text"
         >
-          <img src="/logo.svg" alt="RESTRA logo" className="h-8 w-auto shrink-0 sm:h-11" />
+          <img src="/logo.svg" alt="RESTRA logo" className="h-7 w-auto shrink-0 sm:h-9" />
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-8 md:flex md:justify-self-center">
+        <div className="hidden items-center gap-6 md:flex md:justify-self-center">
           {navItems.map((item) => {
             const isActive = item.type === "section" && item.section === activeHref;
-            const className = `font-body text-base font-medium transition-colors hover:text-restra-text ${
+            const className = `font-body text-sm font-medium transition-colors hover:text-restra-text ${
               isActive ? "text-restra-text" : "text-restra-text-secondary"
             }`;
 
@@ -271,7 +271,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-2 md:flex md:justify-self-end">
           <Link
             href="/contact"
-            className="btn-cta inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-4 py-2 font-body text-base font-semibold text-restra-bg transition-all hover:-translate-y-px hover:bg-restra-yellow/90"
+            className="btn-cta inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-3.5 py-1.5 font-body text-sm font-semibold text-restra-bg transition-all hover:-translate-y-px hover:bg-restra-yellow/90"
           >
             {t("nav.getStarted")}
           </Link>
@@ -281,7 +281,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2 justify-self-end md:hidden">
           <Link
             href="/contact"
-            className="btn-cta inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-3.5 py-2 text-xs font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90"
+            className="btn-cta inline-flex items-center gap-1.5 rounded-lg bg-restra-yellow px-3 py-1.5 text-xs font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90"
           >
             {t("nav.getStarted")}
           </Link>

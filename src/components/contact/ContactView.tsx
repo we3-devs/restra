@@ -137,7 +137,7 @@ export default function ContactView() {
               <form
                 onSubmit={handleSubmit("whatsapp")}
                 noValidate
-                className="rounded-2xl border border-white/[0.08] bg-restra-card p-6 sm:p-8"
+                className="rounded-2xl border border-white/[0.08] bg-restra-card p-4 sm:p-6"
                 aria-labelledby="contact-form-title"
               >
                 <h2 id="contact-form-title" className="font-display text-2xl font-semibold tracking-tight">

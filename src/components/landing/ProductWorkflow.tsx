@@ -93,7 +93,7 @@ export default function ProductWorkflow() {
                 transition={{ duration: 0.35, delay: i * 0.06 }}
                 className="group relative"
               >
-                <div className="rounded-xl border border-white/[0.06] bg-restra-card p-4 transition-all duration-300 hover:border-white/[0.12]">
+                <div className="rounded-xl border border-white/[0.06] bg-restra-card p-3 transition-all duration-300 hover:border-white/[0.12]">
                   <div className="mb-3 flex items-center gap-3">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-restra-yellow/10">
                       <step.icon className="h-4 w-4 text-restra-yellow" />
@@ -145,7 +145,7 @@ export default function ProductWorkflow() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.3 }}
-            className="mt-8 rounded-xl border border-white/[0.06] bg-restra-card p-5"
+            className="mt-8 rounded-xl border border-white/[0.06] bg-restra-card p-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-3">

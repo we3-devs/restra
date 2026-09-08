@@ -140,7 +140,7 @@ export default function AboutView() {
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, i) => (
               <Reveal key={value.titleKey} delay={i * 0.06}>
-                <div className="h-full rounded-xl border border-white/[0.07] bg-restra-card p-6 transition-colors hover:border-restra-yellow/40">
+                <div className="h-full rounded-xl border border-white/[0.07] bg-restra-card p-4 transition-colors hover:border-restra-yellow/40">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-restra-yellow/10 text-restra-yellow">
                     <value.icon className="h-4.5 w-4.5" />
                   </span>

@@ -15,7 +15,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-restra-card px-8 py-16 text-center sm:px-16 lg:py-20"
+          className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-restra-card px-6 py-12 text-center sm:px-10 lg:py-16"
         >
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(255,212,59,0.06),transparent)]" />

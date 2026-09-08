@@ -1,0 +1,16 @@
+
+> restra-nextjs@0.0.0 dev
+> next dev --turbopack -p 3001
+
+   ▲ Next.js 15.5.25 (Turbopack)
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.56.1:3001
+
+ ✓ Starting...
+ ✓ Ready in 1870ms
+ ○ Compiling / ...
+ ✓ Compiled / in 5s
+ GET / 200 in 6064ms
+ GET / 200 in 518ms
+ GET / 200 in 651ms
+ GET / 200 in 912ms

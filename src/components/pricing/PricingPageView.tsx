@@ -102,9 +102,9 @@ export default function PricingPageView() {
               <Reveal key={plan.id} delay={i * 0.08}>
                 <article
                   className={cn(
-                    "relative flex h-full flex-col rounded-2xl border p-6 transition-all duration-300 md:p-7",
+                    "relative flex h-full flex-col rounded-2xl border p-4 transition-all duration-300 md:p-5",
                     plan.highlight
-                      ? "border-restra-yellow/50 bg-restra-yellow/[0.05] shadow-lg shadow-restra-yellow/[0.06] md:-my-4 md:scale-105 md:p-9"
+                      ? "border-restra-yellow/50 bg-restra-yellow/[0.05] shadow-lg shadow-restra-yellow/[0.06] md:-my-4 md:scale-105 md:p-6"
                       : "border-white/[0.08] bg-restra-card hover:border-white/[0.16]",
                   )}
                 >
@@ -125,15 +125,15 @@ export default function PricingPageView() {
                   >
                     {t(plan.labelKey)}
                   </p>
-                  <h2 className="mt-2 font-display text-2xl font-semibold text-restra-text">
+                  <h2 className="mt-1.5 font-display text-xl font-semibold text-restra-text">
                     {t(plan.nameKey)}
                   </h2>
 
-                  <div className="mt-5">
+                  <div className="mt-4">
                     <span
                       className={cn(
                         "font-display font-semibold tracking-tight text-restra-text",
-                        plan.highlight ? "text-5xl" : "text-3xl",
+                        plan.highlight ? "text-4xl" : "text-2xl",
                       )}
                     >
                       {plan.price}
@@ -141,7 +141,7 @@ export default function PricingPageView() {
                     <span className="text-sm text-restra-text-muted">{t(plan.periodKey)}</span>
                   </div>
 
-                  <ul className="mt-6 flex-1 space-y-3">
+                  <ul className="mt-5 flex-1 space-y-2.5">
                     {plan.featureKeys.map((featureKey) => (
                       <li key={featureKey} className="flex items-start gap-2.5">
                         <Check

@@ -60,12 +60,12 @@ export default function WhyRestra() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.35, delay: i * 0.06 }}
-                className="flex items-start gap-4 rounded-xl border border-white/[0.04] bg-restra-card/50 p-4 transition-all duration-300 hover:border-white/[0.1] hover:bg-restra-card"
+                className="flex items-start gap-3 rounded-xl border border-white/[0.04] bg-restra-card/50 p-3 transition-all duration-300 hover:border-white/[0.1] hover:bg-restra-card"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-restra-yellow/10">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-restra-yellow/10">
                   <reason.icon className="h-4 w-4 text-restra-yellow" />
                 </div>
-                <p className="text-sm leading-relaxed text-restra-text-secondary pt-1.5">
+                <p className="text-[13px] leading-relaxed text-restra-text-secondary pt-1">
                   {t(reason.textKey)}
                 </p>
               </motion.div>

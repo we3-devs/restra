@@ -57,7 +57,7 @@ export default function Pricing() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-restra-cyan">
             {t("price.badge")}
           </p>
-          <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-restra-text sm:text-4xl lg:text-5xl">
+          <h2 className="font-display text-2xl font-semibold leading-tight tracking-tight text-restra-text sm:text-3xl lg:text-4xl">
             {titleParts[0]}
             <span className="text-restra-yellow">{t("price.titleHighlight")}</span>
             {titleParts[1] || ""}
@@ -75,9 +75,9 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`relative rounded-xl border p-5 transition-all duration-300 md:p-6 ${
+              className={`relative rounded-xl border p-4 transition-all duration-300 md:p-5 ${
                 plan.highlight
-                  ? "border-restra-yellow/30 bg-restra-yellow/[0.04] shadow-lg shadow-restra-yellow/[0.05] md:-my-4 md:scale-105 md:p-8"
+                  ? "border-restra-yellow/30 bg-restra-yellow/[0.04] shadow-lg shadow-restra-yellow/[0.05] md:-my-4 md:scale-105 md:p-6"
                   : "border-white/[0.06] bg-restra-card hover:border-white/[0.12]"
               }`}
             >
@@ -98,19 +98,19 @@ export default function Pricing() {
                 }`}>
                   {t(plan.labelKey)}
                 </p>
-                <h3 className="mt-2 font-display text-xl font-semibold text-restra-text">
+                <h3 className="mt-1.5 font-display text-lg font-semibold text-restra-text">
                   {t(plan.nameKey)}
                 </h3>
               </div>
 
-              <div className="mb-6">
-                <span className={`font-display font-semibold text-restra-text ${plan.highlight ? "text-4xl" : "text-2xl"}`}>
+              <div className="mb-5">
+                <span className={`font-display font-semibold text-restra-text ${plan.highlight ? "text-3xl" : "text-xl"}`}>
                   {plan.price}
                 </span>
                 <span className="text-sm text-restra-text-muted">{t(plan.periodKey)}</span>
               </div>
 
-              <ul className="mb-6 space-y-3">
+              <ul className="mb-5 space-y-2.5">
                 {plan.features.map((fKey) => (
                   <li key={fKey} className="flex items-start gap-2.5">
                     <Check className={`mt-0.5 h-4 w-4 shrink-0 ${

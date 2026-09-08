@@ -182,7 +182,7 @@ export default function FaqPageView() {
           </VisuallyHidden>
 
           {filteredSections.length === 0 ? (
-            <div className="mt-8 rounded-xl border border-white/[0.08] bg-restra-surface/60 p-6 text-center text-sm text-restra-text-secondary">
+            <div className="mt-8 rounded-xl border border-white/[0.08] bg-restra-surface/60 p-4 text-center text-[13px] text-restra-text-secondary">
               No questions match “{query}”. Try a broader search.
             </div>
           ) : (
@@ -213,7 +213,7 @@ export default function FaqPageView() {
 
       <section
         id="contact"
-        className="overflow-hidden rounded-2xl border border-white/[0.08] bg-restra-card bg-[radial-gradient(ellipse_120%_100%_at_0%_0%,rgba(255,212,59,0.07),transparent_55%),radial-gradient(ellipse_100%_100%_at_100%_100%,rgba(34,211,238,0.05),transparent_60%)] p-8 sm:p-12 lg:p-16"
+        className="overflow-hidden rounded-2xl border border-white/[0.08] bg-restra-card bg-[radial-gradient(ellipse_120%_100%_at_0%_0%,rgba(255,212,59,0.07),transparent_55%),radial-gradient(ellipse_100%_100%_at_100%_100%,rgba(34,211,238,0.05),transparent_60%)] p-6 sm:p-8 lg:p-10"
         aria-labelledby="faq-cta-heading"
       >
         <div className="mx-auto max-w-2xl text-center">
