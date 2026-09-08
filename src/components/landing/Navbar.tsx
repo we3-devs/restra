@@ -210,10 +210,10 @@ export default function Navbar() {
       }`}
     >
       <nav
-        className={`mx-auto grid grid-cols-2 items-center px-4 transition-[height,max-width,border-radius,background-color,box-shadow,border-color] duration-500 ease-in-out sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8 ${
+        className={`mx-auto grid grid-cols-2 items-center px-4 transition-[height,max-width,border-radius,background-color,box-shadow,border-color,backdrop-filter] duration-500 ease-in-out sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8 ${
           scrolled
-            ? "h-14 max-w-6xl rounded-full border border-white/8 bg-restra-bg/60 shadow-lg shadow-black/5 backdrop-blur-lg"
-            : "h-20 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none sm:h-24 lg:h-30"
+            ? "h-16 max-w-6xl rounded-full border border-white/45 bg-white/55 shadow-[0_12px_32px_rgba(26,28,28,0.12)] backdrop-blur-xl backdrop-saturate-150"
+            : "h-24 max-w-[1600px] rounded-none border border-transparent bg-transparent shadow-none backdrop-blur-0 sm:h-28 lg:h-32"
         }`}
       >
         {/* Logo */}
@@ -336,7 +336,7 @@ export function MobileTabBar() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-white/8 bg-restra-bg/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-lg md:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-white/45 bg-white/70 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_24px_rgba(26,28,28,0.08)] backdrop-blur-xl backdrop-saturate-150 md:hidden"
       aria-label="Mobile navigation"
     >
       <div className="flex items-stretch justify-between px-1">
