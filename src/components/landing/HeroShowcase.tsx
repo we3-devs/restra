@@ -1,20 +1,21 @@
-import type { ReactNode } from "react";
+import type { PointerEvent, ReactNode } from "react";
 import Image from "next/image";
 import {
   CalendarCheck,
   ChefHat,
-  Package,
   CreditCard,
-  Check,
   Soup,
   TrendingUp,
   Users,
-  ShoppingCart,
-  X,
 } from "lucide-react";
 
 import { useI18n } from "@/contexts/I18nContext";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 
 /**
@@ -108,88 +109,54 @@ function GlassCard({
 
 export default function HeroShowcase() {
   const { t } = useI18n();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springConfig = { stiffness: 180, damping: 22, mass: 0.7 };
+  const tiltX = useSpring(useTransform(pointerY, [-1, 1], [28, -28]), springConfig);
+  const tiltY = useSpring(useTransform(pointerX, [-1, 1], [-28, 28]), springConfig);
 
   const restaurantImg = "/images/dashboard-bg.jpeg";
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - bounds.left) / bounds.width * 2 - 1);
+    pointerY.set((event.clientY - bounds.top) / bounds.height * 2 - 1);
+  };
+
+  const resetTilt = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
   return (
     <div className="relative mx-auto w-full max-w-4xl" aria-hidden="true">    
-    <div>
+    <div
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetTilt}
+      className="group"
+    >
           {/* Visual composition */}
-          <div className="relative mt-16 sm:mt-20 lg:mt-24">
+          <div className="relative mt-16 sm:mt-20 lg:mt-0">
           {/* Restaurant environment image */}
-          <div
-            className="relative mx-auto aspect-[4/3] w-full max-w-4xl overflow-hidden rounded-[2.25rem] border border-white/[0.12] shadow-2xl shadow-black/10 ring-1 ring-white/20"
-            aria-hidden="true"
+          <motion.div
+            style={{ perspective: 1200, rotateX: tiltX, rotateY: tiltY, transformStyle: "preserve-3d" }}
+            className="relative mx-auto w-full max-w-4xl rounded-[2.25rem] shadow-[0_24px_70px_rgba(212,160,23,0.22)]"
           >
+            <div
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.25rem] border border-white/[0.12] shadow-2xl shadow-black/10 ring-1 ring-white/20"
+              aria-hidden="true"
+            >
             <Image
               src={restaurantImg}
               alt={t("home.restaurantSectionAlt")}
               priority
               fill
               sizes="(max-width: 1024px) 100vw, 75vw"
-              className="object-cover object-center"
+              className="object-cover object-left"
             />
             {/* Darker warm wash so Restra UI reads well over the photo */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#1A1C1C]/40 via-[#1A1C1C]/18 to-transparent" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_35%,transparent_35%,rgba(15,17,16,0.35)_100%)]" />
-          </div>
-
-          {/* Floating card: New Order — bottom-left */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 18 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.25, ease: EASE }}
-            whileHover={{ y: -3 }}
-            className="absolute left-2 bottom-4 z-20 hidden w-[17.5rem] rotate-[1.6deg] sm:block lg:left-4 lg:w-[19rem] restra-float"
-          >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-4 shadow-lg shadow-black/5 backdrop-blur-sm">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-restra-yellow/10 text-[#241D05]">
-                    <ShoppingCart className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
-                      New Order
-                    </p>
-                    <p className="text-xs font-semibold text-restra-text">Table 7 · Dine-in</p>
-                  </div>
-                </div>
-                <span className="text-sm font-semibold text-restra-text">Rs. 1,450</span>
-              </div>
-
-              <ul className="mt-3 space-y-1.5 text-xs text-restra-text-secondary">
-                <li className="flex items-center gap-2">
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-restra-text-muted" />
-                  Burger ×2
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-restra-text-muted" />
-                  Fries ×1
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-restra-text-muted" />
-                  Coke ×3
-                </li>
-              </ul>
-
-              <div className="mt-3 flex gap-2">
-                <button
-                  type="button"
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-restra-border bg-white px-3 py-2 text-xs font-semibold text-restra-text transition-all hover:border-restra-border-strong hover:shadow-sm"
-                  aria-label="Decline order"
-                >
-                  <X className="h-3.5 w-3.5" />
-                  Decline
-                </button>
-                <button
-                  type="button"
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-restra-yellow px-3 py-2 text-xs font-semibold text-[#241D05] shadow-sm shadow-restra-yellow/20 transition-all hover:bg-restra-yellow/90 hover:shadow-md hover:shadow-restra-yellow/25"
-                  aria-label="Accept order"
-                >
-                  <Check className="h-3.5 w-3.5" />
-                  Accept
-                </button>
-              </div>
             </div>
           </motion.div>
 
@@ -199,9 +166,9 @@ export default function HeroShowcase() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.34, ease: EASE }}
             whileHover={{ y: -3 }}
-            className="absolute right-0 top-6 z-20 hidden w-[17.5rem] sm:block lg:right-4 lg:w-[19rem] restra-float-delayed"
+            className="absolute right-0 bottom-0 z-20 hidden w-[9rem] sm:block lg:right-0 lg:w-[10rem] restra-float-delayed"
           >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-4 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="rounded-xl border border-restra-border bg-white/95 p-2 shadow-lg shadow-black/5 backdrop-blur-sm">
               <p className="text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
                 Weekly Sales
               </p>
@@ -211,7 +178,7 @@ export default function HeroShowcase() {
 
               <div className="mt-3 flex items-center gap-3">
                 {/* Simple donut-ish visualization */}
-                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white/60 shadow-inner">
+                <div className="h-8 w-8 shrink-0 overflow-hidden rounded-full border-2 border-white/60 shadow-inner">
                   <svg
                     viewBox="0 0 36 36"
                     className="h-full w-full -rotate-90"
@@ -288,10 +255,10 @@ export default function HeroShowcase() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.3, ease: EASE }}
             whileHover={{ y: -3 }}
-            className="absolute left-2 top-6 z-20 hidden w-[13.5rem] sm:block lg:left-4 lg:w-[15rem] restra-float"
+            className="absolute left-0 top-0 z-20 hidden w-[6.75rem] sm:block lg:left-0 lg:w-[7.5rem] restra-float"
             data-card="orders"
           >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-4 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="rounded-xl border border-restra-border bg-white/95 p-2 shadow-lg shadow-black/5 backdrop-blur-sm">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-restra-cyan/10 text-restra-cyan">
@@ -328,47 +295,11 @@ export default function HeroShowcase() {
             </div>
           </motion.div>
 
-          {/* Floating card: Inventory — lower-right */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 18 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.38, ease: EASE }}
-            whileHover={{ y: -3 }}
-            className="absolute right-0 bottom-4 z-20 hidden w-[13.5rem] sm:block lg:right-4 lg:w-[15rem] restra-float-delayed"
-          >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-4 shadow-lg shadow-black/5 backdrop-blur-sm">
-              <div className="flex items-center gap-2">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-restra-yellow/10 text-restra-yellow">
-                  <Package className="h-3.5 w-3.5" />
-                </span>
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
-                    Inventory
-                  </p>
-                  <p className="text-sm font-semibold text-restra-text">Low Stock: 4 items</p>
-                </div>
-              </div>
-
-              <div className="mt-3 flex items-center justify-between rounded-lg border border-restra-border bg-restra-surface/50 px-3 py-1.5">
-                <span className="text-[11px] text-restra-text-muted">Updated</span>
-                <span className="text-[11px] font-semibold text-restra-text">Just now</span>
-              </div>
-
-              <div className="mt-2.5 flex items-center gap-2 text-[11px] text-restra-text-secondary">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-restra-border bg-white px-2 py-0.5 text-[10px] font-medium text-emerald-600">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  synced
-                </span>
-                <span className="text-[10px] text-restra-text-muted">kitchen</span>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Decorative foreground dots: subtle restaurant/grid cue */}
           <div className="pointer-events-none absolute -z-10 left-[12%] top-[14%] hidden h-20 w-20 rounded-full bg-restra-yellow/8 blur-2xl sm:block lg:left-[14%] lg:top-[16%]" aria-hidden="true" />
           <div className="pointer-events-none absolute -z-10 right-[18%] bottom-[22%] hidden h-32 w-32 rounded-full bg-restra-cyan/8 blur-2xl sm:block lg:right-[20%] lg:bottom-[24%]" aria-hidden="true" />
         </div>
-      </div>   
+    </div>
       <style>{`
         @media (prefers-reduced-motion: reduce) {
           .restra-float,
@@ -378,14 +309,14 @@ export default function HeroShowcase() {
         }
         @media (prefers-reduced-motion: no-preference) {
           .restra-float {
-            animation: restra-float 7s ease-in-out infinite;
+            animation: restra-float 6s ease-in-out infinite;
           }
           .restra-float-delayed {
-            animation: restra-float 8.5s ease-in-out infinite;
+            animation: restra-float 7s ease-in-out infinite;
           }
           @keyframes restra-float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
+            50% { transform: translateY(-8px); }
           }
         }
       `}</style>

@@ -94,10 +94,10 @@ export default function Team() {
   };
 
   return (
-    <section id="team" className="relative py-24 lg:py-32">
+    <section id="team" className="relative py-[4.8rem] lg:py-[6.4rem]">
       <div className="absolute inset-0 bg-restra-surface/50" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

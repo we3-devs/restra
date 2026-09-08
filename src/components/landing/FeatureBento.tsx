@@ -19,8 +19,8 @@ export default function FeatureBento() {
   const wideIds = new Set(["pos-billing", "qr-ordering"]);
 
   return (
-    <section id="modules" className="relative py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="modules" className="relative py-16 lg:py-[5.6rem]">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <SectionHeading
           badge={t("home.bentoBadge")}
           title={t("home.bentoTitle")}

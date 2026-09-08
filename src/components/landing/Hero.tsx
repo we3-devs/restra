@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
 import HeroShowcase from "./HeroShowcase";
@@ -30,7 +30,7 @@ export default function Hero() {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative overflow-hidden"
+      className="relative min-h-screen overflow-hidden"
     >
       {/* Background photo + readability overlays */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -41,32 +41,31 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="scale-110 object-cover object-center"
         />
         {/* Wash the photo out so copy stays readable on the light theme */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/45 via-white/30 to-restra-bg/85" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/45 via-white/30 to-restra-bg/30" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_60%_at_50%_30%,transparent_45%,rgba(250,250,248,0.45)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-restra-bg/90" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-restra-bg/30" />
         {/* Subtle brand glows on top of the photo wash */}
         <div className="absolute inset-x-0 top-0 h-[36rem] bg-[radial-gradient(ellipse_70%_55%_at_50%_-10%,rgba(212,160,23,0.08),transparent_65%)]" />
         <div className="absolute -left-40 top-40 h-96 w-96 rounded-full bg-restra-cyan/[0.05] blur-3xl" />
         <div className="absolute -right-40 top-72 h-96 w-96 rounded-full bg-restra-yellow/[0.06] blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-28 sm:pt-36 lg:px-8 lg:pb-28 lg:pt-44">
+      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-[5.6rem] sm:pt-[7.2rem] lg:px-6 lg:pb-[5.6rem] lg:pt-[8.8rem]">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-10">
         {/* Copy */}
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <motion.div {...fadeUp(0)}>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white/70 px-3.5 py-1.5 text-xs font-medium text-restra-text-secondary shadow-sm backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5 text-restra-yellow" aria-hidden="true" />
-              Restaurant management, simplified
-            </span>
-          </motion.div>
-
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+          className="mx-auto flex max-w-3xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left"
+        >
           <motion.h1
             {...fadeUp(0.08)}
             id="hero-heading"
-            className="mt-6 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-restra-text sm:text-6xl lg:text-[4.25rem]"
+            className="mt-6 font-display text-4xl font-semibold italic leading-[1.08] tracking-tight text-restra-text sm:text-6xl lg:text-[4.25rem]"
           >
             {beforeHighlight}
             <span className="text-restra-yellow">{t("hero.titleHighlight")}</span>
@@ -82,7 +81,7 @@ export default function Hero() {
 
           <motion.div
             {...fadeUp(0.24)}
-            className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+            className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row lg:justify-start"
           >
             <Link
               href="/contact"
@@ -98,17 +97,18 @@ export default function Hero() {
               {t("hero.cta.secondary")}
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Restaurant environment visual centerpiece */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
-          className="relative mt-14 sm:mt-16 lg:mt-20"
+          className="relative mt-14 sm:mt-16 lg:mt-0 lg:translate-x-[90px] lg:translate-y-[40px]"
         >
           <HeroShowcase />
         </motion.div>
+        </div>
       </div>
     </section>
   );

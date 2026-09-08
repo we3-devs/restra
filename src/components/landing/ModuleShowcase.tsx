@@ -70,9 +70,9 @@ export default function ModuleShowcase() {
           <section
             key={id}
             id={`showcase-${id}`}
-            className={cn("relative py-16 lg:py-24", index % 2 === 1 && "bg-restra-surface/40 border-y border-white/[0.05]")}
+            className={cn("relative py-[3.2rem] lg:py-[4.8rem]", index % 2 === 1 && "bg-restra-surface/40 border-y border-white/[0.05]")}
           >
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-4 lg:px-6">
               <div
                 className={cn(
                   "grid items-center gap-10 lg:grid-cols-2 lg:gap-16",

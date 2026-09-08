@@ -11,7 +11,7 @@ export default function RestaurantShowcase() {
   return (
     <section
       aria-labelledby="restaurant-showcase-heading"
-      className="relative overflow-hidden bg-restra-surface/40 border-y border-white/[0.05] py-20 lg:py-28"
+      className="relative overflow-hidden bg-restra-surface/40 border-y border-white/[0.05] py-16 lg:py-[5.6rem]"
     >
       {/* Ambient brand glow behind the visual */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -20,7 +20,7 @@ export default function RestaurantShowcase() {
         <div className="absolute -left-32 bottom-20 h-72 w-72 rounded-full bg-restra-yellow/[0.05] blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
         {/* Heading + intro + CTAs */}
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-restra-text-muted">
@@ -53,7 +53,7 @@ export default function RestaurantShowcase() {
             </Link>
           </div>
         </Reveal>
-    </div>  
+      </div>
     </section>
   );
 }

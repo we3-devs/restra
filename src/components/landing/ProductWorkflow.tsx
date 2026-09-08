@@ -1,73 +1,74 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { useI18n } from "@/contexts/I18nContext";
-import type { TranslationKey } from "@/lib/translations";
 import {
-  Smartphone,
-  ChefHat,
-  CreditCard,
-  PackageCheck,
   BarChart3,
-  CircleDot,
-  CheckCircle2,
-  Clock,
-  Flame,
-  UtensilsCrossed,
+  ChefHat,
+  ClipboardList,
+  PackageCheck,
+  Settings2,
 } from "lucide-react";
-import OrderLifecycle3D from "./OrderLifecycle3D";
+import { useI18n } from "@/contexts/I18nContext";
+import Reveal from "@/components/reusable/Reveal";
 
-const workflowStepKeys: { icon: typeof Smartphone; labelKey: TranslationKey; detailKey: TranslationKey }[] = [
-  { icon: Smartphone, labelKey: "workflow.step1", detailKey: "workflow.step1d" },
-  { icon: UtensilsCrossed, labelKey: "workflow.step2", detailKey: "workflow.step2d" },
-  { icon: ChefHat, labelKey: "workflow.step3", detailKey: "workflow.step3d" },
-  { icon: Clock, labelKey: "workflow.step4", detailKey: "workflow.step4d" },
-  { icon: Flame, labelKey: "workflow.step5", detailKey: "workflow.step5d" },
-  { icon: CreditCard, labelKey: "workflow.step6", detailKey: "workflow.step6d" },
-  { icon: PackageCheck, labelKey: "workflow.step7", detailKey: "workflow.step7d" },
-  { icon: BarChart3, labelKey: "workflow.step8", detailKey: "workflow.step8d" },
-];
-
-const orderLifecycleKeys: { statusKey: TranslationKey; color: string; textColor: string }[] = [
-  { statusKey: "workflow.statusNew", color: "bg-restra-cyan", textColor: "text-restra-cyan" },
-  { statusKey: "workflow.statusConfirmed", color: "bg-restra-cyan", textColor: "text-restra-cyan" },
-  { statusKey: "workflow.statusPreparing", color: "bg-restra-yellow", textColor: "text-restra-yellow" },
-  { statusKey: "workflow.statusReady", color: "bg-restra-cyan", textColor: "text-restra-cyan" },
-  { statusKey: "workflow.statusServed", color: "bg-emerald-500", textColor: "text-emerald-400" },
-];
-
-const orderStepKeys: { icon: typeof CircleDot; labelKey: TranslationKey; descKey: TranslationKey; color: string; textColor: string; dotColor: string; image: string }[] = [
-  { icon: CircleDot, labelKey: "workflow.statusNew", descKey: "workflow.orderNewDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-new.png" },
-  { icon: CheckCircle2, labelKey: "workflow.statusConfirmed", descKey: "workflow.orderConfirmedDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-confirmed.png" },
-  { icon: Flame, labelKey: "workflow.statusPreparing", descKey: "workflow.orderPreparingDesc", color: "border-restra-yellow/40 bg-restra-yellow/10", textColor: "text-restra-yellow", dotColor: "bg-restra-yellow", image: "/order-lifecycle/order-preparing.png" },
-  { icon: UtensilsCrossed, labelKey: "workflow.statusReady", descKey: "workflow.orderReadyDesc", color: "border-restra-cyan/40 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-ready.png" },
-  { icon: CheckCircle2, labelKey: "workflow.statusServed", descKey: "workflow.orderServedDesc", color: "border-emerald-500/40 bg-emerald-500/10", textColor: "text-emerald-400", dotColor: "bg-emerald-500", image: "/order-lifecycle/order-served.png" },
+const workflowSteps = [
+  {
+    number: "01",
+    label: "STEP 1",
+    title: "Set Up Your Restaurant",
+    description:
+      "Add your restaurant, tables, menu, staff, and essential settings in minutes. Everything is organized in one simple workspace.",
+    icon: Settings2,
+  },
+  {
+    number: "02",
+    label: "STEP 2",
+    title: "Capture Every Order",
+    description:
+      "Take dine-in, takeaway, delivery, and QR orders in one connected flow, with every detail visible to your team.",
+    icon: ClipboardList,
+  },
+  {
+    number: "03",
+    label: "STEP 3",
+    title: "Run Your Kitchen",
+    description:
+      "Send the right order to the kitchen, track preparation status, and keep service moving without missed tickets.",
+    icon: ChefHat,
+  },
+  {
+    number: "04",
+    label: "STEP 4",
+    title: "Stay In Control",
+    description:
+      "Keep inventory, staff activity, billing, and daily operations organized from one powerful restaurant workspace.",
+    icon: PackageCheck,
+  },
+  {
+    number: "05",
+    label: "STEP 5",
+    title: "Track & Grow",
+    description:
+      "Monitor sales, performance, and business insights so you can make smarter decisions and grow your restaurant.",
+    icon: BarChart3,
+  },
 ];
 
 export default function ProductWorkflow() {
   const { t } = useI18n();
-  const [activeLifecycleStep, setActiveLifecycleStep] = useState(0);
 
   return (
-    <section id="workflow" className="relative py-24 lg:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_20%_50%,rgba(34,211,238,0.03),transparent)]" />
+    <section id="workflow" className="relative overflow-hidden py-[4.8rem] lg:py-[6.4rem]">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_18%_50%,rgba(34,211,238,0.04),transparent)]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 max-w-2xl"
-        >
+      <div className="relative mx-auto max-w-6xl px-4 lg:px-6">
+        <Reveal className="mx-auto mb-16 max-w-2xl text-center lg:mb-20">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-restra-cyan">
             {t("workflow.badge")}
           </p>
           <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-restra-text sm:text-4xl lg:text-5xl">
-            {t("workflow.title").replace(t("workflow.titleHighlight"), "").trimEnd() + " "}
+            {t("workflow.title").replace(t("workflow.titleHighlight"), "").trimEnd()}{" "}
             <span className="text-restra-yellow">{t("workflow.titleHighlight")}</span>
           </h2>
-          <p className="mt-4 text-base text-restra-text-secondary lg:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-restra-text-secondary lg:text-lg">
             {t("workflow.subtitle")}
           </p>
         </motion.div>

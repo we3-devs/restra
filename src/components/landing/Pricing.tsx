@@ -45,8 +45,8 @@ export default function Pricing() {
   const titleParts = t("price.title").split(t("price.titleHighlight"));
 
   return (
-    <section id="pricing" className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="pricing" className="relative py-[4.8rem] lg:py-[6.4rem]">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
