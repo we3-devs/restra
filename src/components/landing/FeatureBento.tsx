@@ -4,19 +4,15 @@ import Link from "next/link";
 import { useI18n } from "@/contexts/I18nContext";
 import { ArrowRight } from "lucide-react";
 import { featureGroups } from "@/lib/showcase";
-import { cn } from "@/lib/utils";
 import Reveal from "@/components/reusable/Reveal";
 import SectionHeading from "@/components/reusable/SectionHeading";
 
 /**
- * Product-modules bento grid. Eight capability groups in an asymmetric grid:
- * two wide feature tiles with mockups and six compact tiles, each linking to
- * its crawlable feature page.
+ * Product-modules grid. Each capability group uses one equal-width card so
+ * the modules stay aligned in three columns on larger screens.
  */
 export default function FeatureBento() {
   const { t } = useI18n();
-
-  const wideIds = new Set(["pos-billing", "qr-ordering"]);
 
   return (
     <section id="modules" className="relative py-16 lg:py-[5.6rem]">
@@ -30,31 +26,23 @@ export default function FeatureBento() {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featureGroups.map((group, i) => {
-            const wide = wideIds.has(group.id);
             const Icon = group.icon;
             return (
               <Reveal
                 key={group.id}
                 delay={(i % 3) * 0.06}
-                className={cn(wide && "sm:col-span-2 lg:col-span-2")}
               >
                 <Link
                   href={group.href}
-                  className={cn(
-                    "group flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.07] bg-restra-card transition-all duration-300 hover:border-restra-yellow/40",
-                    wide && "lg:flex-row lg:items-stretch",
-                  )}
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.07] bg-restra-card transition-all duration-300 hover:border-restra-yellow/40"
                 >
                   {/* Copy */}
-                  <div className={cn("flex flex-1 flex-col p-4", wide && "lg:max-w-[46%]")}>
+                  <div className="flex flex-1 flex-col p-4">
                     <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-restra-yellow/10 text-restra-yellow">
                       <Icon className="h-4 w-4" />
                     </span>
                     <h3
-                      className={cn(
-                        "mt-4 font-display font-semibold tracking-tight text-restra-text",
-                        wide ? "text-xl" : "text-base",
-                      )}
+                      className="mt-4 font-display text-base font-semibold tracking-tight text-restra-text"
                     >
                       {group.name}
                     </h3>
@@ -70,16 +58,6 @@ export default function FeatureBento() {
                     </span>
                   </div>
 
-                  {/* Mockup panel for wide tiles */}
-                  {wide ? (
-                    <div className="relative hidden items-center justify-center border-l border-white/[0.05] bg-restra-surface/50 p-5 lg:flex lg:w-[54%]">
-                      <span
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_20%,rgba(255,212,59,0.05),transparent_60%)]"
-                      />
-                      <span className="sr-only">{group.name} preview</span>
-                    </div>
-                  ) : null}
                 </Link>
               </Reveal>
             );

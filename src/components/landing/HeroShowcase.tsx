@@ -129,7 +129,7 @@ export default function HeroShowcase() {
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-4xl" aria-hidden="true">    
+    <div className="relative mx-auto w-full max-w-3xl" aria-hidden="true">
     <div
       onPointerMove={handlePointerMove}
       onPointerLeave={resetTilt}
@@ -139,8 +139,7 @@ export default function HeroShowcase() {
           <div className="relative mt-16 sm:mt-20 lg:mt-0">
           {/* Restaurant environment image */}
           <motion.div
-            style={{ perspective: 1200, rotateX: tiltX, rotateY: tiltY, transformStyle: "preserve-3d" }}
-            className="relative mx-auto w-full max-w-4xl rounded-[2.25rem] shadow-[0_24px_70px_rgba(212,160,23,0.22)]"
+            className="relative mx-auto w-full max-w-2xl rounded-[2.25rem] shadow-[0_24px_70px_rgba(212,160,23,0.22)]"
           >
             <div
               className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.25rem] border border-white/[0.12] shadow-2xl shadow-black/10 ring-1 ring-white/20"
@@ -151,7 +150,7 @@ export default function HeroShowcase() {
               alt={t("home.restaurantSectionAlt")}
               priority
               fill
-              sizes="(max-width: 1024px) 100vw, 75vw"
+              sizes="(max-width: 768px) 100vw, 75vw"
               className="object-cover object-left"
             />
             {/* Darker warm wash so Restra UI reads well over the photo */}
@@ -166,9 +165,9 @@ export default function HeroShowcase() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.34, ease: EASE }}
             whileHover={{ y: -3 }}
-            className="absolute right-0 bottom-0 z-20 hidden w-[9rem] sm:block lg:right-0 lg:w-[10rem] restra-float-delayed"
+            className="absolute right-0 bottom-0 z-20 hidden w-fit sm:block lg:right-0 restra-float-delayed"
           >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-2 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="origin-bottom-right scale-90 rounded-xl border border-restra-border bg-white/95 p-2 shadow-lg shadow-black/5 backdrop-blur-sm">
               <p className="text-[11px] font-semibold uppercase tracking-wider text-restra-text-muted">
                 Weekly Sales
               </p>
@@ -255,10 +254,10 @@ export default function HeroShowcase() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.3, ease: EASE }}
             whileHover={{ y: -3 }}
-            className="absolute left-0 top-0 z-20 hidden w-[6.75rem] sm:block lg:left-0 lg:w-[7.5rem] restra-float"
+            className="absolute left-0 top-0 z-20 hidden w-fit sm:block lg:left-0 restra-float"
             data-card="orders"
           >
-            <div className="rounded-xl border border-restra-border bg-white/95 p-2 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="origin-top-left scale-90 rounded-xl border border-restra-border bg-white/95 p-2 shadow-lg shadow-black/5 backdrop-blur-sm">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-restra-cyan/10 text-restra-cyan">

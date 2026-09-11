@@ -63,9 +63,11 @@ export default function Hero() {
           className="mx-auto flex max-w-3xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left"
         >
           <motion.h1
-            {...fadeUp(0.08)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
             id="hero-heading"
-            className="mt-6 font-display text-4xl font-semibold italic leading-[1.08] tracking-tight text-restra-text sm:text-6xl lg:text-[4.25rem]"
+            className="mt-6 font-display text-3xl font-semibold italic leading-[1.08] tracking-tight text-restra-text sm:text-5xl lg:text-[3.75rem]"
           >
             {beforeHighlight}
             <span className="text-restra-yellow">{t("hero.titleHighlight")}</span>
@@ -74,7 +76,7 @@ export default function Hero() {
 
           <motion.p
             {...fadeUp(0.16)}
-            className="mt-5 max-w-2xl text-base leading-relaxed text-restra-text-secondary sm:mt-6 sm:text-lg"
+            className="mt-5 max-w-xl text-sm leading-relaxed text-restra-text-secondary sm:mt-6 sm:text-base"
           >
             {t("hero.subtitle")}
           </motion.p>
@@ -85,14 +87,14 @@ export default function Hero() {
           >
             <Link
               href="/contact"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-restra-yellow px-7 py-3 text-sm font-semibold text-[#241D05] shadow-lg shadow-restra-yellow/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-restra-yellow/90 hover:shadow-xl hover:shadow-restra-yellow/25 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-restra-yellow px-6 py-2.5 text-xs font-semibold text-[#241D05] shadow-lg shadow-restra-yellow/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-restra-yellow/90 hover:shadow-xl hover:shadow-restra-yellow/25 sm:w-auto"
             >
               {t("hero.cta.primary")}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
               href="/features"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-restra-border bg-white px-7 py-3 text-sm font-semibold text-restra-text transition-all duration-300 hover:-translate-y-0.5 hover:border-[#DCDCD5] hover:shadow-lg hover:shadow-black/5 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-restra-border bg-white px-6 py-2.5 text-xs font-semibold text-restra-text transition-all duration-300 hover:-translate-y-0.5 hover:border-[#DCDCD5] hover:shadow-lg hover:shadow-black/5 sm:w-auto"
             >
               {t("hero.cta.secondary")}
             </Link>
@@ -104,7 +106,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
-          className="relative mt-14 sm:mt-16 lg:mt-0 lg:translate-x-[90px] lg:translate-y-[40px]"
+          className="relative mt-10 sm:mt-12 lg:mt-0 lg:translate-x-[90px] lg:translate-y-[20px]"
         >
           <HeroShowcase />
         </motion.div>

@@ -87,24 +87,24 @@ export default function Footer() {
               href="/"
               className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-footer-heading"
             >
-              <img src="/logo.svg" alt="RESTRA logo" className="h-11 w-auto shrink-0" />
+              <img src="/logo.svg" alt="RESTRA logo" className="h-25 w-auto shrink-0" />
             </Link>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-restra-footer-muted">
-              {t("footer.desc")}
+            <p className="mt-2 text-xs font-medium ml-4 text-restra-footer-heading">
+              {t("footer.productBy")}
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-2 ml-2 flex flex-wrap gap-2">
               <Link
                 href="/#contact"
                 className="inline-flex items-center gap-2 rounded-lg bg-white/90 px-4 py-2 text-xs font-bold text-[#8a6a08] shadow-sm transition-all hover:bg-white"
               >
                 {t("common.getTableStarted")}
               </Link>
-              <Link
+              {/* <Link
                 href="/cookies"
                 className="text-xs font-medium text-restra-footer-muted transition-colors hover:text-white"
               >
                 {t("footer.cookieSettings")}
-              </Link>
+              </Link> */}
             </div>
           </div>
 

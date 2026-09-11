@@ -255,6 +255,7 @@ const en = {
 
   // Footer
   "footer.desc": "Restaurant management, without the unnecessary complexity.",
+  "footer.productBy": "A product of WE-3: Tech & Innovation",
   "footer.product": "Product",
   "footer.company": "Company",
   "footer.legal": "Legal",
@@ -777,6 +778,7 @@ const ne: Record<keyof typeof en, string> = {
 
   // Footer
   "footer.desc": "अनावश्यक जटिलता बिना रेस्टुरेन्ट व्यवस्थापन।",
+  "footer.productBy": "WE-3: टेक र इनोभेसनको उत्पादन",
   "footer.product": "उत्पादन",
   "footer.company": "कम्पनी",
   "footer.legal": "कानुनी",

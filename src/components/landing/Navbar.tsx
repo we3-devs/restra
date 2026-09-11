@@ -221,7 +221,7 @@ export default function Navbar() {
           href="/"
           className="flex items-end gap-1 font-display text-lg font-semibold tracking-tight text-restra-text"
         >
-          <img src="/logo.svg" alt="RESTRA logo" className="h-7 w-auto shrink-0 sm:h-9" />
+          <img src="/logo.svg" alt="RESTRA logo" className="h-10 w-auto shrink-0" />
         </Link>
 
         {/* Desktop nav */}

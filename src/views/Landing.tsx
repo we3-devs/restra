@@ -35,7 +35,7 @@ export default function Landing() {
         <ConnectedSystem />
         <ProductWorkflow />
         <FeatureBento />
-        <ModuleShowcase />
+        {/* <ModuleShowcase /> */}
         <RestaurantShowcase />
         <WhyRestra />
         <Team />

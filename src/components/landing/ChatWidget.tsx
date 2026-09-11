@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send } from "lucide-react";
 import { useI18n } from "@/contexts/I18nContext";
 import { findAnswer } from "@/lib/chatFaq";
@@ -22,7 +21,7 @@ const suggestedQuestions: Record<"en", string[]> = {
 };
 
 const greetingText: Record<"en", string> = {
-  en: "🙏 Namaste!! Welcome to Restra Chat. Have a question? Ask away!",
+  en: " Namaste!! Welcome to Restra Chat. Have a question? Ask away!",
 };
 
 export default function ChatWidget() {
@@ -34,7 +33,7 @@ export default function ChatWidget() {
     {
       id: "welcome",
       role: "bot",
-      text: "🙏 Namaste!! Welcome to Restra Chat. How can I help you today?",
+      text: "Namaste!! Welcome to Restra Chat. How can I help you today?",
     },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -61,15 +60,11 @@ export default function ChatWidget() {
   const handleSend = () => sendText(input);
 
   return (
-    <div className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-3 md:bottom-6 md:right-6">
-      <AnimatePresence>
+    <div className="fixed bottom-20 right-4 z-50 flex flex-row items-end gap-3 md:bottom-6 md:right-6">
+      <>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="flex h-[min(28rem,calc(100vh-6rem))] w-[calc(100vw-2rem)] max-w-88 flex-col overflow-hidden rounded-2xl border border-white/8 bg-restra-card shadow-2xl sm:w-88"
+          <div
+            className="flex h-[min(24rem,calc(100vh-6rem))] w-[calc(100vw-2rem)] max-w-80 flex-col overflow-hidden rounded-2xl border border-white/8 bg-restra-card shadow-2xl sm:w-80"
           >
             <div className="flex items-center justify-between border-b border-white/[0.06] bg-restra-surface px-4 py-3">
               <div>
@@ -144,18 +139,14 @@ export default function ChatWidget() {
                 <Send className="h-4 w-4" />
               </button>
             </form>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </>
 
-      <AnimatePresence>
+      <>
         {!open && teaserVisible && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="relative max-w-[calc(100vw-5rem)] rounded-2xl rounded-br-sm border border-white/8 bg-restra-card px-4 py-3 pr-7 text-sm leading-relaxed text-restra-text shadow-xl sm:max-w-64"
+          <div
+            className="relative max-w-[calc(100vw-5rem)] rounded-2xl rounded-br-sm border border-white/8 bg-restra-card px-3 py-2.5 pr-6 text-xs leading-relaxed text-restra-text shadow-xl sm:max-w-56"
           >
             <button
               type="button"
@@ -175,19 +166,20 @@ export default function ChatWidget() {
             >
               {greetingText.en}
             </button>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </>
 
-      <motion.button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Close chat" : "Open chat"}
-        whileTap={{ scale: 0.92 }}
-        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-restra-yellow text-restra-bg shadow-lg transition-transform hover:scale-105 sm:h-14 sm:w-14"
-      >
-        {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
-      </motion.button>
+      {!open && (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Open chat"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-restra-yellow text-restra-bg shadow-lg sm:h-12 sm:w-12"
+        >
+          <MessageCircle className="h-5 w-5" />
+        </button>
+      )}
     </div>
   );
 }
