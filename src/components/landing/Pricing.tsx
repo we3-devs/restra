@@ -138,10 +138,6 @@ export default function Pricing() {
             </motion.div>
           ))}
         </div>
-
-        <p className="mt-8 text-center text-xs text-restra-text-muted">
-          {t("price.disclaimer")}
-        </p>
       </div>
     </section>
   );

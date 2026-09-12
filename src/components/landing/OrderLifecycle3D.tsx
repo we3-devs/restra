@@ -16,7 +16,7 @@ export interface LifecycleStep {
   image?: string;
 }
 
-const ROTATE_MS = 4500;
+const ROTATE_MS = 9500;
 
 export default function OrderLifecycle3D({
   steps,
@@ -91,7 +91,9 @@ export default function OrderLifecycle3D({
           return (
             <motion.div
               key={step.key}
-              className={`absolute inset-x-4 top-0 flex h-full flex-col items-center overflow-hidden rounded-2xl border bg-restra-card/90 shadow-xl backdrop-blur-sm ${step.color} ${
+              className={`absolute inset-x-4 top-0 flex h-full flex-col items-center overflow-hidden rounded-2xl border shadow-xl backdrop-blur-sm ${
+                step.image ? "border-white/25 bg-transparent" : step.color
+              } ${
                 step.image ? "justify-end" : "justify-center p-6"
               }`}
               animate={{
@@ -121,14 +123,14 @@ export default function OrderLifecycle3D({
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
                     className={`relative flex flex-col items-center text-center ${
-                      step.image ? "mt-auto w-full rounded-b-2xl bg-linear-to-t from-restra-bg via-restra-bg/80 to-transparent px-4 pb-4 pt-10" : ""
+                      step.image ? "mt-auto w-full rounded-b-2xl bg-linear-to-t from-restra-bg via-restra-bg/25 to-transparent px-4 pb-4 pt-8" : ""
                     }`}
                   >
                     <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl border bg-restra-bg/60 ${step.color}`}>
                       <step.icon className={`h-6 w-6 ${step.textColor}`} />
                     </div>
                     <p className={`text-base font-semibold ${step.textColor}`}>{step.label}</p>
-                    <p className="mt-2 text-xs leading-relaxed text-restra-text-muted">{step.desc}</p>
+                    <p className="mt-2 text-xs leading-relaxed text-restra-text/70">{step.desc}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

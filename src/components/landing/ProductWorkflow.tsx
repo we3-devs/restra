@@ -30,11 +30,11 @@ const workflowStepKeys = [
 ] as const;
 
 const orderStepKeys = [
-  { labelKey: "workflow.statusNew", descKey: "workflow.orderNewDesc", icon: ClipboardList, color: "border-restra-cyan/30 bg-restra-cyan/10", textColor: "text-restra-cyan", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-new.png" },
-  { labelKey: "workflow.statusConfirmed", descKey: "workflow.orderConfirmedDesc", icon: Settings2, color: "border-blue-400/30 bg-blue-400/10", textColor: "text-blue-300", dotColor: "bg-blue-400", image: "/order-lifecycle/order-confirmed.png" },
-  { labelKey: "workflow.statusPreparing", descKey: "workflow.orderPreparingDesc", icon: ChefHat, color: "border-restra-yellow/30 bg-restra-yellow/10", textColor: "text-restra-yellow", dotColor: "bg-restra-yellow", image: "/order-lifecycle/order-preparing.png" },
-  { labelKey: "workflow.statusReady", descKey: "workflow.orderReadyDesc", icon: PackageCheck, color: "border-emerald-400/30 bg-emerald-400/10", textColor: "text-emerald-300", dotColor: "bg-emerald-400", image: "/order-lifecycle/order-ready.png" },
-  { labelKey: "workflow.statusServed", descKey: "workflow.orderServedDesc", icon: BarChart3, color: "border-violet-400/30 bg-violet-400/10", textColor: "text-violet-300", dotColor: "bg-violet-400", image: "/order-lifecycle/order-served.png" },
+  { labelKey: "workflow.statusNew", descKey: "workflow.orderNewDesc", icon: ClipboardList, color: "border-restra-cyan/30 bg-restra-cyan/10", textColor: "text-cyan-700", dotColor: "bg-restra-cyan", image: "/order-lifecycle/order-new.png" },
+  { labelKey: "workflow.statusConfirmed", descKey: "workflow.orderConfirmedDesc", icon: Settings2, color: "border-blue-400/30 bg-blue-400/10", textColor: "text-blue-700", dotColor: "bg-blue-400", image: "/order-lifecycle/order-confirmed.png" },
+  { labelKey: "workflow.statusPreparing", descKey: "workflow.orderPreparingDesc", icon: ChefHat, color: "border-restra-yellow/30 bg-restra-yellow/10", textColor: "text-amber-700", dotColor: "bg-restra-yellow", image: "/order-lifecycle/order-preparing.png" },
+  { labelKey: "workflow.statusReady", descKey: "workflow.orderReadyDesc", icon: PackageCheck, color: "border-emerald-400/30 bg-emerald-400/10", textColor: "text-emerald-700", dotColor: "bg-emerald-400", image: "/order-lifecycle/order-ready.png" },
+  { labelKey: "workflow.statusServed", descKey: "workflow.orderServedDesc", icon: BarChart3, color: "border-violet-400/30 bg-violet-400/10", textColor: "text-violet-700", dotColor: "bg-violet-400", image: "/order-lifecycle/order-served.png" },
 ] as const;
 
 const orderLifecycleKeys = orderStepKeys.map((step) => ({
@@ -149,8 +149,8 @@ export default function ProductWorkflow() {
                     <span
                       className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider transition-all duration-300 ${s.textColor} border ${
                         i === activeLifecycleStep
-                          ? "bg-current/10 border-current shadow-sm scale-105"
-                          : "bg-white/[0.03] border-current/20"
+                          ? "bg-current/10 border-current shadow-xs scale-105"
+                          : "bg-white/[0.01] border-current/20"
                       }`}
                     >
                       {t(s.statusKey)}

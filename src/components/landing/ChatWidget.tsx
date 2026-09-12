@@ -28,6 +28,7 @@ export default function ChatWidget() {
   const { language } = useI18n();
   const [open, setOpen] = useState(false);
   const [teaserVisible, setTeaserVisible] = useState(true);
+  const [teaserDismissed, setTeaserDismissed] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -41,6 +42,36 @@ export default function ChatWidget() {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, open]);
+
+  useEffect(() => {
+    let idleTimer: number | undefined;
+
+    const updateTeaserVisibility = () => {
+      setTeaserVisible(false);
+      window.clearTimeout(idleTimer);
+
+      if (teaserDismissed) return;
+
+      idleTimer = window.setTimeout(() => {
+        const footer = document.querySelector("footer");
+        const footerBounds = footer?.getBoundingClientRect();
+        const isFooterVisible = Boolean(
+          footerBounds && footerBounds.top < window.innerHeight && footerBounds.bottom > 0,
+        );
+
+        if (!open && !isFooterVisible) {
+          setTeaserVisible(true);
+        }
+      }, 1000);
+    };
+
+    window.addEventListener("scroll", updateTeaserVisibility, { passive: true });
+    updateTeaserVisibility();
+    return () => {
+      window.removeEventListener("scroll", updateTeaserVisibility);
+      window.clearTimeout(idleTimer);
+    };
+  }, [open, teaserDismissed]);
 
   const sendText = (text: string) => {
     const trimmed = text.trim();
@@ -64,7 +95,7 @@ export default function ChatWidget() {
       <>
         {open && (
           <div
-            className="flex h-[min(24rem,calc(100vh-6rem))] w-[calc(100vw-2rem)] max-w-80 flex-col overflow-hidden rounded-2xl border border-white/8 bg-restra-card shadow-2xl sm:w-80"
+            className="flex h-[min(32rem,calc(100vh-6rem))] w-[calc(100vw-2rem)] max-w-80 flex-col overflow-hidden rounded-2xl border border-white/8 bg-restra-card shadow-2xl sm:w-80"
           >
             <div className="flex items-center justify-between border-b border-white/[0.06] bg-restra-surface px-4 py-3">
               <div>
@@ -146,12 +177,13 @@ export default function ChatWidget() {
       <>
         {!open && teaserVisible && (
           <div
-            className="relative max-w-[calc(100vw-5rem)] rounded-2xl rounded-br-sm border border-white/8 bg-restra-card px-3 py-2.5 pr-6 text-xs leading-relaxed text-restra-text shadow-xl sm:max-w-56"
+            className="relative flex max-w-[calc(100vw-5rem)] flex-col rounded-2xl rounded-br-sm border border-white/8 bg-restra-card px-3 py-2.5 pr-6 text-xs leading-relaxed text-restra-text shadow-xl sm:max-w-56"
           >
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
+                setTeaserDismissed(true);
                 setTeaserVisible(false);
               }}
               aria-label="Dismiss greeting"
@@ -165,6 +197,16 @@ export default function ChatWidget() {
               className="text-left"
             >
               {greetingText.en}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setTeaserDismissed(true);
+                setTeaserVisible(false);
+              }}
+              className="mt-1 self-end text-[10px] font-medium text-restra-text-secondary underline-offset-2 hover:text-restra-text hover:underline"
+            >
+              Dismiss
             </button>
           </div>
         )}
