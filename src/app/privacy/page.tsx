@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "September 6, 2026";
+const LAST_UPDATED = "October 11, 2026";
 
 export default function PrivacyPolicyPage() {
   return (
     <>
       <SiteHeader />
-      <main className="bg-restra-bg text-restra-text">
+      <main id="main-content" className="bg-restra-bg text-restra-text">
         <section className="border-b border-black/10 bg-restra-surface/40 px-6 pb-16 pt-36 lg:px-8 lg:pb-20 lg:pt-44">
           <div className="mx-auto max-w-4xl">
             <nav
@@ -44,7 +44,7 @@ export default function PrivacyPolicyPage() {
               Privacy Policy
             </h1>
             <p className="mt-5 text-sm text-restra-text-muted">
-              <span className="font-medium">{LAST_UPDATED}</span>
+              Last updated: <span className="font-medium">{LAST_UPDATED}</span>
             </p>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-restra-text-secondary">
               At Restra, we respect your privacy and are committed to protecting the
@@ -67,6 +67,11 @@ export default function PrivacyPolicyPage() {
                   daily operations, including point-of-sale (POS), orders, QR ordering,
                   billing, inventory, staff roles, attendance, reporting, and related
                   restaurant-management functions.
+                </p>
+                <p>
+                  Restra and this website are developed and operated by {siteConfig.developer}{" "}
+                  (&quot;Restra&quot;, &quot;we&quot;, &quot;us&quot;), based in Nepal. You can reach us at{" "}
+                  <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.
                 </p>
                 <p>
                   This Privacy Policy explains how Restra collects, uses, stores, and
@@ -98,6 +103,17 @@ export default function PrivacyPolicyPage() {
                   <li>Billing or transaction-related information where applicable</li>
                   <li>Any other information you voluntarily provide</li>
                 </ul>
+
+                <h3>Our Website Contact Form</h3>
+                <p>
+                  The contact form on this website does not store anything on our servers.
+                  When you press send, it opens WhatsApp or your email app with your message
+                  pre-filled. Only your name and message are required; email and restaurant
+                  name are optional. Once you send it, the message is delivered through
+                  WhatsApp (operated by Meta) or your email provider and received in our
+                  WhatsApp or email inbox, where it is handled under those services&apos;
+                  terms and this policy.
+                </p>
 
                 <h3>Restaurant and Business Data</h3>
                 <p>
@@ -137,6 +153,12 @@ export default function PrivacyPolicyPage() {
                   This type of information is generally collected for operational, security,
                   and analytics purposes. It is distinct from the personal and business
                   information you provide directly.
+                </p>
+                <p>
+                  Our public marketing website does not currently use analytics, advertising,
+                  or cross-site tracking tools. Our hosting provider may keep standard server
+                  logs (such as IP address, browser, requested page, and time) to operate and
+                  secure the website.
                 </p>
               </div>
             </section>
@@ -213,6 +235,12 @@ export default function PrivacyPolicyPage() {
                   provide their services and subject to appropriate contractual and security
                   safeguards. Restra is not responsible for the privacy practices of
                   third-party websites or services that we do not control.
+                </p>
+                <p>
+                  If payments are processed through a third-party payment provider, your
+                  payment details may be handled directly by that provider under its own
+                  terms and privacy policy. Restra does not store complete payment card
+                  details on its own systems.
                 </p>
               </div>
             </section>
@@ -319,6 +347,32 @@ export default function PrivacyPolicyPage() {
                   operational limitations. To make a privacy-related request, contact Restra
                   using the information below.
                 </p>
+
+                <h3>How to Request Access or Deletion</h3>
+                <ul>
+                  <li>
+                    Email{" "}
+                    <a href={`mailto:${siteConfig.contactEmail}?subject=Data%20request`}>
+                      {siteConfig.contactEmail}
+                    </a>{" "}
+                    with the subject &quot;Data request&quot; and say whether you want a copy,
+                    a correction, or deletion of your data.
+                  </li>
+                  <li>
+                    Send it from the email address or phone number linked to your account or
+                    inquiry, so we can confirm the request is yours.
+                  </li>
+                  <li>
+                    We aim to respond within 30 days. If we must keep some records (for
+                    example, invoices required by tax law), we will tell you what we keep
+                    and why, and delete the rest.
+                  </li>
+                  <li>
+                    If you are a restaurant&apos;s customer or staff member, see section 7 —
+                    the restaurant controls that data, and we will help them act on your
+                    request.
+                  </li>
+                </ul>
               </div>
             </section>
 
@@ -349,11 +403,11 @@ export default function PrivacyPolicyPage() {
               </h2>
               <div className="policy-copy mt-5">
                 <p>
-                  Our website may use cookies and similar technologies to keep the website
-                  functioning properly, understand usage, improve performance, remember
-                  preferences, and support security and analytics. You can control or disable
-                  cookies through your browser settings. Some features may not function
-                  properly if certain cookies are disabled.
+                  Our public website does not currently set cookies or use analytics or
+                  advertising trackers, so there is nothing to opt in to. The Restra app may
+                  use strictly necessary cookies or local storage to keep you signed in and
+                  secure your session. If we ever add non-essential cookies, we will update
+                  this policy and ask for your consent first where the law requires it.
                 </p>
                 <p>
                   For more detail, please see our{" "}

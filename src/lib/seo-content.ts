@@ -17,6 +17,8 @@ export type SeoPage = {
     heading: string;
     body: string;
     bullets?: string[];
+    /** Internal links rendered under the section, e.g. to blog posts. */
+    links?: { label: string; href: string }[];
   }[];
   faqs?: { question: string; answer: string }[];
 };
@@ -44,9 +46,11 @@ const overviewSlug = "restaurant-management-system";
 const pages: SeoPage[] = [
   {
     slug: overviewSlug,
-    title: "Restaurant Management System",
+    // Kept distinct from the homepage title ("RESTRA - Restaurant Management System")
+    // so the two pages don't compete for the same queries.
+    title: "Restaurant Management Software in Nepal",
     description:
-      "RESTRA is a restaurant management system for restaurants, cafés, and cloud kitchens in Nepal, with POS, billing, ordering, inventory, kitchen workflows, staff permissions, and reporting in one platform.",
+      "Restaurant management software for restaurants, cafés, and cloud kitchens in Nepal — POS, billing, QR ordering, inventory, kitchen display, staff permissions, and reporting in one platform.",
     intro:
       "RESTRA brings POS, billing, order management, QR ordering, inventory, kitchen workflows, staff permissions, table management, and reporting into one connected restaurant management system.",
     sections: [
@@ -74,6 +78,22 @@ const pages: SeoPage[] = [
         body:
           "A typical RESTRA workflow starts with an order, sends it into the kitchen, tracks preparation status, generates an accurate bill, updates operational records, and gives managers a live view of restaurant activity.",
       },
+      {
+        heading: "Choosing restaurant software in Nepal",
+        body:
+          "Restaurants in Nepal often run billing, KOTs, stock registers, and staff schedules in separate tools or on paper. When comparing restaurant management software, look at how well the POS, kitchen, inventory, and reports share the same data, how quickly staff can learn it, and whether local onboarding and support are available.",
+        links: [
+          {
+            label: "Top 10 best restaurant management software in Nepal",
+            href: "/blog/top-10-best-restaurant-management-software-nepal",
+          },
+          {
+            label: "What a restaurant management system should include",
+            href: "/blog/restaurant-management-system-features-explained",
+          },
+          { label: "RESTRA pricing", href: "/pricing" },
+        ],
+      },
     ],
     faqs: [
       {
@@ -100,7 +120,7 @@ const pages: SeoPage[] = [
   },
   {
     slug: "pos",
-    title: "Restaurant POS System",
+    title: "Restaurant POS System in Nepal",
     description:
       "Use RESTRA as a restaurant POS system for Nepal — handle sales, order entry, and billing from one point of sale connected to the kitchen, inventory, and reports.",
     intro:
@@ -281,9 +301,9 @@ const pages: SeoPage[] = [
   },
   {
     slug: "qr-ordering",
-    title: "QR Ordering for Restaurants",
+    title: "QR Code Ordering System for Restaurants",
     description:
-      "Let customers scan a QR code at the table, browse the digital menu, and order from their phone with RESTRA QR ordering — no app required.",
+      "A QR code ordering system for restaurants in Nepal — customers scan the table QR, browse the digital menu, and order from their phone with RESTRA. No app required.",
     intro:
       "RESTRA's QR ordering flow lets customers scan a code at the table, open a digital menu, place an order, and receive order status updates — without downloading an app.",
     sections: [

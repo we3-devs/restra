@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Github, Instagram, Mail, X, Youtube, Facebook } from "lucide-react";
+import { ArrowRight, Github, Instagram, Mail } from "lucide-react";
 import { featurePath, featureSlugs, seoPages } from "@/lib/seo-content";
 import { siteConfig } from "@/lib/site-config";
 import { formatPostDate, getAllPosts } from "@/lib/blog-content";
@@ -8,6 +8,14 @@ const socialLinks = [
   { label: "Instagram", href: siteConfig.socialProfiles[0], icon: Instagram },
   { label: "GitHub", href: siteConfig.socialProfiles[1], icon: Github },
   { label: "Email", href: `mailto:${siteConfig.contactEmail}`, icon: Mail },
+];
+
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Cookie Policy", href: "/cookies" },
+  { label: "Refund Policy", href: "/refund-policy" },
+  { label: "Sitemap", href: "/sitemap.xml" },
 ];
 
 /**
@@ -52,7 +60,7 @@ export default async function SiteFooter() {
                 href="/restaurant-management-system"
                 className="inline-flex items-center rounded-lg border border-white/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
               >
-                What is RESTRA?
+                Restaurant management software
               </Link>
             </div>
 
@@ -140,53 +148,30 @@ export default async function SiteFooter() {
         <div className="my-10 h-px bg-white/15" />
 
         {/* Bottom Section */}
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-          {/* Left: Copyright */}
+        <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>
-            <p className="text-white text-sm leading-tight">
-              © {currentYear} {siteConfig.name}
+            <p className="text-sm leading-tight text-white">
+              © {currentYear} {siteConfig.name}. All rights reserved.
             </p>
-            <p className="text-white text-sm font-semibold">
-              All rights reserved.
+            <p className="mt-1 text-xs text-white/70">
+              A product of {siteConfig.developer} · Nepal ·{" "}
+              <a href={`mailto:${siteConfig.contactEmail}`} className="underline-offset-2 hover:underline">
+                {siteConfig.contactEmail}
+              </a>
             </p>
           </div>
 
-          {/* Middle: Legal Links */}
-          <div className="flex items-center gap-4">
-            <Link href="/privacy" className="text-sm text-white/70 transition-colors hover:text-white">
-              Terms & Privacy Policy
-            </Link>
-            <Link href="/sitemap.xml" className="text-sm text-white/70 transition-colors hover:text-white">
-              Sitemap
-            </Link>
-          </div>
-
-          {/* Center: Social Icons */}
-          <div className="flex items-center gap-3">
-            <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:border-white" aria-label="X (Twitter)">
-              <X className="h-4 w-4" />
-            </a>
-            <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:border-white" aria-label="YouTube">
-              <Youtube className="h-4 w-4" />
-            </a>
-            <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:border-white" aria-label="Instagram">
-              <Instagram className="h-4 w-4" />
-            </a>
-            <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:border-white" aria-label="Facebook">
-              <Facebook className="h-4 w-4" />
-            </a>
-            <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:border-white" aria-label="Email">
-              <Mail className="h-4 w-4" />
-            </a>
-          </div>
-
-          {/* Right: Language Selector */}
-          <select className="h-8 rounded-full border border-white/40 bg-transparent px-3 pr-8 text-sm text-white appearance-none cursor-pointer focus:outline-none focus:border-white">
-            <option>English</option>
-            <option>Español</option>
-            <option>Français</option>
-            <option>Português</option>
-          </select>
+          <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-white/70 transition-colors hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>

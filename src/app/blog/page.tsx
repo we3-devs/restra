@@ -34,7 +34,7 @@ export default async function BlogIndexPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-restra-bg text-restra-text">
+      <main id="main-content" className="min-h-screen bg-restra-bg text-restra-text">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
@@ -89,7 +89,7 @@ export default async function BlogIndexPage() {
                   href="/restaurant-management-system"
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/1 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-restra-text transition-colors hover:border-white/[0.2] hover:bg-white/[0.06]"
                 >
-                  What is RESTRA?
+                  Restaurant management software
                 </Link>
               </div>
             </div>

@@ -201,7 +201,7 @@ export default function SeoPageView({ page }: { page: SeoPage }) {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-restra-bg text-restra-text">
+      <main id="main-content" className="min-h-screen bg-restra-bg text-restra-text">
         <FeatureHero page={page} isFeaturePage={isFeaturePage} />
 
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
@@ -234,6 +234,22 @@ export default function SeoPageView({ page }: { page: SeoPage }) {
                           <Check className="h-3 w-3" />
                         </span>
                         {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+
+                {section.links ? (
+                  <ul className="mt-6 space-y-2 pl-13">
+                    {section.links.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-restra-yellow transition-colors hover:text-restra-yellow/80"
+                        >
+                          {link.label}
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
                       </li>
                     ))}
                   </ul>

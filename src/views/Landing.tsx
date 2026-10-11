@@ -30,7 +30,7 @@ export default function Landing() {
       <ClickBurst />
       <Navbar />
       <MobileTabBar />
-      <main>
+      <main id="main-content">
         <Hero />
         <ConnectedSystem />
         <ProductWorkflow />

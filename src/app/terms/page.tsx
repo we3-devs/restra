@@ -24,7 +24,7 @@ export default function TermsPage() {
   return (
     <>
       <SiteHeader />
-      <main className="bg-restra-bg text-restra-text">
+      <main id="main-content" className="bg-restra-bg text-restra-text">
         <section className="border-b border-black/10 bg-restra-surface/40 px-6 pb-16 pt-36 lg:px-8 lg:pb-20 lg:pt-44">
           <div className="mx-auto max-w-4xl">
             <nav
@@ -44,7 +44,7 @@ export default function TermsPage() {
               Terms of Service
             </h1>
             <p className="mt-5 text-sm text-restra-text-muted">
-              <span className="font-medium">{LAST_UPDATED}</span>
+              Last updated: <span className="font-medium">{LAST_UPDATED}</span>
             </p>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-restra-text-secondary">
               Please read these Terms of Service carefully. They explain the rules

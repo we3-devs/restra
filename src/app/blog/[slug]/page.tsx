@@ -180,7 +180,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-restra-bg text-restra-text">
+      <main id="main-content" className="min-h-screen bg-restra-bg text-restra-text">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

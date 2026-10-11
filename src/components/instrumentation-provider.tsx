@@ -16,6 +16,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
+// The runtime-error dialog (stack traces + editor link) is a development tool;
+// production visitors get a plain fallback instead.
+const showDevOverlay = process.env.NODE_ENV !== "production";
+
 type GenericError = {
   error: string;
   stack: string;
@@ -221,6 +225,20 @@ class ErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError && this.state.error) {
+      if (!showDevOverlay) {
+        return (
+          <div role="alert" className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
+            <p className="text-lg font-semibold">Something went wrong.</p>
+            <button
+              type="button"
+              onClick={() => window.location.reload()}
+              className="rounded-lg border px-4 py-2 text-sm font-semibold"
+            >
+              Reload page
+            </button>
+          </div>
+        );
+      }
       return (
         <ErrorDialog
           error={this.state.error}
@@ -295,7 +313,7 @@ export function InstrumentationProvider({
   return (
     <>
       <ErrorBoundary>{children}</ErrorBoundary>
-      {error && <ErrorDialog error={error} setError={setError} />}
+      {showDevOverlay && error && <ErrorDialog error={error} setError={setError} />}
     </>
   );
 }

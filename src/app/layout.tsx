@@ -1,7 +1,24 @@
 import type { Metadata } from "next";
+import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { siteConfig } from "@/lib/site-config";
+
+// Self-hosted at build time by next/font, so visitors' browsers never contact
+// Google Fonts (no third-party IP transfer, no extra consent needed).
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+  variable: "--font-newsreader",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -42,10 +59,18 @@ const entityJsonLd = {
       url: siteConfig.url,
       logo: siteConfig.url + "/logo.svg",
       description: siteConfig.description,
+      brand: {
+        "@type": "Brand",
+        name: siteConfig.name,
+        alternateName: siteConfig.alternateNames,
+      },
+      areaServed: { "@type": "Country", name: "Nepal" },
       contactPoint: {
         "@type": "ContactPoint",
         email: siteConfig.contactEmail,
+        telephone: siteConfig.contactPhone,
         contactType: "customer support",
+        areaServed: "NP",
       },
       sameAs: siteConfig.socialProfiles,
     },
@@ -53,6 +78,7 @@ const entityJsonLd = {
       "@type": "WebSite",
       "@id": siteConfig.url + "/#website",
       name: siteConfig.name,
+      alternateName: siteConfig.alternateNames,
       url: siteConfig.url,
       publisher: { "@id": siteConfig.url + "/#organization" },
     },
@@ -60,6 +86,7 @@ const entityJsonLd = {
       "@type": "SoftwareApplication",
       "@id": siteConfig.url + "/#software",
       name: siteConfig.name,
+      alternateName: siteConfig.alternateNames,
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description: siteConfig.description,
@@ -75,27 +102,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${newsreader.variable}`}>
       <head>
         <meta name="google-site-verification" content="T-fSL7dAgM_eZ5J2qTxTLE1L39X-zm0FeAapdg_4UWw" />
         <meta name="theme-color" content="#FAFAF8" />
         <link rel="manifest" href="/manifest.webmanifest" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(entityJsonLd) }}
         />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-restra-card focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-restra-text focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <Providers>{children}</Providers>
       </body>
     </html>

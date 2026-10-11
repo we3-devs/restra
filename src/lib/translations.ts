@@ -500,11 +500,11 @@ const en = {
   "pfaq.trial.q": "Can I try Restra before paying?",
   "pfaq.trial.a": "Yes — Restra offers a free trial so you can run real orders through the system before committing to a plan. Click \"Talk to Us\" and we'll set you up.",
   "pfaq.hidden.q": "Are there hidden fees or per-order charges?",
-  "pfaq.hidden.a": "No. Every plan includes the full platform — POS, billing, QR ordering, inventory, kitchen workflow, staff roles, and analytics. The only difference between plans is duration and support level.",
+  "pfaq.hidden.a": "No per-order charges. Every plan includes the core platform — POS, billing, QR ordering, inventory, kitchen workflow, staff roles, and reports. Plans differ by duration, staff-account limit, support level, and extras such as advanced analytics, custom branding, and integrations, as listed on each plan. Your final price, including any applicable taxes, is confirmed in writing before you pay.",
   "pfaq.switch.q": "Can we change plans later?",
   "pfaq.switch.a": "Yes. You can move between monthly, 6-month, and yearly plans — tell the team and we'll adjust it, including credit for unused time.",
   "pfaq.training.q": "Is staff training included?",
-  "pfaq.training.a": "Yes. Higher plans include dedicated onboarding, and every plan gets a walkthrough when you start. Most staff learn the basics in a single shift.",
+  "pfaq.training.a": "Yes. Higher plans include dedicated onboarding, and every plan gets a walkthrough when you start. The screens are built around everyday restaurant tasks, so staff can usually start on the basics quickly.",
   "pfaq.placeholder.q": "Why do prices show as placeholders?",
   "pfaq.placeholder.a": "Final pricing is being confirmed for launch. Message the team for a custom quote for your restaurant — we'll lock your rate in early.",
 
@@ -512,7 +512,7 @@ const en = {
   // Contact FAQ (contact page)
   // ------------------------------------------------------------------
   "cfaq.setup.q": "How long does setup take?",
-  "cfaq.setup.a": "Most restaurants are running the same day: we import your menu, set up tables and staff accounts, and walk your team through their first orders.",
+  "cfaq.setup.a": "For a typical restaurant, setup can often be done in a day: we import your menu, set up tables and staff accounts, and walk your team through their first orders. Larger menus or multiple outlets can take longer.",
   "cfaq.trial.q": "Is there a free trial?",
   "cfaq.trial.a": "Yes — you can try Restra with real orders before choosing a plan. Message us and we'll start your trial.",
   "cfaq.devices.q": "What devices do we need?",

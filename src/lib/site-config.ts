@@ -22,6 +22,8 @@ function getCanonicalSiteUrl(value: string | undefined): string {
 
 export const siteConfig = {
   name: "RESTRA",
+  /** Other spellings people search for; surfaced to Google via JSON-LD alternateName. */
+  alternateNames: ["Restra", "Restra Services", "restraservices.com"],
   title: "RESTRA - Restaurant Management System",
   developer: "We-3: tech & innovation",
   contactEmail: "restraservices@gmail.com",

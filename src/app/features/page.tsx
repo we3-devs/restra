@@ -24,7 +24,7 @@ export default function FeaturesPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-restra-bg text-restra-text">
+      <main id="main-content" className="min-h-screen bg-restra-bg text-restra-text">
         {/* Hero */}
         <section className="relative overflow-hidden border-b border-white/[0.06]">
           <div

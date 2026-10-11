@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useI18n } from "@/contexts/I18nContext";
 import { featureSlugs, seoPages } from "@/lib/seo-content";
 import type { TranslationKey } from "@/lib/translations";
+import { siteConfig } from "@/lib/site-config";
 
 type FooterLink = {
   labelKey: TranslationKey;
@@ -136,7 +137,7 @@ export default function Footer() {
             {resourcePages.map((href) => (
               <Link key={href} href={href} className="transition-colors hover:text-white">
                 {href === "/restaurant-management-system"
-                  ? "What is RESTRA?"
+                  ? "Restaurant management software"
                   : seoPages[href.replace("/features/", "")].title}
               </Link>
             ))}
@@ -151,12 +152,12 @@ export default function Footer() {
           <p className="text-xs text-restra-footer-muted">
             © {new Date().getFullYear()} Restra. {t("footer.rights")}
           </p>
-          <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-white" />
-            <span className="text-[11px] font-medium text-white">
-              {t("footer.systemsOk")}
-            </span>
-          </div>
+          <a
+            href={`mailto:${siteConfig.contactEmail}`}
+            className="text-xs text-restra-footer-muted transition-colors hover:text-white"
+          >
+            {siteConfig.contactEmail}
+          </a>
         </div>
       </div>
     </footer>

@@ -3,7 +3,7 @@ import { ArrowLeft, LayoutGrid } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-restra-bg px-6 text-restra-text">
+    <main id="main-content" className="flex min-h-screen flex-col items-center justify-center bg-restra-bg px-6 text-restra-text">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-restra-yellow">
         404
       </p>

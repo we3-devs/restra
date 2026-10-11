@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "September 6, 2026";
+const LAST_UPDATED = "October 11, 2026";
 
 export default function CookiePolicyPage() {
   return (
     <>
       <SiteHeader />
-      <main className="bg-restra-bg text-restra-text">
+      <main id="main-content" className="bg-restra-bg text-restra-text">
         <section className="border-b border-black/10 bg-restra-surface/40 px-6 pb-16 pt-36 lg:px-8 lg:pb-20 lg:pt-44">
           <div className="mx-auto max-w-4xl">
             <nav
@@ -44,7 +44,7 @@ export default function CookiePolicyPage() {
               Cookie Policy
             </h1>
             <p className="mt-5 text-sm text-restra-text-muted">
-              <span className="font-medium">{LAST_UPDATED}</span>
+              Last updated: <span className="font-medium">{LAST_UPDATED}</span>
             </p>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-restra-text-secondary">
               This Cookie Policy explains how Restra uses cookies and similar
@@ -83,16 +83,25 @@ export default function CookiePolicyPage() {
               </h2>
               <div className="policy-copy mt-5">
                 <p>
-                  Restra uses cookies and similar technologies on our website and, where
-                  applicable, within the Service to:
+                  <strong>Public website (restraservices.com):</strong> we do not currently
+                  set any cookies, and we do not use analytics, advertising, or cross-site
+                  tracking tools. Our fonts are served from our own domain, not from a
+                  third-party font service. That is why there is no cookie banner: there are
+                  no optional cookies to accept or reject.
+                </p>
+                <p>
+                  <strong>Restra app (for signed-in restaurants):</strong> the Service may use
+                  strictly necessary cookies or local storage to:
                 </p>
                 <ul>
-                  <li>Keep the website and platform functioning properly</li>
-                  <li>Remember your preferences and settings</li>
-                  <li>Support secure sessions and authentication where applicable</li>
-                  <li>Understand how visitors use the website and improve its performance</li>
-                  <li>Support security, error monitoring, and operational analytics</li>
+                  <li>Keep you signed in and secure your session</li>
+                  <li>Remember essential settings, such as your selected outlet or language</li>
+                  <li>Protect against fraud, abuse, and security incidents</li>
                 </ul>
+                <p>
+                  The sections below explain the kinds of cookies that exist and what we
+                  would do before using any non-essential ones.
+                </p>
               </div>
             </section>
 
@@ -136,9 +145,9 @@ export default function CookiePolicyPage() {
                   how visitors navigate between pages.
                 </p>
                 <p>
-                  Analytics information is generally aggregated and anonymized to the extent
-                  reasonably possible. It is used for operational and improvement purposes
-                  rather than to identify you personally.
+                  <strong>We do not currently use analytics cookies.</strong> If we add
+                  them, we will list them here and, where required by applicable law, ask
+                  for your consent before they are set.
                 </p>
               </div>
             </section>
@@ -154,6 +163,10 @@ export default function CookiePolicyPage() {
                   provide enhanced, more personalized features. For example, they may be used
                   to remember language or display preferences, or to remember settings that
                   improve the convenience of your visit.
+                </p>
+                <p>
+                  Our public website does not currently set functional cookies or store any
+                  preferences on your device.
                 </p>
               </div>
             </section>
@@ -190,10 +203,14 @@ export default function CookiePolicyPage() {
                 </p>
                 <ul>
                   <li>Hosting and infrastructure services</li>
-                  <li>Analytics and performance monitoring</li>
                   <li>Security, error reporting, and monitoring tools</li>
                   <li>Other operational tools necessary for the functioning of the website</li>
                 </ul>
+                <p>
+                  When you click a WhatsApp, Instagram, GitHub, or other external link, you
+                  leave our website, and that service&apos;s own cookie and privacy policies
+                  apply.
+                </p>
                 <p>
                   Third-party service providers may process information according to their own
                   privacy policies and applicable agreements. Restra is not responsible for the
@@ -270,16 +287,15 @@ export default function CookiePolicyPage() {
               </h2>
               <div className="policy-copy mt-5">
                 <p>
-                  Where required by applicable law, we ask for your consent before setting
-                  non-essential cookies or activating non-essential tracking. You can usually
-                  accept all cookies, reject non-essential cookies, or manage your
-                  preferences through the cookie banner and cookie settings available on our
-                  website.
+                  Because our public website currently sets no non-essential cookies, we do
+                  not show a cookie banner. Necessary cookies that are strictly required for
+                  the Service to function do not require separate consent.
                 </p>
                 <p>
-                  Necessary cookies that are strictly required for the website to function do
-                  not require separate consent. Your consent choices may be remembered using
-                  cookies or similar storage so that you are not asked again unnecessarily.
+                  If we introduce non-essential cookies or tracking, we will first add a
+                  consent banner that makes accepting and rejecting equally easy, keep
+                  optional cookies off until you choose, and let you change your choice at
+                  any time.
                 </p>
               </div>
             </section>

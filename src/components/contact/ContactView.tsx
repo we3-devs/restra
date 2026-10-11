@@ -93,12 +93,12 @@ export default function ContactView() {
     cn(
       "w-full rounded-lg border bg-restra-card px-3.5 py-2.5 text-sm text-restra-text placeholder:text-restra-text-muted/70 transition-colors focus:outline-none focus:ring-2",
       hasError
-        ? "border-red-400/60 focus:ring-red-400/30"
+        ? "border-red-500/70 focus:ring-red-500/30"
         : "border-white/[0.1] focus:border-restra-yellow/50 focus:ring-restra-yellow/20",
     );
 
   return (
-    <main className="min-h-screen bg-restra-bg text-restra-text">
+    <main id="main-content" className="min-h-screen bg-restra-bg text-restra-text">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/[0.06] py-14 lg:py-20">
         <div
@@ -163,7 +163,7 @@ export default function ContactView() {
                       aria-describedby={errors.name ? "contact-name-error" : undefined}
                     />
                     {errors.name ? (
-                      <p id="contact-name-error" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-red-400">
+                      <p id="contact-name-error" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-red-600">
                         <AlertCircle className="h-3 w-3" /> {errors.name}
                       </p>
                     ) : null}
@@ -209,7 +209,7 @@ export default function ContactView() {
                       aria-describedby={errors.message ? "contact-message-error" : undefined}
                     />
                     {errors.message ? (
-                      <p id="contact-message-error" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-red-400">
+                      <p id="contact-message-error" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-red-600">
                         <AlertCircle className="h-3 w-3" /> {errors.message}
                       </p>
                     ) : null}
@@ -236,7 +236,7 @@ export default function ContactView() {
                 </div>
 
                 {sentVia ? (
-                  <p role="status" className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-500/25 bg-emerald-500/[0.07] px-3.5 py-2.5 text-xs text-emerald-400">
+                  <p role="status" className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-500/25 bg-emerald-500/[0.07] px-3.5 py-2.5 text-xs text-emerald-700">
                     <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
                     {t("contact.formHint")}
                   </p>

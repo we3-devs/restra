@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -61,19 +61,38 @@ function FeaturesNavMenu({ label }: { label: string }) {
   const [open, setOpen] = useState(false);
 
   const closeMenu = () => setOpen(false);
+  const triggerRef = useRef<HTMLAnchorElement>(null);
+  const suppressFocusOpen = useRef(false);
 
   return (
     <div
       className="relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
+      onFocus={() => {
+        if (suppressFocusOpen.current) {
+          suppressFocusOpen.current = false;
+          return;
+        }
+        setOpen(true);
+      }}
       onBlur={(event) => {
         const nextTarget = event.relatedTarget as Node | null;
         if (!event.currentTarget.contains(nextTarget)) setOpen(false);
       }}
+      onKeyDown={(event) => {
+        // Escape closes the menu and returns focus to the trigger (WCAG 1.4.13).
+        if (event.key !== "Escape" || !open) return;
+        event.preventDefault();
+        setOpen(false);
+        if (triggerRef.current && document.activeElement !== triggerRef.current) {
+          suppressFocusOpen.current = true;
+          triggerRef.current.focus();
+        }
+      }}
     >
       <Link
+        ref={triggerRef}
         href="/features"
         aria-haspopup="menu"
         aria-expanded={open}
@@ -148,7 +167,7 @@ function FeaturesNavMenu({ label }: { label: string }) {
                   role="menuitem"
                   className="inline-flex items-center gap-1.5 text-sm font-medium text-restra-text-muted transition-colors hover:text-restra-text"
                 >
-                  What is RESTRA?
+                  Restaurant management software
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </div>

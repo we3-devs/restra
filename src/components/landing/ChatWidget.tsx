@@ -160,6 +160,7 @@ export default function ChatWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a question..."
+                aria-label="Type a question"
                 className="flex-1 rounded-lg border border-white/[0.08] bg-restra-card px-3 py-2 text-sm text-restra-text placeholder:text-restra-text-secondary/70 focus:border-restra-yellow/50 focus:outline-none"
               />
               <button

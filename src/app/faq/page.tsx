@@ -42,7 +42,7 @@ export default function FaqPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-restra-bg text-restra-text">
+      <main id="main-content" className="min-h-screen bg-restra-bg text-restra-text">
         <FaqPageView />
       </main>
       <SiteFooter />

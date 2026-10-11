@@ -75,7 +75,7 @@ export default function PricingPageView() {
   const { t } = useI18n();
 
   return (
-    <main className="min-h-screen bg-restra-bg text-restra-text">
+    <main id="main-content" className="min-h-screen bg-restra-bg text-restra-text">
       {/* Hero + plans */}
       <section className="relative overflow-hidden border-b border-white/[0.06] py-14 lg:py-20">
         <div
