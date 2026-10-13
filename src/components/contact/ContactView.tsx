@@ -12,6 +12,7 @@ import {
   Github,
   Instagram,
   Mail,
+  MapPin,
   MessageCircle,
 } from "lucide-react";
 import { getWhatsAppLink } from "@/lib/whatsapp";
@@ -26,6 +27,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 /**
  * Contact page: prefilled-outbound contact form (WhatsApp or email — no
@@ -107,13 +109,7 @@ export default function ContactView() {
         />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal className="max-w-3xl">
-            <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-restra-text-muted">
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">{t("contact.badge")}</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "Contact", path: "/contact" }]} />
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-restra-yellow">
               {t("contact.badge")}
             </p>
@@ -308,6 +304,22 @@ export default function ContactView() {
                   </span>
                   <ArrowRight className="h-4 w-4 text-restra-yellow transition-transform group-hover:translate-x-0.5" />
                 </a>
+              </Reveal>
+
+              <Reveal delay={0.23}>
+                <address className="flex items-center gap-4 rounded-xl border border-white/[0.08] bg-restra-card p-5 not-italic">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-restra-cyan/10 text-restra-cyan">
+                    <MapPin className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="flex-1">
+                    <span className="block text-sm font-bold text-restra-text">
+                      {siteConfig.location}
+                    </span>
+                    <span className="mt-0.5 block text-xs text-restra-text-secondary">
+                      {siteConfig.developer} — serving restaurants across Nepal
+                    </span>
+                  </span>
+                </address>
               </Reveal>
 
               <Reveal delay={0.26}>

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/reusable/Reveal";
 import SectionHeading from "@/components/reusable/SectionHeading";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 /**
  * About page: story (editorial two-column), working values, and team grid
@@ -91,13 +92,7 @@ export default function AboutView() {
         />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal className="max-w-3xl">
-            <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-restra-text-muted">
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">{t("about.badge")}</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "About Us", path: "/about" }]} />
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-restra-yellow">
               {t("about.badge")}
             </p>
@@ -173,7 +168,7 @@ export default function AboutView() {
                   <div className="relative aspect-square w-full overflow-hidden">
                     <Image
                       src={member.photo}
-                      alt={t(member.nameKey)}
+                      alt={`${t(member.nameKey)}, ${t(member.roleKey)} at RESTRA`}
                       fill
                       sizes="(min-width: 1024px) 288px, (min-width: 640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"

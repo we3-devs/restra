@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
-  description:
-    "Learn how Restra collects, uses, stores, and protects personal and business information.",
-  alternates: { canonical: `${siteConfig.url}/privacy` },
-  openGraph: {
-    title: "Privacy Policy | Restra",
-    description:
-      "How Restra handles personal information and restaurant business data.",
-    url: `${siteConfig.url}/privacy`,
-    type: "website",
-  },
-};
+  description: "Learn how Restra collects, uses, stores, and protects personal and business information.",
+  path: "/privacy",
+  socialTitle: "Privacy Policy | Restra",
+  socialDescription: "How Restra handles personal information and restaurant business data.",
+});
 
 const LAST_UPDATED = "October 11, 2026";
 
@@ -27,16 +23,7 @@ export default function PrivacyPolicyPage() {
       <main id="main-content" className="bg-restra-bg text-restra-text">
         <section className="border-b border-black/10 bg-restra-surface/40 px-6 pb-16 pt-36 lg:px-8 lg:pb-20 lg:pt-44">
           <div className="mx-auto max-w-4xl">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-8 flex items-center gap-2 text-sm text-restra-text-muted"
-            >
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">Privacy Policy</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "Privacy Policy", path: "/privacy" }]} />
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-restra-yellow">
               Legal
             </p>

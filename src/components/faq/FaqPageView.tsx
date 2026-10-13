@@ -11,6 +11,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { faqPageItems, faqPageSections } from "@/lib/faq-data";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 function FaqSearch({
   value,
@@ -88,6 +89,7 @@ export default function FaqPageView() {
       >
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-3xl">
+            <Breadcrumbs trail={[{ name: "FAQ", path: "/faq" }]} />
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-restra-yellow">
               FAQ
             </p>

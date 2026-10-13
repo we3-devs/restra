@@ -1,3 +1,6 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import Navbar, { MobileTabBar } from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
 import ConnectedSystem from "@/components/landing/ConnectedSystem";
@@ -10,11 +13,23 @@ import Team from "@/components/landing/Team";
 import Pricing from "@/components/landing/Pricing";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
-import ChatWidget from "@/components/landing/ChatWidget";
 import ScrollProgress from "@/components/landing/ScrollProgress";
 import ClickBurst from "@/components/landing/ClickBurst";
 import LoadingScreen from "@/components/landing/LoadingScreen";
-import DashainOffer, { DashainOfferPopup } from "@/components/landing/DashainOffer";
+import DashainOffer from "@/components/landing/DashainOffer";
+
+// Floating overlays only matter after interaction, so they load in their own
+// chunks after hydration instead of inflating the initial home-page bundle.
+const ChatWidget = dynamic(() => import("@/components/landing/ChatWidget"), {
+  ssr: false,
+});
+const DashainOfferPopup = dynamic(
+  () =>
+    import("@/components/landing/DashainOfferPopup").then(
+      (mod) => mod.DashainOfferPopup,
+    ),
+  { ssr: false },
+);
 
 /**
  * RESTRA home page — premium B2B SaaS composition:

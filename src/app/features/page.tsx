@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowRight, Check, MessageCircle } from "lucide-react";
 import CtaBand from "@/components/seo/CtaBand";
@@ -6,23 +7,37 @@ import SiteFooter from "@/components/seo/SiteFooter";
 import SiteHeader from "@/components/seo/SiteHeader";
 import MockupRenderer from "@/components/mockups/MockupRenderer";
 import { featureIconMap } from "@/lib/showcase";
-import {
-  absoluteUrl,
-  featurePath,
-  seoPages,
-} from "@/lib/seo-content";
+import { absoluteUrl, featurePath, featureSlugs, seoPages } from "@/lib/seo-content";
+import { webPageJsonLd } from "@/lib/structured-data";
 import { featureGroups } from "@/lib/showcase";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
-export const metadata: Metadata = {
-  title: "Restaurant Software Features",
-  description:
-    "Explore RESTRA features: restaurant POS, billing, order management, inventory, kitchen workflows, table management, staff permissions, QR ordering, and analytics.",
-  alternates: { canonical: absoluteUrl("/features") },
+const title = "Restaurant Software Features";
+const description =
+  "Explore RESTRA features: restaurant POS, billing, order management, inventory, kitchen workflows, table management, staff permissions, QR ordering, and analytics.";
+
+export const metadata: Metadata = pageMetadata({ title, description, path: "/features" });
+
+const featuresJsonLd = {
+  ...webPageJsonLd({ type: "CollectionPage", path: "/features", name: title, description }),
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: featureSlugs.map((slug, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: seoPages[slug].title,
+      url: absoluteUrl(featurePath(slug)),
+    })),
+  },
 };
 
 export default function FeaturesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(featuresJsonLd) }}
+      />
       <SiteHeader />
       <main id="main-content" className="min-h-screen bg-restra-bg text-restra-text">
         {/* Hero */}
@@ -32,16 +47,7 @@ export default function FeaturesPage() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_15%_-10%,rgba(255,212,59,0.08),transparent_60%),radial-gradient(ellipse_60%_50%_at_90%_0%,rgba(34,211,238,0.06),transparent_60%)]"
           />
           <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-8 flex flex-wrap items-center gap-2 text-sm text-restra-text-muted"
-            >
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">Features</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "Features", path: "/features" }]} />
 
             <div className="mx-auto max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-restra-yellow">

@@ -130,7 +130,7 @@ export default function Team() {
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image
                   src={member.photo}
-                  alt={t(member.nameKey)}
+                  alt={`${t(member.nameKey)}, ${t(member.roleKey)} at RESTRA`}
                   fill
                   sizes="208px"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -203,7 +203,7 @@ export default function Team() {
                   <div className="relative h-48 w-48 overflow-hidden">
                     <Image
                       src={member.photo}
-                      alt={t(member.nameKey)}
+                      alt={`${t(member.nameKey)}, ${t(member.roleKey)} at RESTRA`}
                       fill
                       sizes="192px"
                       className="object-cover"

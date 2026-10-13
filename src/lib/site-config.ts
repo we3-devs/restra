@@ -29,6 +29,22 @@ export const siteConfig = {
   contactEmail: "restraservices@gmail.com",
   contactPhone: "+977 9761093528",
   socialProfiles: ["https://www.instagram.com/restra_services", "https://github.com/we3-devs/"],
+  /**
+   * Business address for Organization / LocalBusiness structured data. Add
+   * streetAddress / postalCode here when published; every schema picks it up.
+   */
+  address: { addressLocality: "Birtamod", addressRegion: "Jhapa", addressCountry: "NP" } as {
+    addressCountry: string;
+    streetAddress?: string;
+    addressLocality?: string;
+    addressRegion?: string;
+    postalCode?: string;
+  },
+  /** Human-readable form of `address`, shown in the footer and contact page. */
+  location: "Birtamod, Jhapa, Nepal",
+  /** Square brand mark (512px) used by schema.org logos and the web manifest. */
+  logoPath: "/icons/icon-512.png",
+  themeColor: "#FAFAF8",
   description:
     "RESTRA is restaurant management software for restaurants, cafés, and cloud kitchens in Nepal: POS, billing, QR ordering, inventory, kitchen display, reports.",
   url: getCanonicalSiteUrl(configuredUrl),

@@ -44,9 +44,12 @@ export default function LoadingScreen() {
 
   return (
     <div className="loading-screen" role="status" aria-label="Loading RESTRA">
+      {/* eslint-disable-next-line @next/next/no-img-element -- splash logo must paint before next/image hydrates */}
       <img
         src="/logo.svg"
         alt="RESTRA"
+        width={1306}
+        height={1205}
         className={`loading-screen__logo${shouldBlink ? " loading-screen__logo--blink" : ""}`}
       />
     </div>

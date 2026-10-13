@@ -1,21 +1,9 @@
-import type { PointerEvent, ReactNode } from "react";
+import type { PointerEvent } from "react";
 import Image from "next/image";
-import {
-  CalendarCheck,
-  ChefHat,
-  CreditCard,
-  Soup,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+import { TrendingUp } from "lucide-react";
 
 import { useI18n } from "@/contexts/I18nContext";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 
 /**
@@ -26,94 +14,12 @@ import {
  */
 
 
-const kpis = [
-  {
-    label: "Today's Sales",
-    value: "NPR 84,250",
-    change: "+12.4% vs yesterday",
-    changeClass: "text-emerald-600",
-    icon: Soup,
-    iconWrap: "bg-restra-yellow/10 text-restra-yellow",
-  },
-  {
-    label: "Orders",
-    value: "126",
-    change: "+8 this hour",
-    changeClass: "text-restra-cyan",
-    icon: CreditCard,
-    iconWrap: "bg-restra-cyan/10 text-restra-cyan",
-  },
-  {
-    label: "Reservations",
-    value: "24",
-    change: "6 upcoming",
-    changeClass: "text-restra-text-muted",
-    icon: CalendarCheck,
-    iconWrap: "bg-restra-cyan/10 text-restra-cyan",
-  },
-];
-
-const revenueBars = [38, 54, 46, 68, 58, 82, 64, 92, 74, 100];
-
-const orders = [
-  { id: "#1042", table: "Table 7 · Dine-in", amount: "NPR 2,450", status: "Preparing", statusClass: "bg-restra-yellow/15 text-restra-yellow" },
-  { id: "#1041", table: "Table 3 · QR order", amount: "NPR 1,120", status: "Ready", statusClass: "bg-restra-cyan/15 text-restra-cyan" },
-  { id: "#1040", table: "Table 12 · Dine-in", amount: "NPR 1,890", status: "Served", statusClass: "bg-emerald-500/15 text-emerald-600" },
-];
-
-const reservations = [
-  { name: "Sharma family", time: "7:00 PM", party: "4 guests", color: "bg-restra-cyan" },
-  { name: "Karki, A.", time: "7:30 PM", party: "2 guests", color: "bg-restra-yellow" },
-  { name: "Gurung birthday", time: "8:00 PM", party: "8 guests", color: "bg-restra-cyan" },
-];
-
-const tables = [
-  { id: "T1", state: "occupied" },
-  { id: "T2", state: "occupied" },
-  { id: "T3", state: "free" },
-  { id: "T4", state: "occupied" },
-  { id: "T5", state: "served" },
-  { id: "T6", state: "occupied" },
-  { id: "T7", state: "free" },
-  { id: "T8", state: "occupied" },
-];
-
-const tableClasses: Record<string, string> = {
-  occupied: "bg-restra-yellow/20 text-restra-text ring-1 ring-restra-yellow/40",
-  served: "bg-restra-cyan/15 text-restra-cyan ring-1 ring-restra-cyan/30",
-  free: "bg-restra-surface text-restra-text-muted",
-};
-
-const staff = [
-  { name: "Sita K. — Kitchen", role: "3 orders preparing", icon: ChefHat },
-  { name: "Bikash R. — Floor", role: "Clearing Table 5", icon: Users },
-];
-
 const EASE = [0.22, 1, 0.36, 1] as const;
-
-function GlassCard({
-  className = "",
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
-  return (
-    <div
-      className={`relative overflow-hidden rounded-xl border border-border bg-white/70 shadow-lg shadow-black/5 backdrop-blur-md ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 export default function HeroShowcase() {
   const { t } = useI18n();
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
-  const springConfig = { stiffness: 180, damping: 22, mass: 0.7 };
-  const tiltX = useSpring(useTransform(pointerY, [-1, 1], [28, -28]), springConfig);
-  const tiltY = useSpring(useTransform(pointerX, [-1, 1], [-28, 28]), springConfig);
 
   const restaurantImg = "/images/dashboard-bg.jpeg";
 

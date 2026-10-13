@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Refund Policy",
-  description:
-    "Learn about Restra's subscription refund policy, cancellation, billing, and how to request a refund.",
-  alternates: { canonical: `${siteConfig.url}/refund-policy` },
-  openGraph: {
-    title: "Refund Policy | Restra",
-    description:
-      "Understand Restra's refund policy for subscription payments, cancellations, and billing issues.",
-    url: `${siteConfig.url}/refund-policy`,
-    type: "website",
-  },
-};
+  description: "Learn about Restra's subscription refund policy, cancellation, billing, and how to request a refund.",
+  path: "/refund-policy",
+  socialTitle: "Refund Policy | Restra",
+  socialDescription: "Understand Restra's refund policy for subscription payments, cancellations, and billing issues.",
+});
 
 const LAST_UPDATED = "September 6, 2026";
 
@@ -27,16 +23,7 @@ export default function RefundPolicyPage() {
       <main id="main-content" className="bg-restra-bg text-restra-text">
         <section className="border-b border-black/10 bg-restra-surface/40 px-6 pb-16 pt-36 lg:px-8 lg:pb-20 lg:pt-44">
           <div className="mx-auto max-w-4xl">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-8 flex items-center gap-2 text-sm text-restra-text-muted"
-            >
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">Refund Policy</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "Refund Policy", path: "/refund-policy" }]} />
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-restra-yellow">
               Legal
             </p>

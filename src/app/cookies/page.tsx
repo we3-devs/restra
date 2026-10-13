@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Cookie Policy",
-  description:
-    "Learn how Restra uses cookies and similar technologies on our website and platform.",
-  alternates: { canonical: `${siteConfig.url}/cookies` },
-  openGraph: {
-    title: "Cookie Policy | Restra",
-    description:
-      "How Restra uses cookies, what choices you have, and how to manage your preferences.",
-    url: `${siteConfig.url}/cookies`,
-    type: "website",
-  },
-};
+  description: "Learn how Restra uses cookies and similar technologies on our website and platform.",
+  path: "/cookies",
+  socialTitle: "Cookie Policy | Restra",
+  socialDescription: "How Restra uses cookies, what choices you have, and how to manage your preferences.",
+});
 
 const LAST_UPDATED = "October 11, 2026";
 
@@ -27,16 +23,7 @@ export default function CookiePolicyPage() {
       <main id="main-content" className="bg-restra-bg text-restra-text">
         <section className="border-b border-black/10 bg-restra-surface/40 px-6 pb-16 pt-36 lg:px-8 lg:pb-20 lg:pt-44">
           <div className="mx-auto max-w-4xl">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-8 flex items-center gap-2 text-sm text-restra-text-muted"
-            >
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">Cookie Policy</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "Cookie Policy", path: "/cookies" }]} />
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-restra-yellow">
               Legal
             </p>

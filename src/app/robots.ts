@@ -8,6 +8,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      // Uptime-check JSON endpoints, not pages.
+      disallow: ["/api/", "/health"],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   };

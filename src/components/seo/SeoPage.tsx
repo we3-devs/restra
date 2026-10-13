@@ -16,6 +16,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Breadcrumbs from "./Breadcrumbs";
 import CtaBand from "./CtaBand";
 import { FeatureIcon } from "./FeatureIcon";
 import SiteHeader from "./SiteHeader";
@@ -27,31 +28,6 @@ import SiteFooter from "./SiteFooter";
 
 export function seoJsonLd(page: SeoPage, path: string) {
   const url = absoluteUrl(path);
-  const isFeaturePage = path.startsWith("/features/");
-
-  const breadcrumb = {
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-      ...(isFeaturePage
-        ? [
-            {
-              "@type": "ListItem",
-              position: 2,
-              name: "Restaurant Software Features",
-              item: absoluteUrl("/features"),
-            },
-          ]
-        : []),
-      {
-        "@type": "ListItem",
-        position: isFeaturePage ? 3 : 2,
-        name: page.title,
-        item: url,
-      },
-    ],
-  };
-
   const graph: Record<string, unknown>[] = [
     {
       "@type": "WebPage",
@@ -60,8 +36,8 @@ export function seoJsonLd(page: SeoPage, path: string) {
       name: page.title,
       description: page.description,
       isPartOf: { "@id": `${siteConfig.url}/#website` },
+      about: { "@id": `${siteConfig.url}/#software` },
     },
-    breadcrumb,
   ];
 
   if (page.faqs) {
@@ -95,30 +71,17 @@ function FeatureHero({ page, isFeaturePage }: { page: SeoPage; isFeaturePage: bo
       />
 
       <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
-        <nav
-          aria-label="Breadcrumb"
-          className="mb-10 flex flex-wrap items-center gap-2 text-sm text-restra-text-muted"
-        >
-          <Link
-            href="/"
-            className="transition-colors hover:text-restra-yellow"
-          >
-            Home
-          </Link>
-          <span aria-hidden="true">/</span>
-          {isFeaturePage ? (
-            <>
-              <Link
-                href="/features"
-                className="transition-colors hover:text-restra-yellow"
-              >
-                Features
-              </Link>
-              <span aria-hidden="true">/</span>
-            </>
-          ) : null}
-          <span className="text-restra-text-secondary">{page.title}</span>
-        </nav>
+        <Breadcrumbs
+          className="mb-10"
+          trail={
+            isFeaturePage
+              ? [
+                  { name: "Features", path: "/features" },
+                  { name: page.title, path: featurePath(page.slug) },
+                ]
+              : [{ name: page.title, path: `/${page.slug}` }]
+          }
+        />
 
         <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_0.6fr]">
           {/* Copy */}

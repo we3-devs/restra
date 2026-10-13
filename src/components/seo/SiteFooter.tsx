@@ -51,7 +51,9 @@ export default async function SiteFooter() {
               href="/"
               className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight text-white"
             >
-              <img src="/logo.svg" alt="RESTRA logo" className="h-8 w-auto" />
+              {/* Decorative: the link text "RESTRA" already names the destination. */}
+              {/* eslint-disable-next-line @next/next/no-img-element -- small SVG logo; next/image adds nothing for SVG */}
+              <img src="/logo.svg" alt="" width={1306} height={1205} className="h-8 w-auto" />
               <span>RESTRA</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
@@ -181,7 +183,7 @@ export default async function SiteFooter() {
               © {currentYear} {siteConfig.name}. All rights reserved.
             </p>
             <p className="mt-1 text-xs text-white/70">
-              A product of {siteConfig.developer} · Nepal ·{" "}
+              A product of {siteConfig.developer} · {siteConfig.location} ·{" "}
               <a href={`mailto:${siteConfig.contactEmail}`} className="underline-offset-2 hover:underline">
                 {siteConfig.contactEmail}
               </a>

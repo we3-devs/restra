@@ -5,6 +5,7 @@ import { CalendarDays, Clock, ArrowLeft } from "lucide-react";
 import BlogBlocks from "@/components/blog/BlogBlocks";
 import BlogCard from "@/components/blog/BlogCard";
 import BlogMedia from "@/components/blog/BlogMedia";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import CtaBand from "@/components/seo/CtaBand";
 import SiteFooter from "@/components/seo/SiteFooter";
 import SiteHeader from "@/components/seo/SiteHeader";
@@ -14,8 +15,10 @@ import {
   formatPostDate,
   type BlogPost,
 } from "@/lib/blog-content";
+import { pageMetadata } from "@/lib/metadata";
 import { absoluteUrl, featurePath, seoPages } from "@/lib/seo-content";
 import { siteConfig } from "@/lib/site-config";
+import { publisherRef } from "@/lib/structured-data";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -40,29 +43,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = await getBlogPost(slug);
   if (!post) return {};
 
-  const url = absoluteUrl(`/blog/${slug}`);
   const image = absoluteImage(post.imageUrl);
 
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      url,
-      type: "article",
-      publishedTime: post.publishedAt,
-      modifiedTime: post.updatedAt,
-      ...(image ? { images: [{ url: image }] } : {}),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-      ...(image ? { images: [image] } : {}),
-    },
-  };
+    path: `/blog/${slug}`,
+    type: "article",
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt ?? post.publishedAt,
+    ...(image ? { image: { url: image, alt: post.imageAlt ?? post.title } } : {}),
+  });
 }
 
 function resolveRelated(post: BlogPost, posts: BlogPost[]): RelatedTarget[] {
@@ -133,24 +124,8 @@ export default async function BlogPostPage({ params }: PageProps) {
           name: post.authorName,
           ...(post.authorRole ? { jobTitle: post.authorRole } : {}),
         },
-        publisher: {
-          "@type": "Organization",
-          "@id": `${siteConfig.url}/#organization`,
-          name: siteConfig.name,
-        },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Blog",
-            item: absoluteUrl("/blog"),
-          },
-          { "@type": "ListItem", position: 3, name: post.title, item: url },
-        ],
+        publisher: publisherRef,
+        isPartOf: { "@id": `${siteConfig.url}/#website` },
       },
       ...post.content
         .filter((block) => block.type === "faq")
@@ -187,21 +162,12 @@ export default async function BlogPostPage({ params }: PageProps) {
         />
 
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
-          {/* Breadcrumb */}
-          <nav
-            aria-label="Breadcrumb"
-            className="mb-8 flex flex-wrap items-center gap-2 text-sm text-restra-text-muted"
-          >
-            <Link href="/" className="transition-colors hover:text-restra-yellow">
-              Home
-            </Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/blog" className="transition-colors hover:text-restra-yellow">
-              Blog
-            </Link>
-            <span aria-hidden="true">/</span>
-            <span className="text-restra-text-secondary">{post.title}</span>
-          </nav>
+          <Breadcrumbs
+            trail={[
+              { name: "Blog", path: "/blog" },
+              { name: post.title, path: `/blog/${post.slug}` },
+            ]}
+          />
 
           <article className="mx-auto max-w-3xl">
             {/* Header */}

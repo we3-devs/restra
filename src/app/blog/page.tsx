@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock } from "lucide-react";
 import CtaBand from "@/components/seo/CtaBand";
@@ -8,13 +9,13 @@ import BlogCard, { blogPath } from "@/components/blog/BlogCard";
 import BlogMedia from "@/components/blog/BlogMedia";
 import { absoluteUrl } from "@/lib/seo-content";
 import { formatPostDate, getAllPosts } from "@/lib/blog-content";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Restaurant Software Blog",
-  description:
-    "RESTRA blog — practical guides on restaurant POS, QR ordering, billing, inventory management, kitchen workflows, staff permissions, and running a restaurant in Nepal.",
-  alternates: { canonical: absoluteUrl("/blog") },
-};
+  description: "RESTRA blog — practical guides on restaurant POS, QR ordering, billing, inventory management, kitchen workflows, staff permissions, and running a restaurant in Nepal.",
+  path: "/blog",
+});
 
 export default async function BlogIndexPage() {
   const posts = await getAllPosts();
@@ -47,16 +48,7 @@ export default async function BlogIndexPage() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_15%_-10%,rgba(255,212,59,0.08),transparent_60%),radial-gradient(ellipse_60%_50%_at_90%_0%,rgba(34,211,238,0.06),transparent_60%)]"
           />
           <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-8 flex flex-wrap items-center gap-2 text-sm text-restra-text-muted"
-            >
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">Blog</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "Blog", path: "/blog" }]} />
 
             <div className="mx-auto max-w-3xl">
               <Link

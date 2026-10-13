@@ -88,7 +88,8 @@ export default function Footer() {
               href="/"
               className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-footer-heading"
             >
-              <img src="/logo.svg" alt="RESTRA logo" className="h-25 w-auto shrink-0" />
+              {/* eslint-disable-next-line @next/next/no-img-element -- small SVG logo; next/image adds nothing for SVG */}
+              <img src="/logo.svg" alt="RESTRA home" width={1306} height={1205} className="h-25 w-auto shrink-0" />
             </Link>
             <p className="mt-2 text-xs font-medium ml-4 text-restra-footer-heading">
               {t("footer.productBy")}

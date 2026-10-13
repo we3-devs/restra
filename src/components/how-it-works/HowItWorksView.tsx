@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import Reveal from "@/components/reusable/Reveal";
 import MockupRenderer from "@/components/mockups/MockupRenderer";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 /**
  * How-it-works timeline: interactive auto-advancing stepper that follows one
@@ -129,13 +130,7 @@ export default function HowItWorksView() {
         />
         <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-14 lg:px-8 lg:pb-20 lg:pt-20">
           <Reveal>
-            <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-restra-text-muted">
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">{t("hiw.badge")}</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "How It Works", path: "/how-it-works" }]} />
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-restra-yellow">
               {t("hiw.badge")}
             </p>

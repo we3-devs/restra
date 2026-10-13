@@ -516,7 +516,7 @@ const en = {
   "cfaq.devices.q": "What devices do we need?",
   "cfaq.devices.a": "Any device with a browser: an existing laptop or desktop for the counter, Android phones for the kitchen, and customers order from their own phones via QR. No special hardware required.",
   "cfaq.lang.q": "Does Restra support Nepali?",
-  "cfaq.lang.a": "Yes — the staff interface and this website work in both English and Nepali, and staff can switch anytime.",
+  "cfaq.lang.a": "Yes — the staff interface works in both English and Nepali, and staff can switch anytime.",
   "cfaq.support.q": "What support do we get?",
   "cfaq.support.a": "Every plan includes support — email on every plan, priority support on 6-month plans, and priority phone support on yearly plans.",
 } as const;
@@ -1037,7 +1037,7 @@ const ne: Record<keyof typeof en, string> = {
   "cfaq.devices.q": "हामीलाई कस्ता उपकरण चाहिन्छ?",
   "cfaq.devices.a": "ब्राउजर भएको जुनसुकै उपकरण: काउन्टरका लागि पुरानो ल्यापटप वा डेस्कटप, भान्साका लागि एन्ड्रोइड फोन, र ग्राहकहरूले QR बाट आफ्नै फोनबाट अर्डर गर्छन्। विशेष हार्डवेयर चाहिँदैन।",
   "cfaq.lang.q": "के Restra मा नेपाली भाषा छ?",
-  "cfaq.lang.a": "छ — स्टाफ इन्टरफेस र यो वेबसाइट अंग्रेजी र नेपाली दुवैमा चल्छ, र स्टाफले कुनै पनि बेला भाषा बदल्न सक्छन्।",
+  "cfaq.lang.a": "छ — स्टाफ इन्टरफेस अंग्रेजी र नेपाली दुवैमा चल्छ, र स्टाफले कुनै पनि बेला भाषा बदल्न सक्छन्।",
   "cfaq.support.q": "हामीले कस्तो सहायता पाउँछौं?",
   "cfaq.support.a": "हरेक योजनामा सहायता समावेश छ — सबै योजनामा इमेल, ६-महिना योजनामा प्राथमिकता सहायता, र वार्षिक योजनामा प्राथमिकता फोन सहायता।",
 } as const;
@@ -1049,3 +1049,9 @@ export function getTranslation(lang: Language, key: TranslationKey): string {
 }
 
 export const translations = { en, ne };
+
+/**
+ * The English table on its own. The site renders English only, so client code
+ * imports this instead of getTranslation(), letting bundlers drop the Nepali copy.
+ */
+export const englishTranslations: Record<TranslationKey, string> = en;

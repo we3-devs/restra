@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Terms of Service",
-  description:
-    "Terms and conditions for using Restra restaurant management software. By using Restra, you agree to these terms.",
-  alternates: { canonical: `${siteConfig.url}/terms` },
-  openGraph: {
-    title: "Terms of Service | Restra",
-    description:
-      "Review the terms and conditions for using Restra restaurant management software.",
-    url: `${siteConfig.url}/terms`,
-    type: "website",
-  },
-};
+  description: "Terms and conditions for using Restra restaurant management software. By using Restra, you agree to these terms.",
+  path: "/terms",
+  socialTitle: "Terms of Service | Restra",
+  socialDescription: "Review the terms and conditions for using Restra restaurant management software.",
+});
 
 const LAST_UPDATED = "September 6, 2026";
 
@@ -27,16 +23,7 @@ export default function TermsPage() {
       <main id="main-content" className="bg-restra-bg text-restra-text">
         <section className="border-b border-black/10 bg-restra-surface/40 px-6 pb-16 pt-36 lg:px-8 lg:pb-20 lg:pt-44">
           <div className="mx-auto max-w-4xl">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-8 flex items-center gap-2 text-sm text-restra-text-muted"
-            >
-              <Link href="/" className="transition-colors hover:text-restra-yellow">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-restra-text-secondary">Terms of Service</span>
-            </nav>
+            <Breadcrumbs trail={[{ name: "Terms of Service", path: "/terms" }]} />
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-restra-yellow">
               Legal
             </p>

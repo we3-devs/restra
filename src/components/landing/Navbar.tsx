@@ -1,27 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import {
-  ArrowUpRight,
-  ChevronDown,
-  Home,
-  LayoutGrid,
-  Mail,
-  Tag,
-  Users,
-  Workflow,
-} from "lucide-react";
+import { Home, LayoutGrid, Mail, Tag, Users, Workflow } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { FeatureIcon } from "@/components/seo/FeatureIcon";
 import { useI18n } from "@/contexts/I18nContext";
-import { featurePages, featurePath } from "@/lib/seo-content";
 import type { TranslationKey } from "@/lib/translations";
 
 type SectionNavItem = {
   type: "section";
   key: TranslationKey;
   section: string; // in-page anchor, e.g. "#hero"
+  /** Dedicated page for this section, linked from every page except home. */
+  page: string;
   icon: LucideIcon;
 };
 
@@ -35,12 +26,12 @@ type PageNavItem = {
 export type NavItem = SectionNavItem | PageNavItem;
 
 const navItems: NavItem[] = [
-  { type: "section", key: "nav.home", section: "#hero", icon: Home },
-  { type: "section", key: "nav.features", section: "#modules", icon: LayoutGrid },
-  { type: "section", key: "nav.howItWorks", section: "#workflow", icon: Workflow },
-  { type: "section", key: "nav.pricing", section: "#pricing", icon: Tag },
-  { type: "section", key: "nav.team", section: "#team", icon: Users },
-  { type: "section", key: "nav.contact", section: "#contact", icon: Mail },
+  { type: "section", key: "nav.home", section: "#hero", page: "/", icon: Home },
+  { type: "section", key: "nav.features", section: "#modules", page: "/features", icon: LayoutGrid },
+  { type: "section", key: "nav.howItWorks", section: "#workflow", page: "/how-it-works", icon: Workflow },
+  { type: "section", key: "nav.pricing", section: "#pricing", page: "/pricing", icon: Tag },
+  { type: "section", key: "nav.team", section: "#team", page: "/about", icon: Users },
+  { type: "section", key: "nav.contact", section: "#contact", page: "/contact", icon: Mail },
 ];
 
 const sectionItems = navItems.filter(
@@ -53,131 +44,20 @@ function scrollToSection(section: string) {
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-/* ------------------------------------------------------------------ */
-/*  Features hover menu                                                */
-/* ------------------------------------------------------------------ */
-
-function FeaturesNavMenu({ label }: { label: string }) {
-  const [open, setOpen] = useState(false);
-
-  const closeMenu = () => setOpen(false);
-  const triggerRef = useRef<HTMLAnchorElement>(null);
-  const suppressFocusOpen = useRef(false);
-
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocus={() => {
-        if (suppressFocusOpen.current) {
-          suppressFocusOpen.current = false;
-          return;
-        }
-        setOpen(true);
-      }}
-      onBlur={(event) => {
-        const nextTarget = event.relatedTarget as Node | null;
-        if (!event.currentTarget.contains(nextTarget)) setOpen(false);
-      }}
-      onKeyDown={(event) => {
-        // Escape closes the menu and returns focus to the trigger (WCAG 1.4.13).
-        if (event.key !== "Escape" || !open) return;
-        event.preventDefault();
-        setOpen(false);
-        if (triggerRef.current && document.activeElement !== triggerRef.current) {
-          suppressFocusOpen.current = true;
-          triggerRef.current.focus();
-        }
-      }}
-    >
-      <Link
-        ref={triggerRef}
-        href="/features"
-        aria-haspopup="menu"
-        aria-expanded={open}
-        className={`group inline-flex items-center gap-1 rounded-full px-3 py-1.5 font-body text-sm font-medium transition-all duration-300 hover:bg-restra-yellow/10 hover:text-restra-text ${
-          open
-            ? "bg-restra-yellow/10 text-restra-text shadow-[0_6px_18px_rgba(245,197,24,0.12)]"
-            : "text-restra-text-secondary"
-        }`}
-      >
-        {label}
-        <ChevronDown
-          className={`h-3.5 w-3.5 transition-all duration-300 group-hover:text-restra-yellow ${
-            open ? "rotate-180 text-restra-yellow" : ""
-          }`}
-        />
-      </Link>
-
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            key="features-menu"
-            role="menu"
-            aria-label="Restaurant features"
-            initial={{ opacity: 0, y: 10, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.97 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-1/2 top-full z-50 mt-4 w-[42rem] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-restra-bg/70 shadow-2xl shadow-black/20 backdrop-blur-lg"
-          >
-            {/* Glass shine */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-restra-cyan/[0.04]"
-            />
-
-            <div className="relative p-5">
-              {/* Feature links */}
-              <ul className="grid grid-cols-2 gap-1">
-                {featurePages.map((page) => (
-                  <li key={page.slug}>
-                    <Link
-                      href={featurePath(page.slug)}
-                      onClick={closeMenu}
-                      role="menuitem"
-                      className="group flex items-center gap-2.5 rounded-lg border border-transparent px-3 py-2.5 transition-all duration-200 hover:-translate-y-px hover:border-restra-yellow/20 hover:bg-restra-yellow/[0.06] hover:shadow-sm"
-                    >
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-restra-cyan transition-colors group-hover:border-restra-yellow/30 group-hover:text-restra-yellow">
-                        <FeatureIcon slug={page.slug} className="h-4 w-4" />
-                      </span>
-                      <span className="text-sm font-medium leading-snug text-restra-text transition-colors group-hover:text-restra-yellow">
-                        {page.title}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Quick links */}
-              <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/[0.08] px-1 pt-3.5">
-                <Link
-                  href="/features"
-                  onClick={closeMenu}
-                  role="menuitem"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-restra-text-secondary transition-colors hover:text-restra-yellow"
-                >
-                  All features
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
-                <Link
-                  href="/restaurant-management-system"
-                  onClick={closeMenu}
-                  role="menuitem"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-restra-text-muted transition-colors hover:text-restra-text"
-                >
-                  Restaurant management software
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </div>
-  );
+/** True when `pathname` is `page` or one of its sub-pages (e.g. /features/pos). */
+function isCurrentPage(pathname: string, page: string) {
+  return pathname === page || (page !== "/" && pathname.startsWith(page + "/"));
 }
+
+/** Real anchor for crawlers and new-tab clicks; smooth-scrolls on a plain click. */
+function handleSectionClick(event: MouseEvent<HTMLAnchorElement>, section: string) {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+  event.preventDefault();
+  scrollToSection(section);
+}
+
+// Only rendered for a "page" nav item pointing at /features; loaded on demand.
+const FeaturesNavMenu = dynamic(() => import("./FeaturesNavMenu"));
 
 /* ------------------------------------------------------------------ */
 /*  Navbar                                                             */
@@ -239,13 +119,17 @@ export default function Navbar() {
           href="/"
           className="flex items-end gap-1 font-display text-lg font-semibold tracking-tight text-restra-text"
         >
-          <img src="/logo.svg" alt="RESTRA logo" className="h-10 w-auto shrink-0" />
+          {/* eslint-disable-next-line @next/next/no-img-element -- small SVG logo; next/image adds nothing for SVG */}
+          <img src="/logo.svg" alt="RESTRA home" width={1306} height={1205} className="h-10 w-auto shrink-0" />
         </Link>
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-6 md:flex md:justify-self-center">
           {navItems.map((item) => {
-            const isActive = item.type === "section" && item.section === activeHref;
+            // Home page: scroll-spy section. Other pages: the section's own page.
+            const isActive =
+              item.type === "section" &&
+              (pathname === "/" ? item.section === activeHref : isCurrentPage(pathname, item.page));
             const className = `font-body text-sm font-medium transition-colors hover:text-restra-text ${
               isActive ? "text-restra-text" : "text-restra-text-secondary"
             }`;
@@ -266,8 +150,9 @@ export default function Navbar() {
               return (
                 <Link
                   key={item.section}
-                  href={item.section === "#hero" ? "/" : `/${item.section}`}
+                  href={item.page}
                   className={className}
+                  aria-current={isCurrentPage(pathname, item.page) ? "page" : undefined}
                 >
                   {t(item.key)}
                 </Link>
@@ -275,13 +160,14 @@ export default function Navbar() {
             }
 
             return (
-              <button
+              <a
                 key={item.section}
-                onClick={() => scrollToSection(item.section)}
+                href={item.section}
+                onClick={(event) => handleSectionClick(event, item.section)}
                 className={className}
               >
                 {t(item.key)}
-              </button>
+              </a>
             );
           })}
         </div>
@@ -348,10 +234,6 @@ export function MobileTabBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleNav = (item: NavItem) => {
-    if (item.type === "section") scrollToSection(item.section);
-  };
-
   return (
     <nav
       className="fixed inset-x-0 bottom-0 z-50 border-t border-white/45 bg-white/70 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_24px_rgba(26,28,28,0.08)] backdrop-blur-xl backdrop-saturate-150 md:hidden"
@@ -390,13 +272,14 @@ export function MobileTabBar() {
           }
 
           return (
-            <button
+            <a
               key={item.section}
-              onClick={() => handleNav(item)}
+              href={item.section}
+              onClick={(event) => handleSectionClick(event, item.section)}
               className="flex flex-1 flex-col items-center gap-0.5 py-2.5 text-[10px] font-medium transition-colors"
             >
               {inner}
-            </button>
+            </a>
           );
         })}
       </div>

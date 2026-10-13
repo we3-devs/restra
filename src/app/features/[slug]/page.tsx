@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SeoPageView, { seoJsonLd } from "@/components/seo/SeoPage";
+import { pageMetadata } from "@/lib/metadata";
 import {
-  absoluteUrl,
   featurePath,
   featureSlugs,
   getSeoPage,
@@ -21,19 +21,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const page = getSeoPage(slug);
   if (!page) return {};
 
-  const url = absoluteUrl(featurePath(slug));
-
-  return {
+  return pageMetadata({
     title: page.title,
     description: page.description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: page.title,
-      description: page.description,
-      url,
-      type: "website",
-    },
-  };
+    path: featurePath(slug),
+  });
 }
 
 export default async function FeaturePage({ params }: PageProps) {

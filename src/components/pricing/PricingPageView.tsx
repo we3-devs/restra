@@ -16,6 +16,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 /**
  * Pricing page: three premium plan cards (yearly highlighted), a full
@@ -91,6 +92,7 @@ export default function PricingPageView() {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_-10%,rgba(255,212,59,0.07),transparent_60%)]"
         />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <Breadcrumbs trail={[{ name: "Pricing", path: "/pricing" }]} />
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-restra-yellow">
               {t("price.badge")}
