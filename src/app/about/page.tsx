@@ -7,7 +7,7 @@ import AboutView from "@/components/about/AboutView";
 export const metadata: Metadata = {
   title: "About Us — Restaurant Software Built in Nepal",
   description:
-    "Meet the small team building Restra restaurant management software in Nepal — Sujan Katuwal, Prashanta Guragain, and Ujwal Khatiwada of We-3: tech & innovation.",
+    "Meet the small team building Restra restaurant management software in Nepal — Sujan Katuwal, Prashanta Guragain, and Ujwal Khatiwada of Inovexa Labs.",
   alternates: { canonical: `${siteConfig.url}/about` },
   openGraph: {
     title: "About — The Team Behind Restra",

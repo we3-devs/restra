@@ -255,7 +255,7 @@ const en = {
 
   // Footer
   "footer.desc": "Restaurant management, without the unnecessary complexity.",
-  "footer.productBy": "A product of WE-3: Tech & Innovation",
+  "footer.productBy": "A product of Inovexa Labs",
   "footer.product": "Product",
   "footer.company": "Company",
   "footer.legal": "Legal",
@@ -431,7 +431,7 @@ const en = {
   // Pages: About / Team
   // ------------------------------------------------------------------
   "about.metaTitle": "About — The Team Behind Restra",
-  "about.metaDescription": "Meet the small team building Restra restaurant management software in Nepal — Sujan Katuwal, Prashanta Guragain, and Ujwal Khatiwada of We-3: tech & innovation.",
+  "about.metaDescription": "Meet the small team building Restra restaurant management software in Nepal — Sujan Katuwal, Prashanta Guragain, and Ujwal Khatiwada of Inovexa Labs.",
   "about.badge": "About Restra",
   "about.title": "Built by people who",
   "about.titleHighlight": "sweat the details",
@@ -439,7 +439,7 @@ const en = {
   "about.storyBadge": "Our story",
   "about.storyTitle": "Why we're building Restra",
   "about.storyP1": "Restra started with a simple observation: restaurants in Nepal run on five disconnected tools — a billing app, paper tickets, a stock notebook, spreadsheets, and memory. None of them talk to each other, so nothing adds up at the end of the day.",
-  "about.storyP2": "We are We-3: tech & innovation, a small team of engineers who kept seeing the same problem in restaurants we knew well. So we built the system we'd want to run our own restaurant with — one connected platform where an order, a bill, and a stock count are the same data.",
+  "about.storyP2": "We are Inovexa Labs, a small team of engineers who kept seeing the same problem in restaurants we knew well. So we built the system we'd want to run our own restaurant with — one connected platform where an order, a bill, and a stock count are the same data.",
   "about.storyP3": "We design for the rush: big touch targets for busy counters, statuses the kitchen can read at a glance, and reports a manager can trust without a calculator. Simple software, built carefully.",
   "about.valuesBadge": "How we work",
   "about.valuesTitle": "What we optimize for",
@@ -776,7 +776,7 @@ const ne: Record<keyof typeof en, string> = {
 
   // Footer
   "footer.desc": "अनावश्यक जटिलता बिना रेस्टुरेन्ट व्यवस्थापन।",
-  "footer.productBy": "WE-3: टेक र इनोभेसनको उत्पादन",
+  "footer.productBy": "Inovexa Labs को उत्पादन",
   "footer.product": "उत्पादन",
   "footer.company": "कम्पनी",
   "footer.legal": "कानुनी",
@@ -952,7 +952,7 @@ const ne: Record<keyof typeof en, string> = {
   // Pages: About / Team
   // ------------------------------------------------------------------
   "about.metaTitle": "हाम्रो बारे — Restra पछाडिको टिम",
-  "about.metaDescription": "नेपालमा Restra रेस्टुरेन्ट व्यवस्थापन सफ्टवेयर बनाउने सानो टिमसँग परिचय — सुजन कटुवाल, प्रशान्त गुरागाईं र उज्वल खतिवडा (We-3: tech & innovation)।",
+  "about.metaDescription": "नेपालमा Restra रेस्टुरेन्ट व्यवस्थापन सफ्टवेयर बनाउने सानो टिमसँग परिचय — सुजन कटुवाल, प्रशान्त गुरागाईं र उज्वल खतिवडा (Inovexa Labs)।",
   "about.badge": "Restra बारे",
   "about.title": "विवरणमा ध्यान दिने",
   "about.titleHighlight": "मानिसहरूद्वारा निर्मित",
@@ -960,7 +960,7 @@ const ne: Record<keyof typeof en, string> = {
   "about.storyBadge": "हाम्रो कथा",
   "about.storyTitle": "हामी Restra किन बनाइरहेका छौं",
   "about.storyP1": "Restra एउटा सरल अवलोकनबाट सुरु भयो: नेपालका रेस्टुरेन्टहरू पाँच अलग उपकरणमा चल्छन् — बिलिङ एप, कागजी टिकट, स्टक कापी, स्प्रेडसिट र सम्झना। तीमध्ये कुनै पनि आपसमा कुरा गर्दैनन्, त्यसैले दिनको अन्त्यमा कुनै पनि हिसाब मिल्दैन।",
-  "about.storyP2": "हामी We-3: tech & innovation हौं — हामीले राम्ररी चिनेका रेस्टुरेन्टहरूमा यही समस्या देखिरहने इन्जिनियरहरूको सानो टिम। त्यसैले हामीले आफ्नै रेस्टुरेन्ट चलाउने सोचका साथ प्रणाली बनायौं — जहाँ अर्डर, बिल र स्टक गणना एउटै डेटा हो।",
+  "about.storyP2": "हामी Inovexa Labs हौं — हामीले राम्ररी चिनेका रेस्टुरेन्टहरूमा यही समस्या देखिरहने इन्जिनियरहरूको सानो टिम। त्यसैले हामीले आफ्नै रेस्टुरेन्ट चलाउने सोचका साथ प्रणाली बनायौं — जहाँ अर्डर, बिल र स्टक गणना एउटै डेटा हो।",
   "about.storyP3": "हामी रश अवधिका लागि डिजाइन गर्छौं: व्यस्त काउन्टरका लागि ठूला टच लक्ष्य, भान्साले एक नजरमा बुझ्न सक्ने स्ट्याटस, र व्यवस्थापकले क्यालकुलेटर बिना विश्वास गर्न सक्ने रिपोर्ट। सरल सफ्टवेयर, ध्यानपूर्वक निर्मित।",
   "about.valuesBadge": "हामी कसरी काम गर्छौं",
   "about.valuesTitle": "हामीले केमा जोड दिन्छौं",

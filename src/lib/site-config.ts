@@ -25,7 +25,7 @@ export const siteConfig = {
   /** Other spellings people search for; surfaced to Google via JSON-LD alternateName. */
   alternateNames: ["Restra", "Restra Services", "restraservices.com"],
   title: "RESTRA - Restaurant Management System",
-  developer: "We-3: tech & innovation",
+  developer: "Inovexa Labs",
   contactEmail: "restraservices@gmail.com",
   contactPhone: "+977 9761093528",
   socialProfiles: ["https://www.instagram.com/restra_services", "https://github.com/we3-devs/"],
