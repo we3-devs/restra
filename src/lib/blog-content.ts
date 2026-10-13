@@ -83,7 +83,7 @@ type BlogPostRow = {
 export const seedPosts: BlogPost[] = [
   {
     slug: "top-10-best-restaurant-management-software-nepal",
-    title: "Top 10 Best Restaurant Management Software (RMS) in Nepal",
+    title: "10 Best Restaurant Management Software in Nepal",
     description:
       "Compare 10 restaurant management software and POS platforms for Nepalese restaurants, with features, limitations, pricing guidance, and practical buying advice.",
     category: "Restaurant Software",
