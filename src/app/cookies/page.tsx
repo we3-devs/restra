@@ -5,7 +5,7 @@ import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Restra",
+  title: "Cookie Policy",
   description:
     "Learn how Restra uses cookies and similar technologies on our website and platform.",
   alternates: { canonical: `${siteConfig.url}/cookies` },

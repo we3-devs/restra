@@ -30,7 +30,7 @@ export const siteConfig = {
   contactPhone: "+977 9761093528",
   socialProfiles: ["https://www.instagram.com/restra_services", "https://github.com/we3-devs/"],
   description:
-    "RESTRA - Restaurant Management System for restaurants, cafes, and cloud kitchens. Manage POS, billing, QR ordering, inventory, kitchen workflows, staff permissions, and reporting in one platform.",
+    "RESTRA is restaurant management software for restaurants, cafés, and cloud kitchens in Nepal: POS, billing, QR ordering, inventory, kitchen display, reports.",
   url: getCanonicalSiteUrl(configuredUrl),
   keywords: [
     "RESTRA",

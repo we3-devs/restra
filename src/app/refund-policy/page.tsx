@@ -5,7 +5,7 @@ import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Refund Policy | Restra",
+  title: "Refund Policy",
   description:
     "Learn about Restra's subscription refund policy, cancellation, billing, and how to request a refund.",
   alternates: { canonical: `${siteConfig.url}/refund-policy` },

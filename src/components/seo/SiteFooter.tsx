@@ -10,6 +10,17 @@ const socialLinks = [
   { label: "Email", href: `mailto:${siteConfig.contactEmail}`, icon: Mail },
 ];
 
+// The navbar only links to homepage sections, so these standalone pages need
+// a crawlable link from every content page.
+const companyLinks = [
+  { label: "All Features", href: "/features" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "About Us", href: "/about" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
+];
+
 const legalLinks = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
@@ -33,7 +44,7 @@ export default async function SiteFooter() {
     >
       <div className="mx-auto max-w-7xl">
         {/* Top Section - Multi-column layout */}
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_0.8fr_1.3fr]">
           {/* Brand */}
           <div>
             <Link
@@ -107,6 +118,22 @@ export default async function SiteFooter() {
                     className="text-base text-white/85 transition-colors hover:text-white"
                   >
                     {seoPages[slug].title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Company">
+            <h4 className="text-restra-footer-heading">Company</h4>
+            <ul className="mt-4 space-y-3">
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-base text-white/85 transition-colors hover:text-white"
+                  >
+                    {link.label}
                   </Link>
                 </li>
               ))}

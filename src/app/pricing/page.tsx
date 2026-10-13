@@ -5,7 +5,7 @@ import SiteFooter from "@/components/seo/SiteFooter";
 import PricingPageView from "@/components/pricing/PricingPageView";
 
 export const metadata: Metadata = {
-  title: "Pricing — Restra Restaurant Management System",
+  title: "Pricing — Restaurant Management System Plans",
   description:
     "Simple monthly, 6-month, and yearly plans for Restra restaurant management software. No hidden fees — full access to POS, QR ordering, inventory, and analytics.",
   alternates: { canonical: `${siteConfig.url}/pricing` },

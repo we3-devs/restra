@@ -5,7 +5,7 @@ import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Restra",
+  title: "Privacy Policy",
   description:
     "Learn how Restra collects, uses, stores, and protects personal and business information.",
   alternates: { canonical: `${siteConfig.url}/privacy` },

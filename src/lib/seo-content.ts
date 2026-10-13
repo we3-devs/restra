@@ -50,7 +50,7 @@ const pages: SeoPage[] = [
     // so the two pages don't compete for the same queries.
     title: "Restaurant Management Software in Nepal",
     description:
-      "Restaurant management software for restaurants, cafés, and cloud kitchens in Nepal — POS, billing, QR ordering, inventory, kitchen display, staff permissions, and reporting in one platform.",
+      "Restaurant management software for Nepal's restaurants, cafés, and cloud kitchens: POS, billing, QR ordering, inventory, KDS, staff roles, and reports.",
     intro:
       "RESTRA brings POS, billing, order management, QR ordering, inventory, kitchen workflows, staff permissions, table management, and reporting into one connected restaurant management system.",
     sections: [

@@ -5,7 +5,7 @@ import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Restra",
+  title: "Terms of Service",
   description:
     "Terms and conditions for using Restra restaurant management software. By using Restra, you agree to these terms.",
   alternates: { canonical: `${siteConfig.url}/terms` },

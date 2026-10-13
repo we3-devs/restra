@@ -5,7 +5,7 @@ import SiteFooter from "@/components/seo/SiteFooter";
 import HowItWorksView from "@/components/how-it-works/HowItWorksView";
 
 export const metadata: Metadata = {
-  title: "How Restra Works — Restaurant Workflow",
+  title: "How It Works — Restaurant Workflow",
   description:
     "See how Restra connects a customer order to the kitchen, billing, inventory, and analytics — one workflow for restaurants, cafés, and cloud kitchens in Nepal.",
   alternates: { canonical: `${siteConfig.url}/how-it-works` },

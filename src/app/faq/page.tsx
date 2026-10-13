@@ -6,7 +6,7 @@ import SiteHeader from "@/components/seo/SiteHeader";
 import SiteFooter from "@/components/seo/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Restaurant Management Software FAQ | Restra Nepal",
+  title: "Restaurant Management Software FAQ (Nepal)",
   description:
     "Find answers about Restra restaurant management software, POS, billing, QR ordering, inventory, staff management, reports, pricing, setup and support.",
   alternates: { canonical: `${siteConfig.url}/faq` },
