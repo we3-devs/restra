@@ -8,6 +8,7 @@ import { getWhatsAppLink } from "@/lib/whatsapp";
 import { pricingPlans } from "@/lib/pricing";
 import { pricingFaqs } from "@/lib/faq-data";
 import Reveal from "@/components/reusable/Reveal";
+import { DashainOfferBanner } from "@/components/landing/DashainOffer";
 import {
   Accordion,
   AccordionContent,
@@ -94,6 +95,10 @@ export default function PricingPageView() {
             <p className="mt-5 text-base leading-relaxed text-restra-text-secondary lg:text-lg">
               {t("pricingPage.subtitle")}
             </p>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <DashainOfferBanner className="mx-auto mt-10 max-w-5xl" />
           </Reveal>
 
           {/* Plan cards */}

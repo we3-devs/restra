@@ -188,7 +188,6 @@ export default function Navbar() {
   const [activeHref, setActiveHref] = useState(defaultSection);
   const { t } = useI18n();
   const pathname = usePathname();
-  const contactHref = pathname === "/" ? "#contact" : "/#contact";
 
   useEffect(() => {
     const onScroll = () => {

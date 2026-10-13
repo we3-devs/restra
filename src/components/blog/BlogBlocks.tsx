@@ -150,17 +150,8 @@ export default function BlogBlocks({ blocks }: { blocks: BlogBlock[] }) {
               </div>
             );
           case "imagePlaceholder":
-            return (
-              <figure key={index} className="overflow-hidden rounded-xl border border-dashed border-restra-yellow/30 bg-restra-card/60">
-                <div className="flex aspect-[16/7] items-center justify-center px-6 text-center">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-restra-yellow">Company image placeholder</p>
-                    <p className="mt-2 text-sm text-restra-text-muted">{block.label ?? "Add a product or company image here"}</p>
-                  </div>
-                </div>
-                <figcaption className="sr-only">{block.alt}</figcaption>
-              </figure>
-            );
+            // Authoring marker for an image still to be supplied; never shown to readers.
+            return null;
           case "externalLink":
             return (
               <a

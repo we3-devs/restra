@@ -1,10 +1,10 @@
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
+import { siteConfig } from "@/lib/site-config";
 
 export default function CTASection() {
-  const router = useRouter();
   const { t } = useI18n();
 
   return (
@@ -30,15 +30,15 @@ export default function CTASection() {
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <button
-                onClick={() => router.push("/")}
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-restra-yellow px-7 py-3 text-sm font-semibold text-restra-bg transition-all hover:bg-restra-yellow/90 hover:translate-y-[-1px] hover:shadow-lg hover:shadow-restra-yellow/10"
               >
                 {t("nav.getStarted")}
                 <ArrowRight className="h-4 w-4" />
-              </button>
+              </Link>
               <a
-                href="mailto:restraservices@gmail.com"
+                href={`mailto:${siteConfig.contactEmail}`}
                 className="btn-cta inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.02] px-7 py-3 text-sm font-medium text-restra-text transition-all hover:bg-white/[0.05]"
               >
                 {t("cta.talkToUs")}

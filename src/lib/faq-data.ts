@@ -15,7 +15,6 @@ export const pricingFaqs: TranslatedFaq[] = [
   { question: "pfaq.hidden.q", answer: "pfaq.hidden.a" },
   { question: "pfaq.switch.q", answer: "pfaq.switch.a" },
   { question: "pfaq.training.q", answer: "pfaq.training.a" },
-  { question: "pfaq.placeholder.q", answer: "pfaq.placeholder.a" },
 ];
 
 export const contactFaqs: TranslatedFaq[] = [

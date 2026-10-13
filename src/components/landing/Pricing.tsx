@@ -1,44 +1,8 @@
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
-import type { TranslationKey } from "@/lib/translations";
+import { pricingPlans } from "@/lib/pricing";
 import { Check, Star } from "lucide-react";
 import { getWhatsAppLink } from "@/lib/whatsapp";
-
-const plans = [
-  {
-    nameKey: "price.monthly" as TranslationKey,
-    labelKey: "price.payAsYouGo" as TranslationKey,
-    price: "NPR 2,199",
-    periodKey: "price.periodMonth" as TranslationKey,
-    highlight: false,
-    features: [
-      "price.f1m", "price.f2m", "price.f3m",
-      "price.f4m", "price.f5m", "price.f6m",
-    ] as TranslationKey[],
-  },
-  {
-    nameKey: "price.yearly" as TranslationKey,
-    labelKey: "price.bestValueLabel" as TranslationKey,
-    price: "NPR 22,999",
-    periodKey: "price.periodYear" as TranslationKey,
-    highlight: true,
-    features: [
-      "price.f1y", "price.f2y", "price.f3y",
-      "price.f4y", "price.f5y", "price.f6y",
-    ] as TranslationKey[],
-  },
-  {
-    nameKey: "price.6months" as TranslationKey,
-    labelKey: "price.betterValue" as TranslationKey,
-    price: "NPR 11,999",
-    periodKey: "price.period6m" as TranslationKey,
-    highlight: false,
-    features: [
-      "price.f1s", "price.f2s", "price.f3s",
-      "price.f4s", "price.f5s", "price.f6s",
-    ] as TranslationKey[],
-  },
-];
 
 export default function Pricing() {
   const { t } = useI18n();
@@ -68,9 +32,9 @@ export default function Pricing() {
         </motion.div>
 
         <div className="grid gap-4 md:grid-cols-3 max-w-4xl mx-auto">
-          {plans.map((plan, i) => (
+          {pricingPlans.map((plan, i) => (
             <motion.div
-              key={plan.nameKey}
+              key={plan.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -111,7 +75,7 @@ export default function Pricing() {
               </div>
 
               <ul className="mb-5 space-y-2.5">
-                {plan.features.map((fKey) => (
+                {plan.featureKeys.map((fKey) => (
                   <li key={fKey} className="flex items-start gap-2.5">
                     <Check className={`mt-0.5 h-4 w-4 shrink-0 ${
                       plan.highlight ? "text-restra-yellow" : "text-restra-cyan"

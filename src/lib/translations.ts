@@ -232,7 +232,7 @@ const en = {
   "price.f5y": "Custom integrations",
   "price.f6y": "Dedicated account manager",
   "price.choose": "Choose",
-  "price.disclaimer": "Prices shown as placeholders. Final pricing will be confirmed upon launch.",
+  "price.disclaimer": "Prices are in Nepali rupees. Your final price, including applicable taxes, is confirmed in writing before you pay.",
 
   // CTA
   "cta.title": "Your restaurant has enough things to manage.",
@@ -420,9 +420,9 @@ const en = {
   "pricingPage.valueAccountsM": "Up to 10",
   "pricingPage.valueAccountsS": "Up to 25",
   "pricingPage.valueAccountsY": "Unlimited",
-  "pricingPage.pageDisclaimer": "Prices shown as placeholders. Final pricing will be confirmed upon launch.",
+  "pricingPage.pageDisclaimer": "Prices are in Nepali rupees. Your final price, including applicable taxes, is confirmed in writing before you pay.",
   "pricingPage.customTitle": "Running more than one outlet?",
-  "pricingPage.customSubtitle": "Tell us about your restaurants and we'll put together a plan that fits — pricing is confirmed at launch.",
+  "pricingPage.customSubtitle": "Tell us about your restaurants and we'll put together a plan and quote that fits every outlet.",
   "pricingPage.customCta": "Talk to Us",
   "pricingPage.faqBadge": "Pricing FAQ",
   "pricingPage.faqTitle": "Pricing questions, answered",
@@ -505,8 +505,6 @@ const en = {
   "pfaq.switch.a": "Yes. You can move between monthly, 6-month, and yearly plans — tell the team and we'll adjust it, including credit for unused time.",
   "pfaq.training.q": "Is staff training included?",
   "pfaq.training.a": "Yes. Higher plans include dedicated onboarding, and every plan gets a walkthrough when you start. The screens are built around everyday restaurant tasks, so staff can usually start on the basics quickly.",
-  "pfaq.placeholder.q": "Why do prices show as placeholders?",
-  "pfaq.placeholder.a": "Final pricing is being confirmed for launch. Message the team for a custom quote for your restaurant — we'll lock your rate in early.",
 
   // ------------------------------------------------------------------
   // Contact FAQ (contact page)
@@ -755,7 +753,7 @@ const ne: Record<keyof typeof en, string> = {
   "price.f5y": "कस्टम इन्टिग्रेसन",
   "price.f6y": "समर्पित खाता व्यवस्थापक",
   "price.choose": "छान्नुहोस्",
-  "price.disclaimer": "मूल्यहरू प्लेसहोल्डरको रूपमा देखाइएको छ। अन्तिम मूल्य निर्धारण लन्चमा पुष्टि गरिनेछ।",
+  "price.disclaimer": "मूल्यहरू नेपाली रुपैयाँमा छन्। लागू हुने कर सहित तपाईंको अन्तिम मूल्य भुक्तानी अघि लिखित रूपमा पुष्टि गरिन्छ।",
 
   // CTA
   "cta.title": "तपाईंको रेस्टुरेन्टलाई व्यवस्थापन गर्न पर्याप्त कुराहरू छन्।",
@@ -943,9 +941,9 @@ const ne: Record<keyof typeof en, string> = {
   "pricingPage.valueAccountsM": "१० सम्म",
   "pricingPage.valueAccountsS": "२५ सम्म",
   "pricingPage.valueAccountsY": "असीमित",
-  "pricingPage.pageDisclaimer": "मूल्यहरू प्लेसहोल्डरको रूपमा देखाइएको छ। अन्तिम मूल्य निर्धारण लन्चमा पुष्टि गरिनेछ।",
+  "pricingPage.pageDisclaimer": "मूल्यहरू नेपाली रुपैयाँमा छन्। लागू हुने कर सहित तपाईंको अन्तिम मूल्य भुक्तानी अघि लिखित रूपमा पुष्टि गरिन्छ।",
   "pricingPage.customTitle": "एकभन्दा बढी आउटलेट चलाउनुहुन्छ?",
-  "pricingPage.customSubtitle": "आफ्ना रेस्टुरेन्टहरूको बारेमा भन्नुहोस्, हामी तपाईंलाई मिल्ने योजना बनाउँला — मूल्य लन्चमा पुष्टि हुनेछ।",
+  "pricingPage.customSubtitle": "आफ्ना रेस्टुरेन्टहरूको बारेमा भन्नुहोस्, हामी हरेक आउटलेटलाई मिल्ने योजना र मूल्य प्रस्ताव तयार गरिदिन्छौं।",
   "pricingPage.customCta": "हामीसँग कुरा गर्नुहोस्",
   "pricingPage.faqBadge": "मूल्य FAQ",
   "pricingPage.faqTitle": "मूल्य सम्बन्धी प्रश्नहरूको उत्तर",
@@ -1028,8 +1026,6 @@ const ne: Record<keyof typeof en, string> = {
   "pfaq.switch.a": "सक्छौं। तपाईं मासिक, ६-महिना र वार्षिक योजनाहरू बीच सर्न सक्नुहुन्छ — टिमलाई भन्नुहोस्, हामी मिलाइदिन्छौं, नचलेको समयको श्रेयसहित।",
   "pfaq.training.q": "के कर्मचारी तालिम समावेश छ?",
   "pfaq.training.a": "छ। ठूला योजनाहरूमा समर्पित अनबोर्डिङ हुन्छ, र हरेक योजनामा सुरुमा वाकअथ्रु मिल्छ। धेरैजसो कर्मचारीले एउटै सिफ्टमा आधारभूत कुरा सिक्छन्।",
-  "pfaq.placeholder.q": "मूल्य प्लेसहोल्डर किन देखाइएको छ?",
-  "pfaq.placeholder.a": "अन्तिम मूल्य लन्चका लागि पुष्टि हुँदैछ। आफ्नो रेस्टुरेन्टका लागि कस्टम कोट लिन टिमलाई म्यासेज गर्नुहोस् — हामी तपाईंको दर छिट्टै नै तोकिदिन्छौं।",
 
   // ------------------------------------------------------------------
   // Contact FAQ (contact page)

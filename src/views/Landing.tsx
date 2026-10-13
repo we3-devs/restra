@@ -3,7 +3,6 @@ import Hero from "@/components/landing/Hero";
 import ConnectedSystem from "@/components/landing/ConnectedSystem";
 import ProductWorkflow from "@/components/landing/ProductWorkflow";
 import FeatureBento from "@/components/landing/FeatureBento";
-import ModuleShowcase from "@/components/landing/ModuleShowcase";
 import RestaurantShowcase from "@/components/landing/RestaurantShowcase";
 import WhyRestra from "@/components/landing/WhyRestra";
 import HomeFaq from "@/components/landing/HomeFaq";
@@ -15,10 +14,11 @@ import ChatWidget from "@/components/landing/ChatWidget";
 import ScrollProgress from "@/components/landing/ScrollProgress";
 import ClickBurst from "@/components/landing/ClickBurst";
 import LoadingScreen from "@/components/landing/LoadingScreen";
+import DashainOffer, { DashainOfferPopup } from "@/components/landing/DashainOffer";
 
 /**
  * RESTRA home page — premium B2B SaaS composition:
- * navbar → hero → dashboard → metrics → problems → connected system →
+ * navbar → hero → Dashain offer → dashboard → metrics → problems → connected system →
  * workflow → modules bento → module showcases → why → team → pricing →
  * FAQ → CTA → footer.
  */
@@ -32,10 +32,10 @@ export default function Landing() {
       <MobileTabBar />
       <main id="main-content">
         <Hero />
+        <DashainOffer />
         <ConnectedSystem />
         <ProductWorkflow />
         <FeatureBento />
-        {/* <ModuleShowcase /> */}
         <RestaurantShowcase />
         <WhyRestra />
         <Team />
@@ -45,6 +45,7 @@ export default function Landing() {
       </main>
       <Footer />
       <ChatWidget />
+      <DashainOfferPopup />
     </div>
   );
 }

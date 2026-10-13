@@ -205,9 +205,10 @@ export default function TermsPage() {
                   promptly using the contact information provided below.
                 </p>
                 <p>
-                  Prices shown on the website may be placeholders and could change before
-                  final confirmation. Any final pricing will be confirmed at the time of
-                  purchase or as otherwise communicated by Restra.
+                  Prices and promotional offers shown on the website may change and
+                  promotions apply only for their stated period. Your final price,
+                  including applicable taxes, will be confirmed at the time of purchase or
+                  as otherwise communicated by Restra.
                 </p>
               </div>
             </section>

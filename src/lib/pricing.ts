@@ -14,8 +14,8 @@ export type PricingPlan = {
 };
 
 /**
- * Pricing plans. Amounts are placeholders (final pricing confirmed at launch)
- * and stay in one place so both pricing surfaces stay in sync.
+ * Pricing plans (NPR). Amounts live in one place
+ * so the home-page and /pricing surfaces stay in sync.
  */
 export const pricingPlans: PricingPlan[] = [
   {

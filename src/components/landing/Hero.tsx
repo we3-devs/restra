@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
 import HeroShowcase from "./HeroShowcase";
+import { DashainOfferPill } from "./DashainOffer";
 
 /**
  * Centered SaaS hero that sits directly below the existing fixed navbar:
@@ -62,6 +63,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
           className="mx-auto flex max-w-3xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left"
         >
+          <DashainOfferPill />
+
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
