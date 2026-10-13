@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useI18n } from "@/contexts/I18nContext";
-import { pricingPlans } from "@/lib/pricing";
+import { mobilePlanOrderClass, pricingPlans } from "@/lib/pricing";
 import { Check, Star } from "lucide-react";
 import { getWhatsAppLink } from "@/lib/whatsapp";
 
@@ -39,7 +39,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`relative rounded-xl border p-4 transition-all duration-300 md:p-5 ${
+              className={`${mobilePlanOrderClass(plan)} relative rounded-xl border p-4 transition-all duration-300 md:p-5 ${
                 plan.highlight
                   ? "border-restra-yellow/30 bg-restra-yellow/[0.04] shadow-lg shadow-restra-yellow/[0.05] md:-my-4 md:scale-105 md:p-6"
                   : "border-white/[0.06] bg-restra-card hover:border-white/[0.12]"
@@ -68,7 +68,7 @@ export default function Pricing() {
               </div>
 
               <div className="mb-5">
-                <span className={`font-display font-semibold text-restra-text ${plan.highlight ? "text-3xl" : "text-xl"}`}>
+                <span className={`whitespace-nowrap font-display font-semibold text-restra-text ${plan.highlight ? "text-2xl lg:text-3xl" : "text-xl"}`}>
                   {plan.price}
                 </span>
                 <span className="text-sm text-restra-text-muted">{t(plan.periodKey)}</span>

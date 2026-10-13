@@ -30,12 +30,12 @@ function useOfferActive() {
 
 function ClaimButtons({ className }: { className?: string }) {
   return (
-    <div className={cn("flex flex-col gap-3 sm:flex-row", className)}>
+    <div className={cn("flex flex-col gap-3 sm:flex-row sm:flex-wrap", className)}>
       <a
         href={whatsAppHref}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C518] px-6 py-3 text-sm font-bold text-[#141108] shadow-lg shadow-[#F5C518]/20 transition-all hover:-translate-y-0.5 hover:bg-[#FFD43B]"
+        className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-[#F5C518] px-6 py-3 text-sm font-bold text-[#141108] shadow-lg shadow-[#F5C518]/20 transition-all hover:-translate-y-0.5 hover:bg-[#FFD43B]"
       >
         <MessageCircle className="h-4 w-4" aria-hidden="true" />
         Claim on WhatsApp
@@ -43,7 +43,7 @@ function ClaimButtons({ className }: { className?: string }) {
       </a>
       <a
         href={dashainOffer.phoneHref}
-        className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-[#F5C518]/50 hover:bg-white/[0.08]"
+        className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-[#F5C518]/50 hover:bg-white/[0.08]"
       >
         <Phone className="h-4 w-4 text-[#F5C518]" aria-hidden="true" />
         {dashainOffer.phone}
@@ -65,7 +65,7 @@ function PriceBlock({ size = "lg" }: { size?: "lg" | "sm" }) {
         <p
           className={cn(
             "font-display font-semibold leading-none tracking-tight text-white",
-            size === "lg" ? "mt-2 text-5xl sm:text-6xl" : "mt-1 text-3xl",
+            size === "lg" ? "mt-2 text-5xl sm:text-6xl lg:text-5xl xl:text-6xl" : "mt-1 text-3xl",
           )}
         >
           <span className="mr-2 align-middle text-base font-body font-medium text-white/60">Just</span>

@@ -6,6 +6,8 @@ export type PricingPlan = {
   labelKey: TranslationKey;
   periodKey: TranslationKey;
   price: string;
+  /** Billing period length; used to list plans shortest-first. */
+  months: number;
   /** Per-month equivalent shown small under the price. */
   perMonth?: string;
   highlight: boolean;
@@ -24,6 +26,7 @@ export const pricingPlans: PricingPlan[] = [
     labelKey: "price.payAsYouGo",
     periodKey: "price.periodMonth",
     price: "NPR 2,199",
+    months: 1,
     highlight: false,
     featureKeys: [
       "price.f1m",
@@ -40,6 +43,7 @@ export const pricingPlans: PricingPlan[] = [
     labelKey: "price.bestValueLabel",
     periodKey: "price.periodYear",
     price: "NPR 22,999",
+    months: 12,
     perMonth: undefined,
     highlight: true,
     savingKey: "price.bestValue",
@@ -58,6 +62,7 @@ export const pricingPlans: PricingPlan[] = [
     labelKey: "price.betterValue",
     periodKey: "price.period6m",
     price: "NPR 11,999",
+    months: 6,
     highlight: false,
     featureKeys: [
       "price.f1s",
@@ -69,3 +74,15 @@ export const pricingPlans: PricingPlan[] = [
     ],
   },
 ];
+
+/** Plans shortest period first, for tables and single-column (mobile) lists. */
+export const plansByDuration = [...pricingPlans].sort((a, b) => a.months - b.months);
+
+/**
+ * On phones the cards stack, so list them by duration; from md up the grid
+ * keeps the source order, which puts the highlighted plan in the middle.
+ */
+export function mobilePlanOrderClass(plan: PricingPlan): string {
+  const index = plansByDuration.indexOf(plan);
+  return ["order-1", "order-2", "order-3"][index] + " md:order-none";
+}

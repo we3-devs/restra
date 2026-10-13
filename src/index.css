@@ -218,6 +218,12 @@
     font-family: var(--font-body);
     font-size: 16px;
   }
+  /* Grid items default to min-width: auto, so one wide child (a mockup, a
+     long word) stretches its column past the viewport, where the overflow-x
+     clip above silently cuts content off. Let tracks shrink to fit. */
+  .grid > * {
+    min-width: 0;
+  }
   .scrollbar-none {
     scrollbar-width: none;
     -ms-overflow-style: none;

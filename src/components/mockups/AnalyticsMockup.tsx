@@ -58,7 +58,7 @@ export default function AnalyticsMockup({ className }: { className?: string }) {
       </div>
 
       {/* KPI row */}
-      <div className="grid grid-cols-4 divide-x divide-white/[0.06] border-b border-white/[0.06]">
+      <div className="grid grid-cols-2 border-b border-white/[0.06] sm:grid-cols-4 sm:divide-x sm:divide-white/[0.06]">
         {kpis.map((kpi) => (
           <div key={kpi.label} className="px-3 py-2.5">
             <p className="text-[9px] font-semibold uppercase tracking-wider text-restra-text-muted">
@@ -70,7 +70,7 @@ export default function AnalyticsMockup({ className }: { className?: string }) {
         ))}
       </div>
 
-      <div className="grid grid-cols-[1.35fr_1fr] gap-4 p-3.5">
+      <div className="grid grid-cols-1 gap-4 p-3.5 sm:grid-cols-[1.35fr_1fr]">
         {/* Weekly chart */}
         <div>
           <div className="mb-2 flex items-center justify-between">
@@ -81,10 +81,10 @@ export default function AnalyticsMockup({ className }: { className?: string }) {
               <TrendingUp className="h-3 w-3" /> +18% vs last week
             </span>
           </div>
-          <div className="flex h-24 items-end gap-1.5">
+          <div className="flex h-24 gap-1.5">
             {week.map((day, i) => (
               <div key={day.day} className="flex flex-1 flex-col items-center gap-1">
-                <div className="flex h-full w-full items-end overflow-hidden rounded-md bg-white/[0.04]">
+                <div className="flex min-h-0 w-full flex-1 items-end overflow-hidden rounded-md bg-white/[0.04]">
                   <div
                     className={cn(
                       "w-full rounded-md",

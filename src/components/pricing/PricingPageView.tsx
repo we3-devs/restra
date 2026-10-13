@@ -5,7 +5,7 @@ import { useI18n } from "@/contexts/I18nContext";
 import type { TranslationKey } from "@/lib/translations";
 import { ArrowRight, Check, Minus, Star } from "lucide-react";
 import { getWhatsAppLink } from "@/lib/whatsapp";
-import { pricingPlans } from "@/lib/pricing";
+import { mobilePlanOrderClass, plansByDuration, pricingPlans } from "@/lib/pricing";
 import { pricingFaqs } from "@/lib/faq-data";
 import Reveal from "@/components/reusable/Reveal";
 import { DashainOfferBanner } from "@/components/landing/DashainOffer";
@@ -27,6 +27,13 @@ type ComparisonRow = {
   monthly: TranslationKey | boolean;
   sixMonths: TranslationKey | boolean;
   yearly: TranslationKey | boolean;
+};
+
+/** Which comparison-row field holds each plan's value. */
+const rowKeyForPlan: Record<string, Exclude<keyof ComparisonRow, "featureKey">> = {
+  monthly: "monthly",
+  "6months": "sixMonths",
+  yearly: "yearly",
 };
 
 const comparisonRows: ComparisonRow[] = [
@@ -69,7 +76,7 @@ function ComparisonCell({ value }: { value: TranslationKey | boolean }) {
       </span>
     );
   }
-  return <span className="text-xs font-medium text-restra-text-secondary">{t(value)}</span>;
+  return <span className="text-[11px] font-medium leading-snug text-restra-text-secondary sm:text-xs">{t(value)}</span>;
 }
 
 export default function PricingPageView() {
@@ -104,7 +111,7 @@ export default function PricingPageView() {
           {/* Plan cards */}
           <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
             {pricingPlans.map((plan, i) => (
-              <Reveal key={plan.id} delay={i * 0.08}>
+              <Reveal key={plan.id} delay={i * 0.08} className={mobilePlanOrderClass(plan)}>
                 <article
                   className={cn(
                     "relative flex h-full flex-col rounded-2xl border p-4 transition-all duration-300 md:p-5",
@@ -137,8 +144,8 @@ export default function PricingPageView() {
                   <div className="mt-4">
                     <span
                       className={cn(
-                        "font-display font-semibold tracking-tight text-restra-text",
-                        plan.highlight ? "text-4xl" : "text-2xl",
+                        "whitespace-nowrap font-display font-semibold tracking-tight text-restra-text",
+                        plan.highlight ? "text-3xl lg:text-4xl" : "text-2xl",
                       )}
                     >
                       {plan.price}
@@ -202,19 +209,19 @@ export default function PricingPageView() {
 
           <Reveal delay={0.1}>
             <div className="mt-8 overflow-x-auto rounded-xl border border-white/[0.08] bg-restra-card">
-              <table className="w-full min-w-[560px] text-left">
+              <table className="w-full table-fixed text-left sm:table-auto">
                 <caption className="sr-only">{t("pricingPage.compareTitle")}</caption>
                 <thead>
                   <tr className="border-b border-white/[0.07] text-xs">
-                    <th scope="col" className="px-5 py-3.5 font-semibold text-restra-text-muted">
+                    <th scope="col" className="w-[34%] px-3 py-3.5 font-semibold text-restra-text-muted sm:w-auto sm:px-5">
                       {t("price.badge")}
                     </th>
-                    {pricingPlans.map((plan) => (
+                    {plansByDuration.map((plan) => (
                       <th
                         key={plan.id}
                         scope="col"
                         className={cn(
-                          "px-5 py-3.5 text-center font-semibold",
+                          "px-1.5 py-3.5 text-center font-semibold sm:px-5",
                           plan.highlight ? "text-restra-yellow" : "text-restra-text",
                         )}
                       >
@@ -226,18 +233,14 @@ export default function PricingPageView() {
                 <tbody className="divide-y divide-white/[0.05]">
                   {comparisonRows.map((row) => (
                     <tr key={row.featureKey} className="transition-colors hover:bg-white/[0.02]">
-                      <th scope="row" className="px-5 py-3 text-sm font-medium text-restra-text-secondary">
+                      <th scope="row" className="px-3 py-3 text-xs font-medium text-restra-text-secondary sm:px-5 sm:text-sm">
                         {t(row.featureKey)}
                       </th>
-                      <td className="px-5 py-3 text-center">
-                        <ComparisonCell value={row.monthly} />
-                      </td>
-                      <td className="px-5 py-3 text-center">
-                        <ComparisonCell value={row.sixMonths} />
-                      </td>
-                      <td className="px-5 py-3 text-center">
-                        <ComparisonCell value={row.yearly} />
-                      </td>
+                      {plansByDuration.map((plan) => (
+                        <td key={plan.id} className="px-1.5 py-3 text-center sm:px-5">
+                          <ComparisonCell value={row[rowKeyForPlan[plan.id]]} />
+                        </td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>

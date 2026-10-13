@@ -117,7 +117,7 @@ export default function Team() {
         </motion.div>
 
         {/* Mobile / tablet: static grid */}
-        <div className="mx-auto mt-16 grid max-w-4xl gap-6 sm:grid-cols-2 lg:hidden">
+        <div className="mx-auto mt-16 grid max-w-3xl gap-6 sm:grid-cols-2 md:grid-cols-3 lg:hidden sm:max-md:[&>*:last-child:nth-child(odd)]:col-span-2">
           {members.map((member, i) => (
             <motion.div
               key={member.nameKey}
@@ -125,7 +125,7 @@ export default function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.35, delay: i * 0.08 }}
-              className="group mx-auto w-full max-w-52 overflow-hidden rounded-2xl border border-white/4 bg-restra-card/50 transition-all duration-300 hover:border-white/10 hover:bg-restra-card"
+              className="group mx-auto w-full max-w-64 overflow-hidden sm:max-w-52 rounded-2xl border border-white/4 bg-restra-card/50 transition-all duration-300 hover:border-white/10 hover:bg-restra-card"
             >
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image

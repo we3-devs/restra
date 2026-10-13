@@ -44,9 +44,9 @@ export default function StaffMockup({ className }: { className?: string }) {
         </span>
       </div>
 
-      <div className="grid grid-cols-[1fr_1.25fr]">
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_1.25fr]">
         {/* Team list */}
-        <div className="space-y-1.5 border-r border-white/[0.06] p-3.5">
+        <div className="grid grid-cols-2 gap-1.5 border-b border-white/[0.06] p-3.5 sm:block sm:space-y-1.5 sm:border-b-0 sm:border-r">
           {members.map((member) => (
             <div
               key={member.name}
@@ -72,7 +72,7 @@ export default function StaffMockup({ className }: { className?: string }) {
             </div>
           ))}
 
-          <div className="mt-3 flex items-center gap-1.5 rounded-lg border border-white/[0.05] bg-restra-surface px-2.5 py-2 text-[10px] text-restra-text-muted">
+          <div className="col-span-2 mt-1.5 flex items-center gap-1.5 rounded-lg border border-white/[0.05] bg-restra-surface px-2.5 py-2 text-[10px] text-restra-text-muted sm:mt-3">
             <UserCog className="h-3.5 w-3.5 text-restra-cyan" />
             Permissions update instantly
           </div>

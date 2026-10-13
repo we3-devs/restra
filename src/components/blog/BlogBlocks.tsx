@@ -114,20 +114,42 @@ export default function BlogBlocks({ blocks }: { blocks: BlogBlock[] }) {
           case "table": {
             return (
               <div key={index} id="comparison" className="overflow-hidden rounded-xl border border-white/[0.08] bg-restra-card">
+                {/* Caption sits outside the scroller so it wraps to the card width on phones. */}
+                <p aria-hidden="true" className="border-b border-white/[0.08] px-5 py-4 text-sm leading-6 text-restra-text-secondary">
+                  {block.caption}
+                  <span className="mt-1 block text-xs font-semibold text-restra-yellow md:hidden">Swipe to compare all columns →</span>
+                </p>
                 <div className="overflow-x-auto">
                   <table className="min-w-[760px] w-full text-left text-sm">
-                    <caption className="border-b border-white/[0.08] px-5 py-4 text-left text-sm leading-6 text-restra-text-secondary">
-                      {block.caption}
-                    </caption>
-                    <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.08em] text-restra-text-muted">
+                    <caption className="sr-only">{block.caption}</caption>
+                    <thead className="bg-restra-surface text-xs uppercase tracking-[0.08em] text-restra-text-muted">
                       <tr>
-                        {block.headers.map((header) => <th key={header} scope="col" className="px-4 py-3 font-semibold">{header}</th>)}
+                        {block.headers.map((header, headerIndex) => (
+                          <th
+                            key={header}
+                            scope="col"
+                            className={headerIndex === 0 ? "sticky left-0 z-10 bg-restra-surface px-4 py-3 font-semibold" : "px-4 py-3 font-semibold"}
+                          >
+                            {header}
+                          </th>
+                        ))}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-white/[0.06]">
                       {block.rows.map((row) => (
                         <tr key={row[0]} className="align-top">
-                          {row.map((cell, cellIndex) => <td key={`${row[0]}-${cellIndex}`} className="px-4 py-3 leading-6 text-restra-text-secondary">{cell}</td>)}
+                          {row.map((cell, cellIndex) => (
+                            <td
+                              key={`${row[0]}-${cellIndex}`}
+                              className={
+                                cellIndex === 0
+                                  ? "sticky left-0 z-10 bg-restra-card px-4 py-3 font-semibold leading-6 text-restra-text shadow-[1px_0_0_rgba(0,0,0,0.06)]"
+                                  : "px-4 py-3 leading-6 text-restra-text-secondary"
+                              }
+                            >
+                              {cell}
+                            </td>
+                          ))}
                         </tr>
                       ))}
                     </tbody>

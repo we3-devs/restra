@@ -81,9 +81,9 @@ export default function Footer() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_85%_0%,rgba(255,255,255,0.14),transparent_60%)]"
       />
       <div className="relative mx-auto max-w-7xl px-4 py-12 lg:px-6 lg:py-16">
-        <div className="grid gap-10 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
             <Link
               href="/"
               className="flex items-end gap-1 font-display text-xl font-semibold tracking-tight text-restra-footer-heading"
@@ -133,7 +133,7 @@ export default function Footer() {
           <p className="text-xs font-semibold uppercase tracking-[0.15em] text-restra-footer-heading">
             Explore RESTRA
           </p>
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-restra-footer-muted">
+          <div className="mt-4 grid gap-x-6 gap-y-2.5 text-sm text-restra-footer-muted sm:flex sm:flex-wrap sm:gap-y-2">
             {resourcePages.map((href) => (
               <Link key={href} href={href} className="transition-colors hover:text-white">
                 {href === "/restaurant-management-system"

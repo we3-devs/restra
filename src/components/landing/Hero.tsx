@@ -70,7 +70,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
             id="hero-heading"
-            className="mt-6 font-display text-3xl font-semibold italic leading-[1.08] tracking-tight text-restra-text sm:text-5xl lg:text-[3.75rem]"
+            className="mt-6 font-display text-3xl font-semibold italic leading-[1.08] tracking-tight text-restra-text sm:text-5xl xl:text-[3.75rem]"
           >
             {beforeHighlight}
             <span className="text-restra-yellow">{t("hero.titleHighlight")}</span>
@@ -109,7 +109,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
-          className="relative mt-10 sm:mt-12 lg:mt-0 lg:translate-x-[90px] lg:translate-y-[20px]"
+          className="relative mt-10 sm:mt-12 lg:mt-0 lg:translate-y-[20px] min-[1440px]:translate-x-[90px]"
         >
           <HeroShowcase />
         </motion.div>

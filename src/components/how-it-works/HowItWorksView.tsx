@@ -176,8 +176,8 @@ export default function HowItWorksView() {
 
           {/* Stepper rail */}
           <div className="relative">
-            <div aria-hidden="true" className="absolute left-0 right-0 top-5 hidden h-px bg-white/[0.07] lg:block" />
-            <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-7">
+            <div aria-hidden="true" className="absolute left-0 right-0 top-5 hidden h-px bg-white/[0.07] xl:block" />
+            <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
               {steps.map((step, i) => {
                 const isActive = i === active;
                 const isDone = i < active;
@@ -188,7 +188,7 @@ export default function HowItWorksView() {
                       onClick={() => selectStep(i)}
                       aria-current={isActive ? "step" : undefined}
                       className={cn(
-                        "group relative flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-all duration-300 lg:flex-col lg:items-start",
+                        "group relative flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-all duration-300 xl:flex-col xl:items-start",
                         isActive
                           ? "border-restra-yellow/40 bg-restra-yellow/[0.06]"
                           : "border-white/[0.06] bg-restra-card hover:border-white/[0.14]",
@@ -206,7 +206,7 @@ export default function HowItWorksView() {
                       >
                         <step.icon className="h-4 w-4" />
                       </span>
-                      <span className="min-w-0">
+                      <span className="min-w-0 max-w-full">
                         <span className="block text-[9px] font-bold uppercase tracking-wider text-restra-text-muted">
                           {t("workflow.badge")} {String(i + 1).padStart(2, "0")}
                         </span>
